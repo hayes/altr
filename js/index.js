@@ -1,28 +1,19 @@
-var through = require('through')
-  , parser = require('./parser')
+var Template = require('./template')
 
-function template(raw) {
-  this.remaining = raw
+var el = document.getElementById('main')
 
-  this.stream = through(this.set_values.bind(this))
-  this.root = parser.parse(this)
-  parser.initialize(this.root)
-}
+var template = Template(el)
 
-var proto = template.prototype
+template.write({
+    a: 10
+})
 
-proto.set_values = function(data) {
+var a = 0
 
-}
-
-
-
-var instance = new template('<div class="gonna-get-lost">{% if x %}x = {{ x }}{% endif %}</div>')
-  , d = document.createElement('div')
-
-d.appendChild(instance.root.node)
-console.log(instance.root)
-
-console.log(d.innerHTML)
-instance.stream.write({x: 5})
-console.log(d.innerHTML)
+setInterval(function() {
+  for(var i = 0; i < 10000; ++i) {
+    template.write({
+        a: a = a + 1
+    })
+  }
+}, 0)
