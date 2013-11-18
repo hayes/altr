@@ -29,7 +29,7 @@ cons.node_handlers = node_types.reduce(function(handlers, type) {
   return handlers
 }, {})
 
-cons.registerNodeHandler = function(type, handler) {
+cons.register_node_handler = function(type, handler) {
   this.node_handlers[type].push(handler)
 }
 
@@ -111,7 +111,7 @@ proto.write = function(obj) {
   this.trigger.write(obj)
 }
 
-cons.registerNodeHandler(document.TEXT_NODE, text_handler)
+cons.register_node_handler(document.TEXT_NODE, text_handler)
 
 return module.exports = function(root) {
   return new Template(root)
