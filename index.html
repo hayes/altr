@@ -3,7 +3,11 @@
 
 </head>
 <body>
-  <div id="main">a = {{ a }}</div>
+  <div id="main">
+  a.b = {{ a.b }}
+  <div class="show" altr-if="show">should be visable</div>
+  <div class="dont" altr-if="dont">shouldnt be visable</div>
+  </div>
   <script type="text/javascript" src="index.js"></script>
 </body>
 </html>
