@@ -4,9 +4,12 @@
 </head>
 <body>
   <div id="main">
-  a.b = {{ a.b }}
-  <div class="show" altr-if="show">should be visable</div>
-  <div class="dont" altr-if="dont">shouldnt be visable</div>
+    a.b = {{ a.b }}
+    <div class="show" altr-if="show">should be visable</div>
+    <div class="dont" altr-if="dont">shouldnt be visable</div>
+    <ul altr-for="item in items">
+      <li>{{ item }}</li>
+    </ul>
   </div>
   <script type="text/javascript" src="index.js"></script>
 </body>
