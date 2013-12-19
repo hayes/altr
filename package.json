@@ -1,6 +1,6 @@
 {
   "name": "altr",
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "README.md",
   "main": "lib/index.js",
   "scripts": {
@@ -16,11 +16,8 @@
   "dependencies": {
     "through": "~2.3.4"
   },
-  "readme": "template\n========\n\na simple template engine that generates a document fragment that will update the correct nodes when its source data changes\n",
   "readmeFilename": "README.md",
   "bugs": {
     "url": "https://github.com/mghayes/tempalte/issues"
-  },
-  "_id": "altr@0.0.1",
-  "_from": "altr@*"
+  }
 }
