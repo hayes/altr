@@ -9,7 +9,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/mghayes/tempalte"
+    "url": "http://github.com/mghayes/altr"
   },
   "author": "",
   "license": "MIT",
@@ -18,6 +18,6 @@
   },
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/mghayes/tempalte/issues"
+    "url": "https://github.com/mghayes/altr/issues"
   }
 }
