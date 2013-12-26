@@ -1,11 +1,14 @@
-A simple dom aware templating enginge that only updates what it needs.
+##Goals:
+  * temapltes are valid html
+  * updates only the parts of the dom that change
+  * async built in. filters and tags can be async without adding complexity
 
 ##install:
 `npm install altr`
 
 #Ussage:
 
-this is still a work in progress so for now it is expected to be used in code that get browserified.
+this is still a work in progress so for now it needs to be used with browserify
 
 js: 
 ```
