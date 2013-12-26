@@ -1,5 +1,5 @@
 ##Goals:
-  * temapltes are valid html
+  * templates are valid html
   * updates only the parts of the dom that change
   * async built in. filters and tags can be async without adding complexity
 
