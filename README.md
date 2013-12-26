@@ -5,6 +5,8 @@ A simple dom aware templating enginge that only updates what it needs.
 
 #Ussage:
 
+this is still a work in progress so for now it is expected to be used in code that get browserified.
+
 js: 
 ```
 var altr = require('altr')
