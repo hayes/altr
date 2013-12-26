@@ -4,12 +4,22 @@
 </head>
 <body>
   <div id="main">
+    <h3>inline values:</h3>
     a.b = {{ a.b }}
+    <h3>ifs:</h3>
     <div class="show" altr-if="show">should be visable</div>
     <div class="dont" altr-if="dont">shouldnt be visable</div>
+    <h3>for:</h3>
     <ul altr-for="item in items">
       <li>{{ item }}</li>
     </ul>
+    <h3 altr-attr="name: attr">attr</h3>
+    <h3>html</h3>
+    <div altr-html="html"></div>
+    <h3>value tag</h3>
+    <div altr-value="value"></div>
+    <h3>add filter</h3>
+    <div id="add" altr-value="num|add(5)"></div>
   </div>
   <script type="text/javascript" src="index.js"></script>
 </body>

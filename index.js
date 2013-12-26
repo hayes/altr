@@ -7,6 +7,10 @@ var state = {
   , show: false
   , dont: true
   , items: [4,5]
+  , attr: 'attrs work'
+  , value: 'this was inserted by the value tag'
+  , html: '<strong>inserted by the html tag</strong>'
+  , num: 5
 }
 
 template.write(state)
