@@ -13,13 +13,15 @@
     <ul altr-for="item in items">
       <li>{{ item }}</li>
     </ul>
-    <h3 altr-attr="name: attr">attr</h3>
+    <h3>with tag</h3>
+    <div altr-with="a">{{ b }}</div>
     <h3>html</h3>
     <div altr-html="html"></div>
-    <h3>value tag</h3>
-    <div altr-value="value"></div>
+    <h3>text tag</h3>
+    <div altr-text="text"></div>
     <h3>add filter</h3>
-    <div id="add" altr-value="num|add(5)"></div>
+    <div id="add" altr-text="num|add(2)|add(num2)|add(a.b)"></div>
+    <h3 style="color: {{ 'blue' }};">attrs</h3>
   </div>
   <script type="text/javascript" src="index.js"></script>
 </body>

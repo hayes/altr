@@ -1,10 +1,11 @@
 {
   "name": "altr",
-  "version": "0.0.6",
+  "version": "0.0.7",
   "description": "README.md",
   "main": "lib/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "mkdir -p dist && browserify -d v2.js > dist/bundle.js && browserify -d v2.js | minifyify > dist/bundle.min.js",
     "start": "beefy index.js"
   },
   "repository": {
@@ -13,8 +14,11 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {
-    "through": "~2.3.4"
+  "dependencies": {},
+  "devDependencies": {
+    "beefy": "*",
+    "browserify": "^3.33.0",
+    "minifyify": "^2.3.0"
   },
   "readmeFilename": "README.md",
   "bugs": {
