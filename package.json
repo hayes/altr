@@ -10,7 +10,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "http://github.com/mghayes/altr"
+    "url": "http://github.com/hayes/altr"
   },
   "author": "",
   "license": "MIT",
@@ -22,6 +22,6 @@
   },
   "readmeFilename": "README.md",
   "bugs": {
-    "url": "https://github.com/mghayes/altr/issues"
+    "url": "https://github.com/hayes/altr/issues"
   }
 }
