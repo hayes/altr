@@ -1,31 +1,69 @@
-var el = document.getElementById('main')
-  , altr = require('./lib/index')
-  , template = altr(el)
+var altr = require('./lib/index')
+  , N = 100
 
-var state = {
-    a: {b: 10}
-  , show: false
-  , dont: true
-  , items: [4,5]
-  , attr: 'attrs work'
-  , text: 'this was inserted by the text tag'
-  , html: '<strong>inserted by the html tag</strong>'
-  , num: 5
-  , num2: 11
-  , color: 'red'
+var BoxView = function(number) {
+  this.count = -1
+  this.number = number
+  this.tick()
 }
 
-template.update(state)
+BoxView.prototype.tick = function() {
+  this.count = ++this.count
+  this.top = Math.sin(this.count / 10) * 10 + 'px'
+  this.left = Math.cos(this.count / 10) * 10 + 'px'
+  this.background = 'rgb(0,0,' + this.count % 255 + ')'
+  this.num = this.count % 100
 
-var state2 = Object.create(state)
+  this.style = 'top: ' + this.top
+  this.style += '; left: ' + this.left
+  this.style += '; background: ' + this.background
+}
 
-state2.a.b = 5
-state2.show = true
-state2.dont = false
-state2.items = [1,2,3]
+var context = {
+    count: 0
+}
 
-var counter = 0
+var template
 
-setTimeout(function() {
-  template.update(++counter % 2 ? state2 : state)
-}, 0)
+var init = function() {
+  context.boxes = []
+
+  for(var i = 0; i < N; ++i) {
+    context.boxes.push(new BoxView(i))
+  }
+
+  template = altr(document.getElementById('grid'), context)
+}
+
+var animate = function() {
+  context.boxes.forEach(function(box) {
+    box.tick()
+  })
+
+  template.update(context)
+}
+
+window.runAltr = function() {
+  init()
+  benchmarkLoop(animate)
+}
+
+var loopCount = null
+  , totalTime = null
+  , timeout = null
+
+function benchmarkLoop(fn) {
+  var startDate = new Date()
+
+  fn()
+  totalTime += new Date - startDate
+  loopCount++
+
+  if(loopCount % 20 === 0) {
+    document.getElementById('timing').textContent = 'Performed ' +
+      loopCount + ' iterations in ' + totalTime + ' ms (average ' +
+      (totalTime / loopCount).toFixed(2) + ' ms per loop).'
+  }
+
+  timeout = setTimeout(benchmarkLoop.bind(null, fn), 0)
+}
