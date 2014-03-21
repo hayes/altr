@@ -1,8 +1,8 @@
 {
   "name": "altr",
-  "version": "0.0.8",
+  "version": "0.0.9",
   "description": "README.md",
-  "main": "lib/index.js",
+  "main": "lib/stream.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -12,7 +12,9 @@
   },
   "author": "",
   "license": "MIT",
-  "dependencies": {},
+  "dependencies": {
+    "through": "2.3.4"
+  },
   "devDependencies": {
     "beefy": "*",
     "browserify": "^3.33.0",

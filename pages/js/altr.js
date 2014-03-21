@@ -106,7 +106,7 @@ function create_number_accessor(num, change) {
   }
 }
 
-},{"./lookup":6}],2:[function(require,module,exports){
+},{"./lookup":7}],2:[function(require,module,exports){
 var template_string = require('./template_string')
   , element_node = require('./element_node')
   , create_accessor = require('./accessor')
@@ -181,7 +181,10 @@ function add_tag(attr, tag) {
   })
 }
 
-},{"./accessor":1,"./element_node":3,"./template_string":12,"./text_node":13}],3:[function(require,module,exports){
+},{"./accessor":1,"./element_node":4,"./template_string":13,"./text_node":14}],3:[function(require,module,exports){
+window.altr = require('./index')
+
+},{"./index":6}],4:[function(require,module,exports){
 module.exports = create_element_node
 
 function create_element_node(el) {
@@ -229,7 +232,7 @@ function create_element_node(el) {
   }
 }
 
-},{}],4:[function(require,module,exports){
+},{}],5:[function(require,module,exports){
 module.exports = function(accessor, change) {
   var val, num
 
@@ -243,7 +246,7 @@ module.exports = function(accessor, change) {
   }
 }
 
-},{}],5:[function(require,module,exports){
+},{}],6:[function(require,module,exports){
 var add_filter = require('./filters/add')
   , text_tag = require('./tags/text')
   , html_tag = require('./tags/html')
@@ -252,7 +255,7 @@ var add_filter = require('./filters/add')
   , if_tag = require('./tags/if')
   , altr = require('./altr')
 
-module.exports = altr
+module.exports = window.altr = altr
 
 altr.add_tag('altr-text', text_tag)
 altr.add_tag('altr-html', html_tag)
@@ -262,9 +265,7 @@ altr.add_tag('altr-if', if_tag)
 
 altr.add_filter('add', add_filter)
 
-window.altr = altr
-
-},{"./altr":2,"./filters/add":4,"./tags/for":7,"./tags/html":8,"./tags/if":9,"./tags/text":10,"./tags/with":11}],6:[function(require,module,exports){
+},{"./altr":2,"./filters/add":5,"./tags/for":8,"./tags/html":9,"./tags/if":10,"./tags/text":11,"./tags/with":12}],7:[function(require,module,exports){
 module.exports = lookup
 
 function lookup(path, done) {
@@ -283,7 +284,7 @@ function lookup(path, done) {
   }
 }
 
-},{}],7:[function(require,module,exports){
+},{}],8:[function(require,module,exports){
 var for_regexp = /^(.*?)\s+in\s+(.*$)/
 
 module.exports = for_handler
@@ -299,6 +300,8 @@ function for_handler(node, args) {
     throw new Error('invalid for tag: ' + args)
   }
 
+  node.el.innerHTML = ''
+
   var prop = parts[1]
     , key = parts[2]
 
@@ -310,6 +313,7 @@ function for_handler(node, args) {
     for(var i = 0, l = node.children.length; i < l; ++i) {
       item_data = Object.create(data)
       item_data[prop] = data[key][i]
+      item_data['$index'] = i
       altr.update(item_data, node.children[i])
     }
   }
@@ -352,7 +356,7 @@ function for_handler(node, args) {
     }
 
     for(var i = 0, l = children.length; i < l; ++i) {
-      children[i].forEach(function(node) {
+      children[i].dom_nodes.forEach(function(node) {
         node.parentNode.removeChild(node)
       })
     }
@@ -384,7 +388,7 @@ function for_handler(node, args) {
   }
 }
 
-},{}],8:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 module.exports = html
 
 function html(node, accessor) {
@@ -395,7 +399,7 @@ function html(node, accessor) {
   }
 }
 
-},{}],9:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 module.exports = if_tag
 
 function if_tag(node, accessor) {
@@ -429,7 +433,7 @@ function if_tag(node, accessor) {
   }
 }
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = text
 
 function text(node, accessor) {
@@ -440,7 +444,7 @@ function text(node, accessor) {
   }
 }
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 module.exports = with_tag
 
 function with_tag(node, accessor) {
@@ -450,7 +454,7 @@ function with_tag(node, accessor) {
   )
 }
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 var TAG = /{{\s*(.*?)\s*}}/
 
 module.exports = template_string
@@ -498,7 +502,7 @@ function template_string(template, change) {
   }
 }
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 module.exports = create_text_node
 
 function create_text_node(el) {
@@ -519,5 +523,5 @@ function create_text_node(el) {
   }
 }
 
-},{}]},{},[5])
+},{}]},{},[3])
 ;
