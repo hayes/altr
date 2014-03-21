@@ -31,16 +31,9 @@
       </header>
       <section id="main-nav">
         <nav>
-          <ul>
-            <li class="{{ file === '/altr/README.md' ? 'active' : '' }}">
-              <h3><a href="#">
-                Home
-              </a></h3>
-            </li>
-            <li class="{{ file === '/altr/pages/docs/demos.md' ? 'active' : '' }}">
-              <h3><a href="#/altr/pages/docs/demos.md">
-                Demos
-              </a></h3>
+          <ul altr-for="page in headings">
+            <li class="{{ page.route === current_route ? 'active' : '' }}">
+              <h3><a href="{{ page.route }}" altr-text="{{ page.name }}"></a></h3>
             </li>
           </ul>
         </nav>
