@@ -1,0 +1,24 @@
+#main-nav {
+  margin: 0;
+  padding: 0;
+}
+
+#main-nav ul {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  width: 100%;
+}
+
+#main-nav h3 {
+  margin: 10px;
+}
+
+#main-nav li {
+  display: inline-block;
+}
+
+#main-nav li.active h3 {
+  border-bottom: 1px solid #C30000;
+}
+

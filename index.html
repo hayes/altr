@@ -5,9 +5,11 @@
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
     <title>Altr by hayes</title>
 
-    <link rel="stylesheet" href="pages/css/styles.css">
-    <link rel="stylesheet" href="pages/css/pygment_trac.css">
-    <script src="pages/js/scale.fix.js"></script>
+    <link rel="stylesheet" href="./pages/css/styles.css">
+    <link rel="stylesheet" href="./pages/css/pygment_trac.css">
+    <link rel="stylesheet" href="./pages/css/monokai.css">
+    <link rel="stylesheet" href="./pages/css/main.css">
+    <script src="./pages/js/altr.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -17,7 +19,7 @@
     <div class="wrapper">
       <header>
         <h1 class="header">Altr</h1>
-        <p class="header">A dom aware tempting engine that only updates the parts that change</p>
+        <p class="header">A dom aware templating engine that only updates the parts that change</p>
 
         <ul>
           <li class="download"><a class="buttons" href="https://github.com/hayes/altr/zipball/master">Download ZIP</a></li>
@@ -26,20 +28,29 @@
         </ul>
 
         <p class="header">This project is maintained by <a class="header name" href="https://github.com/hayes">hayes</a></p>
-
-
       </header>
-      <section>
-        <h3>Demos</h3>
-        <ul>
-          <li><a href="./pages/demos/perf.html">Performance</a></li>
-        </ul>
+      <section id="main-nav">
+        <nav>
+          <ul>
+            <li class="{{ file === '/altr/README.md' ? 'active' : '' }}">
+              <h3><a href="#">
+                Home
+              </a></h3>
+            </li>
+            <li {{ file === '/altr/pages/docs/demos.md' ? 'active' : '' }}>
+              <h3><a href="#/altr/pages/docs/demos.md">
+                Demos
+              </a></h3>
+            </li>
+          </ul>
+        </nav>
+      </section>
+      <section altr-html="content">
       </section>
       <footer>
         <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
       </footer>
     </div>
-    <!--[if !IE]><script>fixScale(document);</script><![endif]-->
-    
+    <script type="text/javascript" src="./pages/js/bundle.js"></script>
   </body>
 </html>

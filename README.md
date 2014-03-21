@@ -35,6 +35,7 @@ html:
     <li altr-value="item"></li>
   </ul>
 </div>
+
 ```
 
 ##Tags:
@@ -47,7 +48,7 @@ that element will now update its contents every time you write to the template.
 You can also insert values into text nodes or non altr-* attributes using the following syntax
 `{{ dot.path.to.value }}`
 
-##Filters:
+## Filters:
 I have only written an add filter so far, but the api is functional. `{{ num|add(5) }}`
 Filters are through streams, so they can be used to do async stuff, or update values over time (eg. a countdown or transition)
 

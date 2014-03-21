@@ -20,7 +20,9 @@ for(var i = 0; i < 100; ++i) {
   context.boxes.push(new Box(i))
 }
 
-var template = altr(document.body, context)
+console.log(document.getElementById('perf_demo'))
+
+var template = altr(document.getElementById('perf_demo'), context)
 
 var loopCount = null
   , totalTime = null
@@ -48,3 +50,5 @@ function benchmarkLoop() {
 
   timeout = setTimeout(benchmarkLoop, 0)
 }
+
+console.dir(template)

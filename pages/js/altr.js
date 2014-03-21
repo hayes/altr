@@ -227,7 +227,7 @@ function create_element_node(el) {
     , altr.create_node.bind(altr)
   ).filter(Boolean)
 
-  if(node.children.length || node.hooks) {
+  if(node.children.length || node.hooks.length) {
     return node
   }
 }
@@ -255,7 +255,7 @@ var add_filter = require('./filters/add')
   , if_tag = require('./tags/if')
   , altr = require('./altr')
 
-module.exports = window.altr = altr
+module.exports = altr
 
 altr.add_tag('altr-text', text_tag)
 altr.add_tag('altr-html', html_tag)
