@@ -18,7 +18,11 @@
   display: inline-block;
 }
 
-#main-nav li.active h3 {
+#main-nav li.active h3, #main-nav li:hover h3 {
   border-bottom: 1px solid #C30000;
+}
+
+#main-nav li.active h3, #main-nav li:hover a {
+  text-decoration: none;
 }
 

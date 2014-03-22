@@ -9,7 +9,6 @@
     <link rel="stylesheet" href="./pages/css/pygment_trac.css">
     <link rel="stylesheet" href="./pages/css/monokai.css">
     <link rel="stylesheet" href="./pages/css/main.css">
-    <script src="./pages/js/altr.js"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
     <!--[if lt IE 9]>
     <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
@@ -32,8 +31,8 @@
       <section id="main-nav">
         <nav>
           <ul altr-for="page in headings">
-            <li class="{{ page.route === current_route ? 'active' : '' }}">
-              <h3><a href="{{ page.route }}" altr-text="{{ page.name }}"></a></h3>
+            <li class="{{ page.path === current_path ? 'active' : '' }}">
+              <h3><a rel="altr" href="{{ page.path }}" altr-text="page.name"></a></h3>
             </li>
           </ul>
         </nav>
