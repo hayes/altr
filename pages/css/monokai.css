@@ -123,7 +123,6 @@ pre, code {
   color: white;
   border-radius:4px;
   border:1px solid #D7D8C8;
-  background: #272822;
 }
 
 pre {
@@ -131,16 +130,22 @@ pre {
   overflow-y: hidden;
   display: block;
   padding: 0.5em 1em;
+  background: #272822;
 }
 
 code {
   font-size: .75em;
-  padding: 0.25em 0.5em;
+  background: #930011;
+  display: inline-block;
+  line-height: 1.75em;
+  padding: 0 .5em;
 }
+
 pre code {
   border: none;
   font-size: 1em;
   padding: none;
+  background: #272822;
 }
 
 pre code > :first-child {

@@ -32,7 +32,7 @@
         <nav>
           <ul altr-for="page in headings">
             <li class="{{ page.path === current_path ? 'active' : '' }}">
-              <h3><a rel="altr" href="{{ page.path }}" altr-text="page.name"></a></h3>
+              <a rel="altr" href="{{ page.path }}"><h3 altr-text="page.name"></h3></a>
             </li>
           </ul>
         </nav>

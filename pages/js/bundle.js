@@ -10831,8 +10831,14 @@ var main_template = altr(document.body)
   , context = {}
 
 context.headings = headings
-context.current_path = window.location.pathname
 
+var url = window.location.toString()
+
+if(url.indexOf('?')) {
+  window.history.replaceState(null, null, url.split('?')[1])
+}
+
+context.current_path = window.location.pathname
 load_route(context.current_path)
 
 main_template.update(context)
@@ -10870,9 +10876,15 @@ function not_found() {
 }
 
 function on_click(ev) {
-  if(ev.target.getAttribute('rel') === 'altr') {
+  var target = ev.target
+
+  while(target && target.tagName !== 'A') {
+    target = target.parentNode
+  }
+
+  if(target && target.getAttribute('rel') === 'altr') {
     ev.preventDefault()
-    set_route(ev.target.getAttribute('href'))
+    set_route(target.getAttribute('href'))
   }
 }
 
