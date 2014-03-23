@@ -10838,12 +10838,9 @@ if(url.indexOf('?')) {
   window.history.replaceState(null, null, url.split('?')[1])
 }
 
-context.current_path = window.location.pathname
-load_route(context.current_path)
-
-main_template.update(context)
-
+window.addEventListener('popstate', on_state_change)
 document.addEventListener('click', on_click)
+on_state_change()
 
 function load_route(path) {
   var file = routes[path]
@@ -10896,6 +10893,12 @@ function set_route(path) {
   window.history.pushState(null, 'Altr', path)
   context.current_path = path
   load_route(path)
+  main_template.update(context)
+}
+
+function on_state_change() {
+  context.current_path = window.location.pathname
+  load_route(context.current_path)
   main_template.update(context)
 }
 
