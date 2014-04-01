@@ -1,10 +1,12 @@
 {
   "name": "altr",
-  "version": "0.0.13",
+  "version": "0.0.14",
   "description": "README.md",
-  "main": "lib/node.js",
+  "main": "./lib/node.js",
+  "browser": "./lib/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "mkdir -p dist; browserify"
   },
   "repository": {
     "type": "git",
@@ -13,16 +15,15 @@
   "author": "Michael Hayes",
   "license": "MIT",
   "dependencies": {
-    "micro-dom": "0.0.4",
+    "micro-dom": "0.0.5",
     "through": "2.3.4"
   },
   "devDependencies": {
-    "beefy": "*",
-    "browserify": "^3.33.0",
-    "minifyify": "^2.3.0",
-    "marked": "^0.3.2",
-    "highlight.js": "^8.0.0",
-    "concat-stream": "^1.4.4"
+    "browserify": "3.33.0",
+    "minifyify": "2.3.0",
+    "marked": "0.3.2",
+    "highlight.js": "8.0.0",
+    "concat-stream": "1.4.4"
   },
   "readmeFilename": "README.md",
   "bugs": {
