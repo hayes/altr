@@ -2,7 +2,7 @@
   "name": "altr",
   "version": "0.0.12",
   "description": "README.md",
-  "main": "lib/stream.js",
+  "main": "lib/node.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -13,7 +13,7 @@
   "author": "Michael Hayes",
   "license": "MIT",
   "dependencies": {
-    "micro-dom": "0.0.0",
+    "micro-dom": "0.0.2",
     "through": "2.3.4"
   },
   "devDependencies": {
