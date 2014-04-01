@@ -13,6 +13,7 @@
   "author": "Michael Hayes",
   "license": "MIT",
   "dependencies": {
+    "micro-dom": "0.0.0",
     "through": "2.3.4"
   },
   "devDependencies": {

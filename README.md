@@ -1,38 +1,40 @@
-##Goals:
-  * templates are valid html
-  * updates only the parts of the dom that change
-  * async built in. filters and tags can be async without adding complexity
+## What is altr and why would I use it?
+altr is a lightweight templating engine that is backed by the dom rather than
+strings. This means that rather than blowing away large portions of the dom and recreating those nodes with each update, it can quickly modify only the nodes that have changed. Updating only the nodes that have changed provides 2 main benafits. performance and the abilility to attach behavior such as event listeners or css animations to elements that would be destroyed with every change in a string based templating system.
 
-##Install:
-`npm install altr`
+## Install:
+#### if you are using browserify (you should):
+run `npm install altr`
+then simply `var altr = require('altr')`
+#### otherwise
+download altr.js from the [here](#)
+and include it in your html before your other javascript files
+```html
+<script type="text/javascript" src="/path/to/altr.js"></script>
+```
 
-#Usage:
-
-this is still a work in progress so for now it needs to be used with browserify
-
-js: 
+## Basic Usage:
+### js:
 ```js
-var altr = require('altr')
-
 var el = document.getElementById('root')
   , template = altr(el)
-  
-template.write({
+
+template.update({
     name: "world"
   , list: [1,2,3]
 })
 
 //later
-template.write(new_state)
+template.update(new_state)
 
 ```
 
-html:
+### html:
 ```html
 <div id="root">
   <h1>hello, {{ name }}!</h1>
   <ul altr-for="item in list">
-    <li altr-value="item"></li>
+    <li altr-text="item"></li>
   </ul>
 </div>
 
@@ -51,4 +53,3 @@ You can also insert values into text nodes or non altr-* attributes using the fo
 ## Filters:
 I have only written an add filter so far, but the api is functional. `{{ num|add(5) }}`
 Filters are through streams, so they can be used to do async stuff, or update values over time (eg. a countdown or transition)
-
