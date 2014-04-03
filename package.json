@@ -16,7 +16,8 @@
   "license": "MIT",
   "dependencies": {
     "micro-dom": "0.0.9",
-    "through": "2.3.4"
+    "through": "2.3.4",
+    "altr-accessors": "0.0.0"
   },
   "devDependencies": {
     "browserify": "3.33.0",
