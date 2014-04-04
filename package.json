@@ -17,7 +17,7 @@
   "dependencies": {
     "micro-dom": "0.0.9",
     "through": "2.3.4",
-    "altr-accessors": "0.0.0"
+    "altr-accessors": "0.0.1"
   },
   "devDependencies": {
     "browserify": "3.33.0",
