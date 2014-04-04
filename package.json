@@ -1,6 +1,6 @@
 {
   "name": "altr",
-  "version": "0.0.28",
+  "version": "0.0.29",
   "description": "README.md",
   "main": "./lib/node.js",
   "browser": "./lib/index.js",
