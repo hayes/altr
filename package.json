@@ -15,7 +15,7 @@
   "author": "Michael Hayes",
   "license": "MIT",
   "dependencies": {
-    "micro-dom": "0.0.9",
+    "micro-dom": "0.0.10",
     "through": "2.3.4",
     "altr-accessors": "0.0.1"
   },
