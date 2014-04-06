@@ -20,26 +20,24 @@ for(var i = 0; i < 100; ++i) {
   context.boxes.push(new Box(i))
 }
 
-console.log(document.getElementById('perf_demo'))
-
 var template = altr(document.getElementById('perf_demo'), context)
 
 var loopCount = null
   , totalTime = null
   , timeout = null
 
+var startDate = new Date()
+
 benchmarkLoop()
 
 function benchmarkLoop() {
-  var startDate = new Date()
-
   context.boxes.forEach(function(box) {
     box.tick()
   })
 
   template.update(context)
 
-  totalTime += new Date - startDate
+  totalTime = new Date - startDate
   loopCount++
 
   if(loopCount % 20 === 0) {
@@ -50,5 +48,3 @@ function benchmarkLoop() {
 
   timeout = setTimeout(benchmarkLoop, 0)
 }
-
-console.dir(template)
