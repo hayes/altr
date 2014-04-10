@@ -1,14 +1,19 @@
 ## What is altr and why would I use it?
-altr is a lightweight templating engine that is backed by the dom rather than
-strings. This means that rather than blowing away large portions of the dom and recreating those nodes with each update, it can quickly modify only the nodes that have changed. Updating only the nodes that have changed provides 2 main benafits. performance and the abilility to attach behavior such as event listeners or css animations to elements that would be destroyed with every change in a string based templating system.
+
+altr is a lightweight templating engine that is backed by the native DOM.
+
+Rather than blowing away large portions of the DOM and recreating those nodes
+with each update, altr modifies only the nodes that have changed. As a result
+of this approach, altr is [performant][performance] and a good citizen of the
+DOM: altr updates do not interfere with DOM event listeners or CSS3 animations.
 
 ## Install:
-#### if you are using browserify (you should):
-run `npm install altr`
-then simply `var altr = require('altr')`
+#### if you are using browserify (you should)
+run `npm install altr`,
+then simply `var altr = require('altr')`.
 #### otherwise
-download altr.js from the [here](#)
-and include it in your html before your other javascript files
+download [altr.js](#)
+and include it in your html before your other JavaScript files
 ```html
 <script type="text/javascript" src="/path/to/altr.js"></script>
 ```
@@ -37,19 +42,25 @@ template.update(new_state)
     <li altr-text="item"></li>
   </ul>
 </div>
-
 ```
 
 ##Tags:
-altr currently supports these tags: `if`, `for`, `value`, `html`, `attr` and more will be added soon
-
-and can be used by adding an altr attribute to an element eg. `<div altr-html="obj.my_html">`
-that element will now update its contents every time you write to the template.
+altr currently supports these tags: `if`, `for`, `value`, `html`, `attr`, and
+`text`. It is under active development, more will be added soon.
 
 ##Values:
-You can also insert values into text nodes or non altr-* attributes using the following syntax
-`{{ dot.path.to.value }}`
+You can also insert values into text nodes or non altr-\* attributes using the
+syntax: `{{ dot.path.to.value }}`.
 
 ## Filters:
-I have only written an add filter so far, but the api is functional. `{{ num|add(5) }}`
-Filters are through streams, so they can be used to do async stuff, or update values over time (eg. a countdown or transition)
+I have only written an addition filter so far, but the API is functional.  They
+look like `{{ num|add(5) }}`.
+
+Filters are [through streams][through], so they can be used synchronously,
+asynchronously, or to update values over time (e.g. a countdown or transition).
+
+[react]: http://facebook.github.io/react/
+[swig]: http://paularmstrong.github.io/swig/
+[through]: https://www.npmjs.org/package/through
+[plates]: https://github.com/flatiron/plates
+[performance]: http://altr.hayes.io/pages/demos/perf.html
