@@ -1,7 +1,10 @@
 <svg id="graph1" width="100%" height="100%" viewBox="0 0 1000 300"
      xmlns="http://www.w3.org/2000/svg">
 
-  <path d="{{ points -> svg_range(0, 1000, range.0.0 -> ease(250), range.0.1 -> ease(250)) -> svg_path(M 0 300, L 1000 300 z)}}" fill="orange" stroke="black" stroke-width="1" />
+  <path altr-attr-d="{{ points -> scale(range -> ease(500), [[0,1000],[0, 300]]) -> svg_path(M 0 300, L 1000 300 z)}}" fill="orange" stroke="black" stroke-width="1" />
+  <g altr-for="tick in ticks.y">
+    <text altr-text="tick" x="20" altr-attr-y="{{ 300 - tick || 300 }}">
+  </g>
 </svg>
 
 <script src="../../dist/altr.js"></script>

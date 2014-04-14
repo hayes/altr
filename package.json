@@ -15,11 +15,13 @@
   "author": "Michael Hayes",
   "license": "MIT",
   "dependencies": {
+    "altr-accessors": "0.0.18",
     "micro-dom": "0.0.11",
-    "through": "2.3.4",
-    "altr-accessors": "0.0.13"
+    "through": "2.3.4"
   },
   "devDependencies": {
+    "altr-ease": "0.0.3",
+    "altr-scale": "0.0.0",
     "browserify": "3.33.0",
     "concat-stream": "1.4.4",
     "ease-component": "1.0.0",
