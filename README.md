@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/hayes/altr.png?branch=master)](https://travis-ci.org/hayes/altr)
+
 ## What is altr and why would I use it?
 
 altr is a lightweight templating engine that is backed by the native DOM.
