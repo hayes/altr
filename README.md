@@ -9,7 +9,9 @@ with each update, altr modifies only the nodes that have changed. As a result
 of this approach, altr is [performant][performance] and a good citizen of the
 DOM: altr updates do not interfere with DOM event listeners or CSS3 animations.
 
-# Warning dpcs are very out of date, new docs coming soon
+----------------------------------------------------------
+## Warning docs are very out of date, new docs coming soon
+----------------------------------------------------------
 
 ## Install:
 #### if you are using browserify (you should)
