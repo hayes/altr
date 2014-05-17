@@ -3,7 +3,6 @@
   "version": "0.0.37",
   "description": "README.md",
   "main": "./lib/node.js",
-  "browser": "./lib/index.js",
   "scripts": {
     "test": "node test",
     "build": "mkdir -p dist; browserify lib/browser -d | tee dist/altr.js | minifyify | exorcist dist/altr.min.map > dist/altr.min.js"

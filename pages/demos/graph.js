@@ -1,4 +1,5 @@
-var scale = require('altr-scale')
+var altr = require('../../lib/index')
+  , scale = require('altr-scale')
   , ease = require('altr-ease')
 
 altr.add_filter('svg_path', svg_path)
