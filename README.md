@@ -108,7 +108,7 @@ the include tag will render another template into its element. You will need to 
 
 ## API
 
-### `altr(template, data, sync, doc`) -> altr instance
+### `altr(template, data, sync, doc)` -> altr instance
  create a new altr instance
 
  * template: can be either a string or a dom element
@@ -150,10 +150,10 @@ insert the template into the passed element (useful if rendering the template fr
 ### `instance.toString()`
 returns the current state of the template as a string
 
-### `instance.init_el(el) -> update function
+### `instance.init_el(el)` -> update function
 takes an element and returns a function that will update that element with passed data
 
-### `instance.init_nodes(nodes) -> update function
+### `instance.init_nodes(nodes)` -> update function
 same as instance.init_el but takes an array of elements or a nodeList
 
 
