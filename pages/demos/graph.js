@@ -12,9 +12,6 @@ var data = {
         [+new Date, +new Date]
       , [0, 300]
     ]
-  , ticks: {
-    y: [50, 100, 150, 200, 250]
-  }
 }
 
 var template = altr(document.getElementById('graph1'), data)

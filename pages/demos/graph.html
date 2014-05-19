@@ -2,9 +2,6 @@
      xmlns="http://www.w3.org/2000/svg">
 
   <path altr-attr-d="{{ points -> scale(range -> ease(500), [[0,1000],[0, 300]]) -> svg_path(M 0 300, L 1000 300 z)}}" fill="orange" stroke="black" stroke-width="1" />
-  <g altr-for="tick in ticks.y">
-    <text altr-text="tick" x="20" altr-attr-y="{{ 300 - tick || 300 }}">
-  </g>
 </svg>
 
 <script src="../../dist/altr.js"></script>
