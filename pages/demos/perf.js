@@ -20,7 +20,7 @@ for(var i = 0; i < 100; ++i) {
   context.boxes.push(new Box(i))
 }
 
-var template = altr(document.getElementById('perf_demo'), context)
+var template = altr(document.getElementById('perf_demo'), context, true)
 
 var loopCount = null
   , totalTime = null
