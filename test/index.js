@@ -1,2 +1,8 @@
+require('./tags/include')
+require('./attributes')
+require('./tags/with')
+require('./tags/html')
+require('./tags/text')
 require('./tags/for')
 require('./tags/if')
+require('./text')
