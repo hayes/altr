@@ -48,7 +48,9 @@ template.update(new_state)
 <div id="root">
   <h1>hello, world!</h1>
   <ul altr-for="item in list">
-    <li altr-text="item">123</li>
+    <li altr-text="item">1</li>
+    <li altr-text="item">2</li>
+    <li altr-text="item">3</li>
   </ul>
 </div>
 ```
