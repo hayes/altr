@@ -43,3 +43,17 @@ test('nested if', function(t) {
       '</div><!--altr-if-placeholder-->'
   )
 })
+
+test('3 in a row', function(t) {
+  var template = altr(
+      '<p altr-if="0">1</p> <p altr-if="0">2</p> <p altr-if="0">3</p>'
+    , {}
+  )
+
+  t.plan(1)
+  t.equal(
+      template.toString()
+    , '<!--altr-if-placeholder--> <!--altr-if-placeholder--> ' +
+      '<!--altr-if-placeholder-->'
+  )
+})
