@@ -38,7 +38,7 @@ function on_file(res, file) {
     return not_found()
   }
 
-  context.content = parse_md(file)
+  context.content = context.file.match(/\.md$/) ? parse_md(file) : file
   main_template.update(context)
 }
 
