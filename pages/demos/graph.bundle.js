@@ -7,9 +7,9 @@ var template_string = require('./template_string')
   , batch = require('./batch')
 
 module.exports = altr
-altr.add_tag = add_tag
+altr.addTag = add_tag
 altr.include = include.bind(altr.prototype)
-altr.add_filter = add_filter.bind(altr.prototype)
+altr.addFilter = add_filter.bind(altr.prototype)
 
 function altr(root, data, sync, doc) {
   if(!(this instanceof altr)) {
@@ -39,27 +39,27 @@ function altr(root, data, sync, doc) {
     }
   }
 
-  this._update = this.update_nodes(this.root_nodes())
+  this._update = this.updateNodes(this.rootNodes())
 
   if(data) {
     this.update(data)
   }
 }
 
-altr.prototype.template_string = template_string
-altr.prototype.create_accessor = create_accessor
-altr.prototype.update_nodes = update_nodes
-altr.prototype.add_filter = add_filter
-altr.prototype.init_nodes = init_nodes
-altr.prototype.root_nodes = root_nodes
+altr.prototype.templateString = template_string
+altr.prototype.createAccessor = create_accessor
+altr.prototype.updateNodes = update_nodes
+altr.prototype.addFilter = add_filter
+altr.prototype.initNodes = init_nodes
+altr.prototype.rootNodes = root_nodes
 altr.prototype.toString = outer_html
-altr.prototype.init_el = init_el
 altr.prototype.include = include
+altr.prototype.initNode = init_node
 altr.prototype.into = append_to
 altr.prototype.update = update
 
 altr.prototype.includes = {}
-altr.prototype.tag_list = []
+altr.prototype.tagList = []
 altr.prototype.filters = {}
 altr.prototype.tags = {}
 
@@ -77,7 +77,7 @@ function update(data) {
 }
 
 function update_nodes(nodes) {
-  var hooks = this.init_nodes(nodes)
+  var hooks = this.initNodes(nodes)
     , self = this
 
   return update
@@ -91,7 +91,7 @@ function update_nodes(nodes) {
 
 function init_nodes(nodes, list) {
   var hooks = [].slice.call(nodes)
-    .map(init_el.bind(this))
+    .map(init_node.bind(this))
     .filter(Boolean)
     .reduce(flatten, [])
 
@@ -102,11 +102,11 @@ function init_nodes(nodes, list) {
   }
 }
 
-function init_el(el) {
+function init_node(el) {
   return node_handlers[el.nodeType] ?
     node_handlers[el.nodeType].call(this, el) :
     el.childNodes && el.childNodes.length ?
-    this.init_nodes(el.childNodes) :
+    this.initNodes(el.childNodes) :
     null
 }
 
@@ -122,20 +122,20 @@ function add_filter(name, filter) {
 
 function add_tag(attr, tag) {
   altr.prototype.tags[attr] = tag
-  altr.prototype.tag_list.push({
+  altr.prototype.tagList.push({
       attr: attr
     , constructor: tag
   })
 }
 
 function outer_html() {
-  return this.root_nodes().map(function(node) {
+  return this.rootNodes().map(function(node) {
     return node.outerHTML
   }).join('')
 }
 
 function append_to(node) {
-  var root_nodes = this.root_nodes()
+  var root_nodes = this.rootNodes()
 
   for(var i = 0, l = root_nodes.length; i < l; ++i) {
     node.appendChild(root_nodes[i])
@@ -155,7 +155,7 @@ function add_filter(name, fn) {
 }
 
 }).call(this,typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"./batch":2,"./element_node":3,"./template_string":11,"./text_node":12,"altr-accessors":13}],2:[function(require,module,exports){
+},{"./batch":2,"./element_node":3,"./template_string":12,"./text_node":13,"altr-accessors":14}],2:[function(require,module,exports){
 (function (global){
 module.exports = Batch
 
@@ -264,7 +264,7 @@ function create_element_node(el) {
       el.removeAttribute(attr.name)
     }
 
-    var attr_hook = altr.template_string(value, altr.batch.add(function(val) {
+    var attr_hook = altr.templateString(value, altr.batch.add(function(val) {
       el.setAttribute(name, val)
     }))
 
@@ -273,19 +273,20 @@ function create_element_node(el) {
     }
   })
 
-  for(var i = 0, l = altr.tag_list.length; i < l; ++i) {
-    if(attr = altr_tags[altr.tag_list[i].attr]) {
-      hooks.push(altr.tag_list[i].constructor.call(altr, el, attr))
+  for(var i = 0, l = altr.tagList.length; i < l; ++i) {
+    if(attr = altr_tags[altr.tagList[i].attr]) {
+      hooks.push(altr.tagList[i].constructor.call(altr, el, attr))
 
       return hooks
     }
   }
 
-  return hooks.concat(altr.init_nodes(el.childNodes))
+  return hooks.concat(altr.initNodes(el.childNodes))
 }
 
 },{}],4:[function(require,module,exports){
-var include_tag = require('./tags/include')
+var placeholder = require('./tags/placeholder')
+  , include_tag = require('./tags/include')
   , text_tag = require('./tags/text')
   , html_tag = require('./tags/html')
   , with_tag = require('./tags/with')
@@ -295,14 +296,15 @@ var include_tag = require('./tags/include')
 
 module.exports = altr
 
-altr.add_tag('altr-include', include_tag)
-altr.add_tag('altr-text', text_tag)
-altr.add_tag('altr-html', html_tag)
-altr.add_tag('altr-with', with_tag)
-altr.add_tag('altr-for', for_tag)
-altr.add_tag('altr-if', if_tag)
+altr.addTag('altr-placeholder', placeholder)
+altr.addTag('altr-include', include_tag)
+altr.addTag('altr-text', text_tag)
+altr.addTag('altr-html', html_tag)
+altr.addTag('altr-with', with_tag)
+altr.addTag('altr-for', for_tag)
+altr.addTag('altr-if', if_tag)
 
-},{"./altr":1,"./tags/for":5,"./tags/html":6,"./tags/if":7,"./tags/include":8,"./tags/text":9,"./tags/with":10}],5:[function(require,module,exports){
+},{"./altr":1,"./tags/for":5,"./tags/html":6,"./tags/if":7,"./tags/include":8,"./tags/placeholder":9,"./tags/text":10,"./tags/with":11}],5:[function(require,module,exports){
 var for_regexp = /^(.*?)\s+in\s+(.*$)/
 
 module.exports = for_handler
@@ -327,7 +329,7 @@ function for_handler(root, args) {
 
   var run_updates = this.batch.add(run_dom_updates)
 
-  return altr.create_accessor(key, update)
+  return altr.createAccessor(key, update)
 
   function update_children(data) {
     var item_data
@@ -412,7 +414,7 @@ function for_handler(root, args) {
     temp.innerHTML = template
 
     dom_nodes = Array.prototype.slice.call(temp.childNodes)
-    update = altr.update_nodes(dom_nodes)
+    update = altr.updateNodes(dom_nodes)
 
     return {
         dom_nodes: dom_nodes
@@ -447,7 +449,7 @@ function for_handler(root, args) {
 module.exports = html
 
 function html(el, accessor) {
-  return this.batch.add(this.create_accessor(accessor, update))
+  return this.batch.add(this.createAccessor(accessor, update))
 
   function update(val) {
     el.innerHTML = typeof val === 'undefined' ? '' : val
@@ -459,7 +461,7 @@ module.exports = if_tag
 
 function if_tag(el, accessor) {
   var placeholder = this.document.createComment('altr-if-placeholder')
-    , update_children = this.update_nodes(el.childNodes)
+    , update_children = this.updateNodes(el.childNodes)
     , parent = el.parentNode
     , hidden = null
 
@@ -479,7 +481,7 @@ function if_tag(el, accessor) {
     }
   })
 
-  return this.create_accessor(accessor, toggle)
+  return this.createAccessor(accessor, toggle)
 
   function toggle(val, data) {
     if(!val) {
@@ -497,28 +499,47 @@ module.exports = include
 function include(el, name) {
   el.innerHTML = this.includes[name]
 
-  return this.update_nodes(el.childNodes)
+  return this.updateNodes(el.childNodes)
 }
 
 },{}],9:[function(require,module,exports){
+module.exports = placeholder
+
+function placeholder(el, accessor) {
+  var parent = el.parentNode
+
+  return this.batch.add(this.createAccessor(accessor, update))
+
+  function update(val) {
+    if(!val.nodeName) {
+      return
+    }
+
+    parent.insertBefore(val, el)
+    parent.removeChild(el)
+    el = val
+  }
+}
+
+},{}],10:[function(require,module,exports){
 module.exports = text
 
 function text(el, accessor) {
-  return this.batch.add(this.create_accessor(accessor, update))
+  return this.batch.add(this.createAccessor(accessor, update))
 
   function update(val) {
     el.textContent = typeof val === 'undefined' ? '' : val
   }
 }
 
-},{}],10:[function(require,module,exports){
+},{}],11:[function(require,module,exports){
 module.exports = with_tag
 
 function with_tag(el, accessor) {
-  return this.create_accessor(accessor, this.update_nodes(el.childNodes))
+  return this.createAccessor(accessor, this.updateNodes(el.childNodes))
 }
 
-},{}],11:[function(require,module,exports){
+},{}],12:[function(require,module,exports){
 var TAG = /{{\s*(.*?)\s*}}/
 
 module.exports = template_string
@@ -543,7 +564,7 @@ function template_string(template, change) {
     parts.push('')
     remaining = remaining.slice(index + next[0].length)
     hooks.push(
-        this.create_accessor(next[1], set_part.bind(this, parts.length - 1))
+        this.createAccessor(next[1], set_part.bind(this, parts.length - 1))
     )
   }
 
@@ -563,11 +584,11 @@ function template_string(template, change) {
   }
 }
 
-},{}],12:[function(require,module,exports){
+},{}],13:[function(require,module,exports){
 module.exports = create_text_node
 
 function create_text_node(el) {
-  var hook = this.template_string(el.textContent, this.batch.add(update))
+  var hook = this.templateString(el.textContent, this.batch.add(update))
 
   return hook ? [hook] : null
 
@@ -576,7 +597,7 @@ function create_text_node(el) {
   }
 }
 
-},{}],13:[function(require,module,exports){
+},{}],14:[function(require,module,exports){
 var add_operators = require('./lib/operators')
   , create_accesor = require('./lib/create')
   , add_lookup = require('./lib/lookup')
@@ -658,7 +679,7 @@ function create(str, change, all) {
   }
 }
 
-},{"./lib/arrow":14,"./lib/create":15,"./lib/filter":16,"./lib/lookup":17,"./lib/operators":18,"./lib/parens":19,"./lib/split":20,"./lib/types":21,"just-debounce":22}],14:[function(require,module,exports){
+},{"./lib/arrow":15,"./lib/create":16,"./lib/filter":17,"./lib/lookup":18,"./lib/operators":19,"./lib/parens":20,"./lib/split":21,"./lib/types":22,"just-debounce":23}],15:[function(require,module,exports){
 module.exports = add_arrow
 
 function add_arrow(types) {
@@ -682,7 +703,7 @@ function create_arrow(parts, change) {
   }
 }
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 module.exports = accessor
 
 function accessor(key, change) {
@@ -710,7 +731,7 @@ function build_part(part, change) {
   }
 }
 
-},{}],16:[function(require,module,exports){
+},{}],17:[function(require,module,exports){
 var filter_regexp = /^\s*([^\s(]+)\((.*)\)\s*$/
 
 module.exports = add_filter
@@ -733,7 +754,7 @@ function create_filter(parts, change) {
   return filter.call(this, this.split(parts[2], ',', null, null, true), change)
 }
 
-},{}],17:[function(require,module,exports){
+},{}],18:[function(require,module,exports){
 module.exports = add_lookup
 
 function add_lookup(types) {
@@ -772,7 +793,7 @@ function lookup(path, done) {
   }
 }
 
-},{}],18:[function(require,module,exports){
+},{}],19:[function(require,module,exports){
 var ternary_regexp = /^\s*(.+?)\s*\?(.*)\s*$/
 
 module.exports = add_operators
@@ -882,7 +903,7 @@ function create_unary(regex, parts, change) {
   return this.create_part(parts[2], changed)
 }
 
-},{}],19:[function(require,module,exports){
+},{}],20:[function(require,module,exports){
 var parens_regexp = /^\s*\((.*)$/
 
 module.exports = add_parens
@@ -929,7 +950,7 @@ function create_parens(parts, change) {
   }
 }
 
-},{}],20:[function(require,module,exports){
+},{}],21:[function(require,module,exports){
 module.exports = split
 
 function split(parts, key, opens, closes, all) {
@@ -989,7 +1010,7 @@ function split(parts, key, opens, closes, all) {
   return [left].concat(split(right, key, opens, closes, all))
 }
 
-},{}],21:[function(require,module,exports){
+},{}],22:[function(require,module,exports){
 var string_regexp = /^\s*(?:'((?:[^'\\]|(?:\\.))*)'|"((?:[^"\\]|(?:\\.))*)")\s*$/
   , number_regexp = /^\s*(\d*(?:\.\d+)?)\s*$/
 
@@ -1020,7 +1041,7 @@ function create_number_accessor(parts, change) {
   }
 }
 
-},{}],22:[function(require,module,exports){
+},{}],23:[function(require,module,exports){
 module.exports = debounce
 
 function debounce(fn, delay, at_start, guarantee) {
@@ -1055,7 +1076,7 @@ function debounce(fn, delay, at_start, guarantee) {
   }
 }
 
-},{}],23:[function(require,module,exports){
+},{}],24:[function(require,module,exports){
 var ease = require('ease-component')
   , raf = require('raf').polyfill
 
@@ -1143,7 +1164,7 @@ function ease_filter(parts, change) {
   }
 }
 
-},{"ease-component":26,"raf":24}],24:[function(require,module,exports){
+},{"ease-component":27,"raf":25}],25:[function(require,module,exports){
 module.exports = raf
 
 var EE = require('events').EventEmitter
@@ -1207,7 +1228,7 @@ raf.polyfill = _raf
 raf.now = now
 
 
-},{"events":28}],25:[function(require,module,exports){
+},{"events":29}],26:[function(require,module,exports){
 module.exports = scale
 
 function scale(parts, change) {
@@ -1251,7 +1272,7 @@ function scale(parts, change) {
   }
 }
 
-},{}],26:[function(require,module,exports){
+},{}],27:[function(require,module,exports){
 
 // easing functions from "Tween.js"
 
@@ -1423,7 +1444,7 @@ exports['in-bounce'] = exports.inBounce;
 exports['out-bounce'] = exports.outBounce;
 exports['in-out-bounce'] = exports.inOutBounce;
 
-},{}],27:[function(require,module,exports){
+},{}],28:[function(require,module,exports){
 var altr = require('../../lib/index')
   , scale = require('altr-scale')
   , ease = require('altr-ease')
@@ -1473,7 +1494,7 @@ function svg_path(parts, change) {
   }
 }
 
-},{"../../lib/index":4,"altr-ease":23,"altr-scale":25}],28:[function(require,module,exports){
+},{"../../lib/index":4,"altr-ease":24,"altr-scale":26}],29:[function(require,module,exports){
 // Copyright Joyent, Inc. and other Node contributors.
 //
 // Permission is hereby granted, free of charge, to any person obtaining a
@@ -1778,4 +1799,4 @@ function isUndefined(arg) {
   return arg === void 0;
 }
 
-},{}]},{},[27])
+},{}]},{},[28])
