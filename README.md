@@ -103,6 +103,12 @@ The `html` tag works exactly like the `text` tag, but allows you to set the html
 ```
 the `with` tag will make any property of the passed value directly accessible in any child nodes.  Values from the parent scope will still be accessible as well.
 
+#### placeholder
+```html
+<div altr-placeholder="some.html_element"></div>
+```
+the `placeholder` tag will replace its element with the element that its value resolves to. This allows you to create smaller widgets with their own templates, event handlers and logic and dynamically render them into your template.
+
 #### include
 ```html
 <div altr-include="another_template"></div>
@@ -118,7 +124,7 @@ the `include` tag will render another template into its element. You will need t
  * data: initial data to render the template with
  * sync: when false, all dom updates are batched with `requestAnimationFrame`, defaults to true in node (and browserify)
 
-### `altr.add_tag(attr, constructor)`
+### `altr.addTag(attr, constructor)`
 specify a new tag that can be used in altr templates
 
  * attr: the attribute that initializes the tag
@@ -129,21 +135,24 @@ make a template avaiable to include in any other template
  * name: the name of the template
  * template: the template string to be included
  
-### `altr.add_filter(name, filter)`
+### `altr.addFilter(name, filter)`
 add a filter to altr
  * name: name of the filter
  * filter: the filter constructor function, accepts parts, and an update function
-
-### `instance.include(name, template)`
-make a template avaiable to include in the current template
- * name: the name of the template
- * template: the template string to be included
-
-### `instance.add_filter(name, filter)`
-add a filter to an altr instance
- * name: name of the filter
- * filter: the filter constructor function, accepts parts, and an update function
  
+### `altr.templateString(template, callback)`
+ * template: a template string, may contain `{{ my.value }}` type tags
+ * callback: a function that will be called when the template result changes
+ 
+returns a function that takes a state object that is used to update the template. if this new value changes the resulting template the callback will be called with the new value.
+
+### `altr.createAccessor(lookup, callback, all)`
+ * lookup: a lookup string. May contain anything described in the value section above.
+ * callback: a function that will be called when the resulting value changes
+ * all: if true the callback will be called even if result has not changed.
+ 
+returns a that takes a new state. If this state change causes the value to change, or the all flag is set to true.  the callback will be called with the resulting value.
+
 ### `instance.update(data)`
 update the template with new data
 
@@ -153,10 +162,11 @@ insert the template into the passed element (useful if rendering the template fr
 ### `instance.toString()`
 returns the current state of the template as a string
 
-### `instance.init_el(el)` -> update function
-takes an element and returns a function that will update that element with passed data
+### `instance.initNode(node)`
+takes a dom node and returns either null if it has no content to update, or a function that takes a new state object and updates that node with the new state.
 
-### `instance.init_nodes(nodes)` -> update function
-same as instance.init_el but takes an array of elements or a nodeList
+### `instance.initNodes(nodes)`
+take a list of nodes and returns an array of update functions descriped in `instance.initNode(node)
 
-
+### `instance.updateNodes(nodes)`
+take a list of nodes and returns a function that takes a new state object, and updates the contents of that list of nodes.
