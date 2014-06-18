@@ -453,7 +453,26 @@ function html(el, accessor) {
 
   function update(val) {
     el.innerHTML = typeof val === 'undefined' ? '' : val
+
+    if(el.getAttribute('altr-run-scripts')) {
+      [].forEach.call(el.getElementsByTagName('script'), run)
+    }
   }
+}
+
+function run(script) {
+  var fixed = document.createElement('script')
+    , parent = script.parentNode
+    , attrs = script.attributes
+    , src
+
+  for(var i = 0, l = attrs.length; i < l; ++i) {
+    fixed.setAttribute(attrs[i].name, attrs[i].value)
+  }
+
+  fixed.innerHTML = script.innerHTML
+  parent.insertBefore(fixed, script)
+  parent.removeChild(script)
 }
 
 },{}],7:[function(require,module,exports){
@@ -1449,9 +1468,9 @@ var altr = require('../../lib/index')
   , scale = require('altr-scale')
   , ease = require('altr-ease')
 
-altr.add_filter('svg_path', svg_path)
-altr.add_filter('scale', scale)
-altr.add_filter('ease', ease)
+altr.addFilter('svg_path', svg_path)
+altr.addFilter('scale', scale)
+altr.addFilter('ease', ease)
 
 var data = {
     points: [[+new Date - 30000, 300]]

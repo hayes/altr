@@ -2,9 +2,9 @@ var altr = require('../../lib/index')
   , scale = require('altr-scale')
   , ease = require('altr-ease')
 
-altr.add_filter('svg_path', svg_path)
-altr.add_filter('scale', scale)
-altr.add_filter('ease', ease)
+altr.addFilter('svg_path', svg_path)
+altr.addFilter('scale', scale)
+altr.addFilter('ease', ease)
 
 var data = {
     points: [[+new Date - 30000, 300]]

@@ -8,3 +8,7 @@ headings.push({
     name: 'Demos'
   , path: '/demos'
 })
+headings.push({
+    name: 'Playground'
+  , path: '/playground'
+})

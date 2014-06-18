@@ -1,5 +1,4 @@
-var altr = require('../../lib/browser')
-  , concat = require('concat-stream')
+var concat = require('concat-stream')
   , parse_md = require('./parse-md')
   , headings = require('./headings')
   , routes = require('./routes')
@@ -12,8 +11,9 @@ context.headings = headings
 
 var url = window.location.toString()
 
-if(url.indexOf('?')) {
-  window.history.replaceState(null, null, url.split('?')[1])
+if(~url.indexOf('?')) {
+  console.log(url)
+  window.history.replaceState(null, null, atob(url.split('?')[1]))
 }
 
 window.addEventListener('popstate', on_state_change)

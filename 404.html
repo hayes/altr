@@ -1,3 +1,6 @@
 <script>
-  window.location = '/?' + window.location.pathname
+  var query = window.location.toString().split('?')[1]
+    , location =  + window.location.pathname
+
+  window.location = '/?' + btoa(location + (query ? '?' + query : ''))
 </script>

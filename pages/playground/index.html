@@ -1,0 +1,48 @@
+<style type="text/css">
+    #playground ul {
+        padding-left: 0;
+    }
+
+    #playground ul li {
+        list-style: none;
+        float: left;
+        padding: 0 15px;
+        border: 1px solid black;
+        border-radius: 8px 8px 0 0;
+        background: #272822;
+        color: #8F908A;
+        cursor: pointer;
+    }
+
+    #playground ul li.active {
+        background: #2F3129;
+        color: #F8F8F2;
+    }
+
+    #playground iframe, .tab-content > div {
+        height: 100%;
+        width: 100%;
+    }
+
+    #playground .tab-content {
+        width: 100%;
+        height: 500px;
+        clear: both;
+        border: 1px solid #2F3129;
+    }
+</style>
+<div id="playground">
+    <ul name="tabs">
+        <li class="{{ view == 'html' ? 'active' : ''}}" data-view="html">HTML</li>
+        <li class="{{ view == 'javascript' ? 'active' : ''}}" data-view="javascript">JS</li>
+        <li class="{{ view == 'css' ? 'active' : ''}}" data-view="css">CSS</li>
+        <li class="{{ view == 'result' ? 'active' : ''}}" data-view="result">Result</li>
+    </ul>
+    <div class="tab-content">
+        <div altr-if="view === 'html'" name="html"></div>
+        <div altr-if="view === 'javascript'" name="javascript"></div>
+        <div altr-if="view === 'css'" name="css"></div>
+        <div altr-if="view === 'result'"><iframe name="result" src="{{ result }}" seamless></iframe></div>
+    </div>
+</div>
+<script src="/pages/playground/index.js"></script>
