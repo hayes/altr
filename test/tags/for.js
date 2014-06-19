@@ -50,3 +50,38 @@ test('nested fors', function(t) {
       '<ul altr-for="i in in">b1b2</ul></ul>'
   )
 })
+
+test('for respects placeholder', function(t) {
+  var template = altr(
+      '<ul altr-for="item in items"><li altr-if="show">{{ item }}</li></ul>'
+    , {show: true, items: [1,2,3]}
+  )
+
+  t.plan(4)
+  t.equal(
+      template.toString()
+    , '<ul altr-for="item in items"><li altr-if="show">1</li>' +
+      '<li altr-if="show">2</li><li altr-if="show">3</li></ul>'
+  )
+
+  template.update({show: false, items: [3,2,1]})
+  t.equal(
+      template.toString()
+    , '<ul altr-for="item in items"><!--altr-if-placeholder-->' +
+      '<!--altr-if-placeholder--><!--altr-if-placeholder--></ul>'
+  )
+
+  template.update({show: true, items: [3,2,1]})
+  t.equal(
+      template.toString()
+    , '<ul altr-for="item in items"><li altr-if="show">3</li>' +
+      '<li altr-if="show">2</li><li altr-if="show">1</li></ul>'
+  )
+
+  template.update({show: true, items: [1,2,3]})
+  t.equal(
+      template.toString()
+    , '<ul altr-for="item in items"><li altr-if="show">1</li>' +
+      '<li altr-if="show">2</li><li altr-if="show">3</li></ul>'
+  )
+})
