@@ -1,4 +1,5 @@
 require('./tags/placeholder')
+require('./tags/children')
 require('./tags/include')
 require('./attributes')
 require('./tags/with')
