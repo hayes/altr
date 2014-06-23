@@ -9,7 +9,7 @@ test('children tag', function(t) {
 
   var state = {els: []}
 
-  t.plan(8)
+  t.plan(9)
   t.equal(
       template.toString()
     , '<div altr-children="els"></div>'
@@ -49,6 +49,14 @@ test('children tag', function(t) {
       template.toString()
     , '<div altr-children="els"><a></a><li></li></div>'
   )
+
+  state.els.pop()
+  template.update(state)
+  t.equal(
+      template.toString()
+    , '<div altr-children="els"><a></a></div>'
+  )
+
   state.els = []
   template.update(state)
   t.equal(
