@@ -8,6 +8,7 @@ test('text', function(t) {
   )
 
   t.plan(2)
+
   t.equal(template.toString(), 'Hello, world! the value is 10')
   template.update({name: 'foo'})
   t.equal(template.toString(), 'Hello, foo! the value is ')
