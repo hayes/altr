@@ -15,7 +15,7 @@
   "license": "MIT",
   "dependencies": {
     "altr-accessors": "0.0.23",
-    "micro-dom": "0.0.13",
+    "micro-dom": "0.0.14",
     "through": "2.3.4"
   },
   "devDependencies": {
