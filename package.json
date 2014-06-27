@@ -1,6 +1,6 @@
 {
   "name": "altr",
-  "version": "0.0.46",
+  "version": "0.0.47",
   "description": "README.md",
   "main": "./lib/node.js",
   "scripts": {
