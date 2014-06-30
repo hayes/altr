@@ -1,10 +1,11 @@
-var altr = require('../../lib/node')
+var altr = require('../../lib')
   , test = require('tape')
 
 test('text tag', function(t) {
   var template = altr(
       '<div altr-with="a"><div altr-text="content"></div></div>'
     , {a: {content: 'hi!!!'}}
+    , true
   )
 
   t.plan(1)

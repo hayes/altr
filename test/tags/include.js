@@ -1,4 +1,4 @@
-var altr = require('../../lib/node')
+var altr = require('../../lib')
   , test = require('tape')
 
 test('include tag', function(t) {
@@ -7,6 +7,7 @@ test('include tag', function(t) {
   var template = altr(
       '<div altr-include="content"></div>'
     , {content: 'hi!!!'}
+    , true
   )
 
   t.plan(1)

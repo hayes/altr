@@ -1,10 +1,11 @@
-var altr = require('../../lib/node')
+var altr = require('../../lib')
   , test = require('tape')
 
 test('children tag', function(t) {
   var template = altr(
       '<div altr-children="els"></div>'
     , {els: []}
+    , true
   )
 
   var state = {els: []}

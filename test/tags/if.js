@@ -1,10 +1,11 @@
-var altr = require('../../lib/node')
+var altr = require('../../lib')
   , test = require('tape')
 
 test('basic if', function(t) {
   var template = altr(
       '<p altr-if="items">hi</p><p altr-if="!items">bye</p>'
     , {items: [1,2,3]}
+    , true
   )
 
   t.plan(1)
@@ -18,6 +19,7 @@ test('if with siblings', function(t) {
   var template = altr(
       '<p altr-if="items">hi</p> <p altr-if="items">bye</p>'
     , {items: [1,2,3]}
+    , true
   )
 
   t.plan(1)
@@ -31,6 +33,7 @@ test('nested if', function(t) {
   var template = altr(
       '<div altr-if="items">hi <div altr-if="items">bye</div> </div>'
     , {items: [1,2,3]}
+    , true
   )
 
   t.plan(1)
@@ -44,6 +47,7 @@ test('3 in a row', function(t) {
   var template = altr(
       '<p altr-if="0">1</p> <p altr-if="0">2</p> <p altr-if="0">3</p>'
     , {}
+    , true
   )
 
   t.plan(1)
@@ -58,6 +62,7 @@ test('for respects placeholder', function(t) {
   var template = altr(
       '<ul altr-for="item in items"><li altr-if="show">{{ item }}</li></ul>'
     , {show: true, items: [1,2,3]}
+    , true
   )
 
   t.plan(3)

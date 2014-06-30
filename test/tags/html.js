@@ -1,4 +1,4 @@
-var altr = require('../../lib/node')
+var altr = require('../../lib')
   , test = require('tape')
 
 test('html tag', function(t) {

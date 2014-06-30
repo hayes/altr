@@ -1,10 +1,11 @@
-var altr = require('../lib/node')
+var altr = require('../lib')
   , test = require('tape')
 
 test('text', function(t) {
   var template = altr(
       'Hello, {{ name }}! the value is {{ the.value }}'
     , {name: 'world', the: {value: 10}}
+    , true
   )
 
   t.plan(2)
