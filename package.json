@@ -2,10 +2,12 @@
   "name": "altr",
   "version": "0.0.47",
   "description": "README.md",
-  "main": "./lib/node.js",
+  "main": "./lib/index.js",
   "scripts": {
     "test": "node test",
-    "build": "mkdir -p dist; browserify lib/browser -d | tee dist/altr.js | minifyify | exorcist dist/altr.min.map > dist/altr.min.js"
+    "build": "mkdir -p dist; npm run build-debug; npm run build-min",
+    "build-debug": "browserify lib/browser.js --debug -x ./node_modules/micro-dom > dist/altr.js",
+    "build-min": "browserify lib/browser.js --debug -x ./node_modules/micro-dom -p [minifyify --output dist/altr.min.map --map altr.min.map] > dist/altr.min.js"
   },
   "repository": {
     "type": "git",
@@ -14,20 +16,20 @@
   "author": "Michael Hayes",
   "license": "MIT",
   "dependencies": {
-    "altr-accessors": "0.0.23",
-    "micro-dom": "0.0.14",
-    "through": "2.3.4"
+    "altr-accessors": "0.1.0",
+    "batch-queue": "0.0.0",
+    "micro-dom": "0.0.14"
   },
   "devDependencies": {
     "altr-ease": "0.0.3",
     "altr-scale": "0.0.0",
-    "browserify": "3.33.0",
+    "browserify": "^4.1.11",
     "concat-stream": "1.4.4",
     "ease-component": "1.0.0",
     "exorcist": "0.1.5",
     "highlight.js": "8.0.0",
     "marked": "0.3.2",
-    "minifyify": "2.3.0",
+    "minifyify": "^3.0.9",
     "tape": "2.12.3"
   },
   "readmeFilename": "README.md",
