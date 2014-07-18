@@ -37,3 +37,16 @@ test('remove attributes', function(t) {
   template.update({})
   t.equal(template.toString(), '<h1>text</h1>')
 })
+
+test('boolean attributes', function(t) {
+  var template = altr(
+      '<h1 altr-attr-class="class">text</h1>'
+    , {class: false}
+    , true
+  )
+
+  t.plan(2)
+  t.equal(template.toString(), '<h1>text</h1>')
+  template.update({class: true})
+  t.equal(template.toString(), '<h1 class="">text</h1>')
+})
