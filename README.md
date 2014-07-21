@@ -12,6 +12,7 @@ A small efficient dom-based templating engine.
 
 * ##### extensibility:
   altr is fully extensible and supports adding your own tags and filters to give you maximum control.
+
 * ##### animation:
   altr is ideal for creating dynamic animated views or components. all changes in altr modify existing dom elements rather than creating new elements, so css animations do not get recent.  it also uses requestAnimationFrame to batch updates for best performance. You can use filters to for animated transitions.
 
