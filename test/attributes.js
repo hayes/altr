@@ -50,3 +50,17 @@ test('boolean attributes', function(t) {
   template.update({class: true})
   t.equal(template.toString(), '<h1 class="">text</h1>')
 })
+
+test('attr in for', function(t) {
+  var template = altr(
+      '<div altr-for="item in items"><input altr-attr-checked="selected === $index"></div>'
+    , {items: [1,2], selected: 1}
+    , true
+  )
+
+  t.plan(1)
+  t.equal(
+      template.toString()
+    , '<div altr-for="item in items"><input><input checked=""></div>'
+  )
+})

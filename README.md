@@ -1,17 +1,26 @@
-# Altr
+# altr
 
-A small dom-based templating engine.
+A small efficient dom-based templating engine.
 
-## Why another templating engine?
+## Why use altr over other alternatives.
 
-Traditional string based templating engines (`handlebars`, `nunjucks`, many others) have a major drawback in that they blow away any existing dom when anything changes.  This issue has been solved in many existing frameworks (`angular`, `knockout`, `react`) in some really cool ways.  Unfortunately, to take advantage you need to be using one of these frameworks.  Altr is just a templating engine that does one thing well, and lets you write the rest of your application in your own way.  After initially rendering a template, all subsequent changes only modify the existing dom, elements that don't change are not touched and the ones that do are modified rather than replaced.  This gives you more flexibility in the way you use event handlers, css transitions and much more.
+* ##### performance:
+  for most cases altr matches performance of more complicated engines such as react, without the added complexity of a virtual dom.
+
+* ##### focus:
+  altr focuses on providing you an easy and efficient way to keep your views in sync with your state, without making any assumptions about how you update that state or handle dom events.
+
+* ##### extensibility:
+  altr is fully extensible and supports adding your own tags and filters to give you maximum control.
+* ##### animation:
+  altr is ideal for creating dynamic animated views or components. all changes in altr modify existing dom elements rather than creating new elements, so css animations do not get recent.  it also uses requestAnimationFrame to batch updates for best performance. You can use filters to for animated transitions.
 
 ## Install:
 #### in Node or browserify:
 run `npm install altr`
 then simply `var altr = require('altr')`
 #### otherwise
-download altr.js from the [here](#)
+download altr.js from the [here](https://github.com/hayes/altr/tree/master/dist)
 and include it in your html before your other javascript files
 ```html
 <script type="text/javascript" src="/path/to/altr.js"></script>
@@ -57,16 +66,9 @@ template.update(new_state)
 
 ## Overview
 ### Values:
-to insert a dynamic value into your template, you can use the `{{ my_value }}` syntax as part of any text content.  You can also use this syntax in any attribute that is not one of the `tags` listed below.  You may also use `altr-attr-my-attribute="{{my_value}}"` to set `my-attribute`.  This is useful for svg which does not permit invalid values in its attributes.
+to insert a dynamic value into your template, you can use the `{{ my_value }}` syntax as part of any text content.  You can also use this syntax in any attribute that is not one of the `tags` listed below.  You may also use `altr-attr-my-attribute="my_value"` to set `my-attribute`, if `my_value` is `null` or `undefined` or `false` the attribute will be omitted.  This is useful for attributes such as `checked` that a presence based, or for svg elements which do not permit invalid values in certain attributes.
 
-To access an object's property: `{{ my_obj.my_prop }}`.  These lookups are safe, and will simply return an empty string if any part of the lookup fails.
-
-Value tags my also contain literals (numbers and strings). `{{ 42 }}` or `{{ 'some text' }}`
-
-Value tags also support a wide range of operators.
-`||`, `&&`, `|`, `^`, `&`, `===`, `!==`, `==`, `!=`, `>=`, `<=`, `>`, `<`, `in`, `instanceof`, `+`, `-` `*`, `/`, `%`, `!`, `~`, and the ternary operator are all supported and follow the same precedence as javascript. Parens `(`, `)` will also work as expected.
-
-And lastly altr supports filters. `{{ my_val -> my_filter(arg) }}`.  altr does not ship with any built in filters, but they are described in more detail below.
+These lookups are backed by [`altr-accessors`](https://github.com/hayes/altr-accessors) and support dot-path lookups, literals, a wide range of operators, as well as `filters` see the [documentation](https://github.com/hayes/altr-accessors/blob/master/README.md) for more details.
 
 ### Tags:
 altr tags are special attributes that can be on any element, and will change the behavior of how that element and its children are rendered. altr currently supports 6 tags: `if`, `for`, `text`, `html`, `with` and `include`
@@ -75,7 +77,7 @@ altr tags are special attributes that can be on any element, and will change the
 ```html
 <div altr-if="my_val">!!my_val === true</div>
 ```
-if the value in this tag is truthy, the element will be rendered as normal.  If it is not, the element will be completly removed from the dom until the value is truthy again.  Child nodes will not be updated until the value is truthy.
+if the value in this tag is truthy, the element will be rendered as normal.  If it is not, the element will be completely removed from the dom until the value is truthy again.  Child nodes will not be updated until the value is truthy.
 
 #### for
 ```html
@@ -109,6 +111,12 @@ the `with` tag will make any property of the passed value directly accessible in
 ```
 the `placeholder` tag will replace its element with the element that its value resolves to. This allows you to create smaller widgets with their own templates, event handlers and logic and dynamically render them into your template.
 
+#### children
+```html
+<div altr-children="list_of_html_elements"></div>
+```
+the `children` tag will replace an elements content with the specified dom nodes.  `list_of_html_elements` should either resolve to a single dom node, or an array of dom nodes.
+
 #### include
 ```html
 <div altr-include="another_template"></div>
@@ -118,7 +126,7 @@ the `include` tag will render another template into its element. You will need t
 ## API
 
 ### `altr(template, data, sync, doc)` -> altr instance
- create a new altr instance
+ create a new altr instance, which subclasses [Event Emitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
 
  * template: can be either a string or a dom element
  * data: initial data to render the template with
@@ -131,7 +139,7 @@ specify a new tag that can be used in altr templates
  * constructor: a function that takes an element and the contents of the specified attribute, and returns an update function.  the tag is responsible for updating its children.
 
 ### `altr.include(name, template)`
-make a template avaiable to include in any other template
+make a template available to include in any other template
  * name: the name of the template
  * template: the template string to be included
  
@@ -139,17 +147,8 @@ make a template avaiable to include in any other template
 add a filter to altr
  * name: name of the filter
  * filter: the filter constructor function, accepts parts, and an update function
- 
-### `altr.templateString(template, callback)`
- * template: a template string, may contain `{{ my.value }}` type tags
- * callback: a function that will be called when the template result changes
- 
-returns a function that takes a state object that is used to update the template. if this new value changes the resulting template the callback will be called with the new value.
 
-### `altr.createAccessor(lookup, callback, all)`
- * lookup: a lookup string. May contain anything described in the value section above.
- * callback: a function that will be called when the resulting value changes
- * all: if true the callback will be called even if result has not changed.
+returns a function that takes a state object that is used to update the template. if this new value changes the resulting template the callback will be called with the new value.
  
 returns a that takes a new state. If this state change causes the value to change, or the all flag is set to true.  the callback will be called with the resulting value.
 
@@ -166,7 +165,28 @@ returns the current state of the template as a string
 takes a dom node and returns either null if it has no content to update, or a function that takes a new state object and updates that node with the new state.
 
 ### `instance.initNodes(nodes)`
-take a list of nodes and returns an array of update functions descriped in `instance.initNode(node)
+take a list of nodes and returns an array of update functions described in `instance.initNode(node)
 
 ### `instance.updateNodes(nodes)`
-take a list of nodes and returns a function that takes a new state object, and updates the contents of that list of nodes.
+takes a list of nodes and returns a function that takes a new state object, and updates the contents of that list of nodes.
+
+### `instance.runBatch()`
+immediately runs any outstanding dom updates that have been queued.
+
+### `instance.templateString(template, callback)`
+ * template: a template string, may contain `{{ my.value }}` type tags
+ * callback: a function that will be called when the template result changes
+ 
+### `altr.createAccessor(lookup, callback, all)`
+ * lookup: a lookup string. May contain anything described in the value section above.
+ * callback: a function that will be called when the resulting value changes
+ * all: if true the callback will be called even if result has not changed.
+ 
+### instance Properties
+  * `instance.batch` is an instance of [`batch-queue`](https://github.com/hayes/batch-queue)
+
+### instance Events
+ * `update` is emitted with the templates current state after a dom update occurs.  the current state is not guaranteed to be the state that triggered the change.
+ * `insert` is emitted any time altr inserts an element into the dom. It is emitted with 2 arguments, the element that was inserted and its parent.
+ * `remove` is emitted any time altr removes an element from the dom. It is emitted with 2 arguments, the element that was inserted and its parent.
+ * `replace` is emitted any time altr replaces an element in the dom. It is emitted with 3 arguments, the element that was removed, the element that was inserted, and the parent.
