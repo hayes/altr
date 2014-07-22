@@ -1,20 +1,20 @@
 # altr
 
-A small efficient dom-based templating engine.
+A small efficient DOM-based templating engine.
 
 ## Why use altr over other alternatives.
 
 * ##### performance:
-  for most cases altr matches performance of more complicated engines such as react, without the added complexity of a virtual dom.
+  For most cases `altr` matches performance of more complicated engines such as react, without the added complexity of a virtual DOM.
 
 * ##### focus:
-  altr focuses on providing you an easy and efficient way to keep your views in sync with your state, without making any assumptions about how you update that state or handle dom events.
+  `altr` focuses on providing you an easy and efficient way to keep your views in sync with your state, without making any assumptions about how you update that state or handle dom events.
 
 * ##### extensibility:
-  altr is fully extensible and supports adding your own tags and filters to give you maximum control.
+  `altr` is fully extensible and supports adding your own tags and filters to give you maximum control.
 
 * ##### animation:
-  altr is ideal for creating dynamic animated views or components. all changes in altr modify existing dom elements rather than creating new elements, so css animations do not get recent.  it also uses requestAnimationFrame to batch updates for best performance. You can use filters to for animated transitions.
+  `altr` is ideal for creating dynamic animated views or components. All changes in `altr` modify existing dom elements rather than creating new elements, so CSS animations do not get recent.  It also uses requestAnimationFrame to batch updates for best performance. You can use filters to for animated transitions.
 
 ## Install:
 #### In Node or browserify:
@@ -67,42 +67,58 @@ template.update(new_state)
 
 ## Overview
 ### Values:
-To insert a dynamic value into your template, you can use the `{{ my_value }}` syntax as part of any text content.  You can also use this syntax in any attribute that is not one of the `tags` listed below.  You may also use `altr-attr-my-attribute="my_value"` to set `my-attribute`. You can then refer to `{{ my-value }}` elsewhere in your templates. If `my_value` is `null` or `undefined` or `false` the attribute will be omitted.  This is useful for attributes such as `checked` which do not point to a value, or for svg elements which do not certain attributes to have invalid values.
+
+`altr` will do a lookup of a variable name `my_value` in the following cases:
+  - `{{ my_value }}` appears in any text context that is not one of the tags
+    listed below.
+  - DOM attribute matches `altr-attr-*=my_value`. 
+
+The `altr-attr-my-attribute=my_value` syntax will set the `my-attribute` attribute on the DOM node to whatever `my_value` evaluates to in the current template context. When the template context is updated, this will update as well. If `my_value` evaluates to `null`, `undefined` or `false`, then `my-attribute` will simply be excluded, which is useful for attributes such as `checked` which do not point to a value, or for SVG elements which do not allow certain attributes to have invalid values.
 
 Template variable lookups are backed by [`altr-accessors`](https://github.com/hayes/altr-accessors). `altr-accessors` supports dot-path lookups, literals, a wide range of operators, as well as `filters`. See the [documentation](https://github.com/hayes/altr-accessors/blob/master/README.md) for more details.
 
 ### Tags:
-`altr` tags are special attributes that can be set on any element to change the behavior of how that element and its children are rendered. `altr` currently supports 6 tags: `if`, `for`, `text`, `html`, `with` and `include`.
+`altr` tags are special attributes that can be set on any element to change the behavior of how that element and its children are rendered. With a few exceptions, `altr` looks up the value that the attribute points to in the template context when it renders the template. Supported tags are documented below.
 
 #### if
 ```html
 <div altr-if="my_val">!!my_val === true</div>
 ```
-If the value in this tag is truthy, the element will be rendered as normal.  If it is not, the element will be completely removed from the DOM until the value is truthy again.  Child nodes will not be updated until the value is truthy.
+Looks up `my_value` in the current template context and tests its truthiness. If `my_value` is truthy, the element will be rendered as normal. If it is not, the element will be completely removed from the DOM until the value is truthy again.  Child nodes will not be updated until the value is truthy.
 
 #### for
 ```html
 <ol altr-for="item in my_items"><li>{{ item.name }}<li></ol>
 ```
-The `for` tag will take its `innerHtml` and use it as a template to render each item in the passed array. When the list of items changes, `altr` will remove the elements associated with items that have been removed, update the ones that are still part of the list, and create new elements for items that have been added.  By default `altr` will use `indexOf` to determine if an item is still part of the list and where it is located.  You can also specify a unique key if you want to pass in objects that *represent* the same item, but *is* a different object.
+Looks up `my_items` in the current template context. The iterator variable is a new context variable which can be looked up in the body of the for loop (the inner HTML of the DOM element on which the attribute was defined).
+
+The `for` tag will take its `innerHtml` and use it as a template to render each item in the passed array. When the list of items changes, `altr` will will update the DOM to reflect the changes. In particular it:
+
+  - Removes elements associated with items that have been removed
+  - Updates elements that are still part of the list if necessary
+  - Create new elements for items that have been added.  
+  
+By default `altr` will use `indexOf` to determine if an item is still part of the list and where it is located.  You can also specify a unique key if you want to pass in objects that *represent* the same item, but point to a different object:
 ```html
 <ol altr-for="item:my_unique_key in my_items"><li>{{ item.name }}<li></ol>
 ```
+
 #### text
 ```html
 <div altr-text="my_text"></div>
 ```
-The `text` tag simply sets the [`TextContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node.textContent) of its element to its value. So the result of rendering the above is:
+
+The `text` tag looks up `my_text` in the current template context and uses the result to set the [`TextContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node.textContent) on its element. So if the current template context set `context.my_text = 'What wonderful hat!'`, then the result of rendering the above is:
 
 ```html
-<div>my_text</div>
+<div>What a wonderful hat!</div>
 ```
 
 #### html
 ```html
 <div altr-html="my_html"></div>
 ```
-The `html` tag works exactly like the `text` tag, but allows you to set the html content of the element instead.
+The `html` tag works exactly like the `text` tag, but sets the [`innerHTML`](https://developer.mozilla.org/en-US/docs/Web/API/Element.innerHTML) of the element instead of the `textContent`.
 
 #### with
 ```html
@@ -114,7 +130,9 @@ The `with` tag will make any property of the passed value directly accessible in
 ```html
 <div altr-placeholder="some.html_element"></div>
 ```
-The `placeholder` tag will replace its element with the element that its value resolves to. This allows you to create smaller widgets with their own templates, event handlers and logic, and dynamically render them into your template.
+`some.html_element` must evaluate to a DOM node.
+
+The `placeholder` tag will replace its element `some.html_element`. This allows you to create smaller widgets with their own templates, event handlers and logic, and dynamically render them into your template.
 
 #### children
 ```html
