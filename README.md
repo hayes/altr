@@ -212,6 +212,12 @@ Emitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
    event loop in which they are called. Defaults to true in node (and
    browserify).
 
+### `altr.render(template, data, el)` -> altr instance
+  * `template`: either a template name added using altr.incude, or a
+    full template (same as first argument to the default constructor).
+  * `data`: Initial data to render the template with.
+  * `el`: (optional) an element to render the template into.
+
 ### `altr.addTag(attr, constructor)`
 Specify a new tag that can be used in `altr` templates
 
@@ -239,6 +245,8 @@ called with the new value.
  
 ### `instance.update(data)`
 Update the template with `data`.
+
+
 
 ### `instance.into(el)`
 Insert the template into the `el`, which is expected to be a [DOM
