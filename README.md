@@ -235,9 +235,7 @@ Add a filter to `altr`
 
 Returns a function that expects a JavaScript object that is used as template
 context. If this new value changes the resulting template, `filter` will be
-called with the new value. The `all` flag determines whether the call to
-`filter` happens immediately, or when the next animation frame becomes
-available.
+called with the new value. 
  
 ### `instance.update(data)`
 Update the template with `data`.
@@ -269,11 +267,10 @@ Immediately runs any outstanding DOM updates that have been queued.
  * `template`: a template string, may contain `{{ my.value }}` type tags.
  * `callback`: a function that will be called when the template result changes.
  
-### `altr.createAccessor(lookup, callback, all)`
+### `altr.createAccessor(lookup, callback)`
  * `lookup`: a lookup string. May contain anything described in the value
    section above.
  * `callback`: a function that will be called when the resulting value changes.
- * `all`: if true the callback will be called even if result has not changed.
  
 ### instance Properties
   * `instance.batch` is an instance of [`batch-queue`](https://github.com/hayes/batch-queue)
