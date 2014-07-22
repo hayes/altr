@@ -17,12 +17,12 @@ A small efficient dom-based templating engine.
   altr is ideal for creating dynamic animated views or components. all changes in altr modify existing dom elements rather than creating new elements, so css animations do not get recent.  it also uses requestAnimationFrame to batch updates for best performance. You can use filters to for animated transitions.
 
 ## Install:
-#### in Node or browserify:
-run `npm install altr`
-then simply `var altr = require('altr')`
-#### otherwise
-download altr.js from the [here](https://github.com/hayes/altr/tree/master/dist)
-and include it in your html before your other javascript files
+#### In Node or browserify:
+Run `npm install altr`.
+Then, in your node module, `var altr = require('altr')`.
+#### Otherwise:
+Download altr.js from the [here](https://github.com/hayes/altr/tree/master/dist)
+and include it in your html before your other JavaScript files
 ```html
 <script type="text/javascript" src="/path/to/altr.js"></script>
 ```
@@ -67,24 +67,24 @@ template.update(new_state)
 
 ## Overview
 ### Values:
-to insert a dynamic value into your template, you can use the `{{ my_value }}` syntax as part of any text content.  You can also use this syntax in any attribute that is not one of the `tags` listed below.  You may also use `altr-attr-my-attribute="my_value"` to set `my-attribute`, if `my_value` is `null` or `undefined` or `false` the attribute will be omitted.  This is useful for attributes such as `checked` that a presence based, or for svg elements which do not permit invalid values in certain attributes.
+To insert a dynamic value into your template, you can use the `{{ my_value }}` syntax as part of any text content.  You can also use this syntax in any attribute that is not one of the `tags` listed below.  You may also use `altr-attr-my-attribute="my_value"` to set `my-attribute`. You can then refer to `{{ my-value }}` elsewhere in your templates. If `my_value` is `null` or `undefined` or `false` the attribute will be omitted.  This is useful for attributes such as `checked` which do not point to a value, or for svg elements which do not certain attributes to have invalid values.
 
-These lookups are backed by [`altr-accessors`](https://github.com/hayes/altr-accessors) and support dot-path lookups, literals, a wide range of operators, as well as `filters` see the [documentation](https://github.com/hayes/altr-accessors/blob/master/README.md) for more details.
+Template variable lookups are backed by [`altr-accessors`](https://github.com/hayes/altr-accessors). `altr-accessors` supports dot-path lookups, literals, a wide range of operators, as well as `filters`. See the [documentation](https://github.com/hayes/altr-accessors/blob/master/README.md) for more details.
 
 ### Tags:
-altr tags are special attributes that can be on any element, and will change the behavior of how that element and its children are rendered. altr currently supports 6 tags: `if`, `for`, `text`, `html`, `with` and `include`
+`altr` tags are special attributes that can be set on any element to change the behavior of how that element and its children are rendered. `altr` currently supports 6 tags: `if`, `for`, `text`, `html`, `with` and `include`.
 
 #### if
 ```html
 <div altr-if="my_val">!!my_val === true</div>
 ```
-if the value in this tag is truthy, the element will be rendered as normal.  If it is not, the element will be completely removed from the dom until the value is truthy again.  Child nodes will not be updated until the value is truthy.
+If the value in this tag is truthy, the element will be rendered as normal.  If it is not, the element will be completely removed from the DOM until the value is truthy again.  Child nodes will not be updated until the value is truthy.
 
 #### for
 ```html
 <ol altr-for="item in my_items"><li>{{ item.name }}<li></ol>
 ```
-the `for` tag will take its `innerHtml` and use it as a template to render each item it is passed. When the list of items changes, altr will remove the elements associated with items that have been removed, update the ones that are still part of the list, and create new elements for items that have been added.  By default altr will use `indexOf` to determine if an item is still part of the list and where it is located.  You can also specify a unique key if you want to pass in objects that represent the same item, but may not be the exact same object.
+The `for` tag will take its `innerHtml` and use it as a template to render each item in the passed array. When the list of items changes, `altr` will remove the elements associated with items that have been removed, update the ones that are still part of the list, and create new elements for items that have been added.  By default `altr` will use `indexOf` to determine if an item is still part of the list and where it is located.  You can also specify a unique key if you want to pass in objects that *represent* the same item, but *is* a different object.
 ```html
 <ol altr-for="item:my_unique_key in my_items"><li>{{ item.name }}<li></ol>
 ```
@@ -92,96 +92,98 @@ the `for` tag will take its `innerHtml` and use it as a template to render each 
 ```html
 <div altr-text="my_text"></div>
 ```
-The `text` tag simply sets the text content of its element to the value it is passed
+The `text` tag simply sets the [`TextContent`](https://developer.mozilla.org/en-US/docs/Web/API/Node.textContent) of its element to its value. So the result of rendering the above is:
+
+```html
+<div>my_text</div>
+```
 
 #### html
 ```html
 <div altr-html="my_html"></div>
 ```
-The `html` tag works exactly like the `text` tag, but allows you to set the html content of the element instead
+The `html` tag works exactly like the `text` tag, but allows you to set the html content of the element instead.
 
 #### with
 ```html
 <div altr-with="data">{{ data.value }} === {{ value }}</div>
 ```
-the `with` tag will make any property of the passed value directly accessible in any child nodes.  Values from the parent scope will still be accessible as well.
+The `with` tag will make any property of the passed value directly accessible in any child nodes.  Values from the parent scope will still be accessible as well.
 
 #### placeholder
 ```html
 <div altr-placeholder="some.html_element"></div>
 ```
-the `placeholder` tag will replace its element with the element that its value resolves to. This allows you to create smaller widgets with their own templates, event handlers and logic and dynamically render them into your template.
+The `placeholder` tag will replace its element with the element that its value resolves to. This allows you to create smaller widgets with their own templates, event handlers and logic, and dynamically render them into your template.
 
 #### children
 ```html
 <div altr-children="list_of_html_elements"></div>
 ```
-the `children` tag will replace an elements content with the specified dom nodes.  `list_of_html_elements` should either resolve to a single dom node, or an array of dom nodes.
+The `children` tag will replace an elements content with the specified DOM nodes.  `list_of_html_elements` should either resolve to a single DOM node, or an array of DOM nodes.
 
 #### include
 ```html
 <div altr-include="another_template"></div>
 ```
-the `include` tag will render another template into its element. You will need to use one of the include methods described below to make the template available.
+The `include` tag will render another template into its element. You will need to use one of the `include` methods described below to make the template available.
 
 ## API
 
 ### `altr(template, data, sync, doc)` -> altr instance
- create a new altr instance, which subclasses [Event Emitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
+Create a new altr instance, which subclasses [Event Emitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
 
- * template: can be either a string or a dom element
- * data: initial data to render the template with
- * sync: when false, all dom updates are batched with `requestAnimationFrame`, defaults to true in node (and browserify)
+ * `template`: Can be either a string or a dom element.
+ * `data`: Initial data to render the template with.
+ * `sync`: When false, all DOM updates are batched with `requestAnimationFrame`. Otherwise, all updates happen in the turn of the event loop in which they are called. Defaults to true in node (and browserify).
 
 ### `altr.addTag(attr, constructor)`
-specify a new tag that can be used in altr templates
+Specify a new tag that can be used in `altr` templates
 
- * attr: the attribute that initializes the tag
- * constructor: a function that takes an element and the contents of the specified attribute, and returns an update function.  the tag is responsible for updating its children.
+ * `attr`: The attribute that initializes the tag.
+ * `constructor`: A function that takes an element and the value of `attr`, and returns an update function takes the template context as its argument, and updates the html as a side effect. The update function is responsible for updating its children.
 
 ### `altr.include(name, template)`
-make a template available to include in any other template
- * name: the name of the template
- * template: the template string to be included
+Make a template available for inclusion in any other template
+ * `name`: the name of the template, a string.
+ * `template`: the template string to be included.
  
 ### `altr.addFilter(name, filter)`
-add a filter to altr
- * name: name of the filter
- * filter: the filter constructor function, accepts parts, and an update function
+Add a filter to `altr`
+ * `name`: The name of the filter.
+ * `filter`: The filter constructor function. See [altr-accessors](https://www.npmjs.org/package/altr-accessors) for its expected signature.
 
-returns a function that takes a state object that is used to update the template. if this new value changes the resulting template the callback will be called with the new value.
+Returns a function that expects a JavaScript object that is used as template context. If this new value changes the resulting template, `filter` will be called with the new value. The `all` flag determines whether the call to `filter` happens immediately, or when the next animation frame becomes available.
  
-returns a that takes a new state. If this state change causes the value to change, or the all flag is set to true.  the callback will be called with the resulting value.
-
 ### `instance.update(data)`
-update the template with new data
+Update the template with `data`.
 
 ### `instance.into(el)`
-insert the template into the passed element (useful if rendering the template from a string)
+Insert the template into the `el`, which is expected to be a [DOM element](https://developer.mozilla.org/en-US/docs/Web/API/element) (useful if rendering the template from a string).
 
 ### `instance.toString()`
-returns the current state of the template as a string
+Returns the current state of the template as a string.
 
 ### `instance.initNode(node)`
-takes a dom node and returns either null if it has no content to update, or a function that takes a new state object and updates that node with the new state.
+Takes a DOM node and returns either `null` if it has no content to update, or a function that takes an object with which it updates `node`.
 
 ### `instance.initNodes(nodes)`
-take a list of nodes and returns an array of update functions described in `instance.initNode(node)
+Take a list of nodes and returns an array of update functions described in `instance.initNode(node)`
 
 ### `instance.updateNodes(nodes)`
-takes a list of nodes and returns a function that takes a new state object, and updates the contents of that list of nodes.
+Takes an array of nodes and returns a function. The returned function expects a template context object, and updates the contents of `nodes`.
 
 ### `instance.runBatch()`
-immediately runs any outstanding dom updates that have been queued.
+Immediately runs any outstanding DOM updates that have been queued.
 
 ### `instance.templateString(template, callback)`
- * template: a template string, may contain `{{ my.value }}` type tags
- * callback: a function that will be called when the template result changes
+ * `template`: a template string, may contain `{{ my.value }}` type tags.
+ * `callback`: a function that will be called when the template result changes.
  
 ### `altr.createAccessor(lookup, callback, all)`
- * lookup: a lookup string. May contain anything described in the value section above.
- * callback: a function that will be called when the resulting value changes
- * all: if true the callback will be called even if result has not changed.
+ * `lookup`: a lookup string. May contain anything described in the value section above.
+ * `callback`: a function that will be called when the resulting value changes.
+ * `all`: if true the callback will be called even if result has not changed.
  
 ### instance Properties
   * `instance.batch` is an instance of [`batch-queue`](https://github.com/hayes/batch-queue)
