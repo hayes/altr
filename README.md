@@ -173,13 +173,13 @@ The `with` tag will make any property of the passed value directly accessible
 in any child nodes.  Values from the parent scope will still be accessible as
 well.
 
-#### placeholder
+#### replace
 ```html
-<div altr-placeholder="some.html_element"></div>
+<div altr-replace="some.html_element"></div>
 ```
 `some.html_element` must evaluate to a [DOM node][element].
 
-The `placeholder` tag will replace its element `some.html_element`. This allows
+The `replace` tag will replace its element `some.html_element`. This allows
 you to create smaller widgets with their own templates, event handlers and
 logic, and dynamically render them into your template.
 
