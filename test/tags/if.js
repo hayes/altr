@@ -86,3 +86,15 @@ test('for respects placeholder', function(t) {
       '<li altr-if="show">2</li><li altr-if="show">1</li></ul>'
   )
 })
+
+test('vars in if always get updated while shown', function(t) {
+  var template = altr(
+      '<div altr-if="show">{{x}}</div>'
+    , {show: true, x: 5}
+  )
+
+  t.plan(2)
+  t.equal(template.toString(), '<div altr-if="show">5</div>')
+  template.update({show: true, x: 15}, true)
+  t.equal(template.toString(), '<div altr-if="show">15</div>')
+})
