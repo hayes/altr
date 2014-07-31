@@ -66,7 +66,7 @@ test('children tag', function(t) {
   )
 
   state.els = [template.document.createElement('div')]
-  state.els[0]._altr_placeholder = template.document.createElement('a')
+  state.els[0]._altrPlaceholder = template.document.createElement('a')
   template.update(state)
   t.equal(
       template.toString()
