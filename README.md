@@ -284,16 +284,11 @@ Immediately runs any outstanding DOM updates that have been queued.
   * `instance.batch` is an instance of [`batch-queue`](https://github.com/hayes/batch-queue)
 
 ### instance Events
- * `update` is emitted with the templates current state after a dom update
-   occurs.  the current state is not guaranteed to be the state that triggered
-   the change.
- * `insert` is emitted any time altr inserts an element into the dom. It is
-   emitted with 2 arguments, the element that was inserted and its parent.
- * `remove` is emitted any time altr removes an element from the dom. It is
-   emitted with 2 arguments, the element that was inserted and its parent.
- * `replace` is emitted any time altr replaces an element in the dom. It is
-   emitted with 3 arguments, the element that was removed, the element that was
-   inserted, and the parent.
+ * `update` is emitted with the templates current state any time the template
+    state is updated
+ * `draw` is emitted with the templates current state after a dom update
+    occurs.  the current state is not guaranteed to be the state that triggered
+    the change.
 
 [textContent]: https://developer.mozilla.org/en-US/docs/Web/API/Node.textContent
 [accessors]: https://www.npmjs.org/package/altr-accessors
