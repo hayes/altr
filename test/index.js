@@ -1,5 +1,5 @@
-require('./tags/placeholder')
 require('./tags/children')
+require('./tags/replace')
 require('./tags/include')
 require('./attributes')
 require('./directives')

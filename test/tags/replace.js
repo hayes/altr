@@ -1,8 +1,8 @@
 var altr = require('../../lib')
   , test = require('tape')
 
-test('text tag', function(t) {
-  var template = altr('<div altr-placeholder="el"></div>', null, true)
+test('replace tag', function(t) {
+  var template = altr('<div altr-replace="el"></div>', null, true)
 
   var el = template.document.createElement('div')
 
