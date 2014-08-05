@@ -16,9 +16,9 @@
   "author": "Michael Hayes",
   "license": "MIT",
   "dependencies": {
-    "batch-queue": "0.0.1",
+    "batch-queue": "0.0.2",
     "dirtybit": "0.0.3",
-    "micro-dom": "0.0.14"
+    "micro-dom": "0.0.15"
   },
   "devDependencies": {
     "altr-ease": "0.0.3",

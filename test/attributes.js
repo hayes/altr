@@ -48,7 +48,7 @@ test('boolean attributes', function(t) {
   t.plan(2)
   t.equal(template.toString(), '<h1>text</h1>')
   template.update({class: true})
-  t.equal(template.toString(), '<h1 class="">text</h1>')
+  t.equal(template.toString(), '<h1 class="true">text</h1>')
 })
 
 test('attr in for', function(t) {
@@ -61,6 +61,6 @@ test('attr in for', function(t) {
   t.plan(1)
   t.equal(
       template.toString()
-    , '<div altr-for="item in items"><input><input checked=""></div>'
+    , '<div altr-for="item in items"><input><input checked="true"></div>'
   )
 })
