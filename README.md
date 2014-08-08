@@ -1,28 +1,17 @@
 # altr
 
-A small efficient DOM-based templating engine.
+A small efficient DOM-based templating engine. It updates the parts of the dom
+that need to change, and keeps everything else intact.
 
 ## Why use altr over other alternatives.
 
-* ##### performance:
-  For most cases `altr` matches performance of more complicated engines such as
-  react, without the added complexity of a virtual DOM.
-
-* ##### focus:
-  `altr` focuses on providing you an easy and efficient way to keep your views
-  in sync with your state, without making any assumptions about how you update
-  that state or handle dom events.
-
-* ##### extensibility:
-  `altr` is fully extensible and supports adding your own tags and filters to
-  give you maximum control.
-
-* ##### animation:
-  `altr` is ideal for creating dynamic animated views or components. All
-  changes in `altr` modify existing DOM elements rather than creating new
-  elements, so CSS animations do not get recent.  It also uses
-  requestAnimationFrame to batch updates for best performance. You can use
-  filters to for animated transitions.
+altr provides a powerful and expressive templating solution without becoming
+your front end framework.  Other alternatives with similar capabilities
+(React, Ractive.js, etc) provide much more than a template, and enforece a
+specific way of writing your ui code.  For some cases this is great and creates
+internal consistancy in your code.  If you want a solution that does one
+(small) thing well, and stays out of your way everywhere else, altr might be a
+great fit.
 
 ## Install:
 #### In Node or browserify:
@@ -95,10 +84,10 @@ well. If `my_value` evaluates to `null`, `undefined` or `false`, then
 such as `checked` (which can also have a value), or for SVG elements which will
 throw errors for illegal values.
 
-Template variable lookups are backed by [`altr-accessors`][accessors].
-`altr-accessors` supports dot-path lookups, literals, a wide range of
+Template variable lookups are backed by [`dirtybit`][dirtybit].
+`dirtybit` supports dot-path lookups, literals, a wide range of
 operators, as well as `filters`. See the
-[documentation](https://github.com/hayes/altr-accessors/blob/master/README.md)
+[documentation](https://github.com/hayes/dirtybit/blob/master/README.md)
 for more details.
 
 ### Tags:
@@ -199,6 +188,13 @@ The `include` tag will render another template into its element. You will need
 to use one of the `include` methods described below to make the template
 available.
 
+#### raw
+```html
+<div altr-raw="true"></div>
+```
+The `raw` tag tells altr to ignore everything inside the current element, and
+just render it as-is.
+
 ## API
 
 ### `altr(template, data, sync, doc)` -> altr instance
@@ -218,55 +214,27 @@ Emitter](http://nodejs.org/api/events.html#events_class_events_eventemitter).
   * `data`: Initial data to render the template with.
   * `el`: (optional) an element to render the template into.
 
-### `altr.addTag(attr, constructor)`
-Specify a new tag that can be used in `altr` templates
-
- * `attr`: The attribute that initializes the tag.
- * `constructor`: A function that takes an element and the value of `attr`, and
-   returns an update function takes the template context as its argument, and
-   updates the html as a side effect. The update function is responsible for
-   updating its children.
-
 ### `altr.include(name, template)`
 Make a template available for inclusion in any other template
  * `name`: the name of the template, a string.
  * `template`: the template string to be included.
- 
+
 ### `altr.addFilter(name, filter)`
 Add a filter to `altr`
  * `name`: The name of the filter.
- * `filter`: The filter constructor function. See
-   [altr-accessors][accessors] for its
+ * `filter`: The filter constructor function. See [dirtybit][dirtybit] for its
    expected signature.
-
-Returns a function that expects a JavaScript object that is used as template
-context. If this new value changes the resulting template, `filter` will be
-called with the new value. 
  
-### `instance.update(data)`
-Update the template with `data`.
-
-
+### `instance.update(data[, sync])`
+Update the template with `data`. If `sync` is true, the template will be updated
+synchronously rather than on the next animation frame.
 
 ### `instance.into(el)`
 Insert the template into the `el`, which is expected to be a [DOM
-element][element] (useful if
-rendering the template from a string).
+element][element] (useful if rendering the template from a string).
 
 ### `instance.toString()`
 Returns the current state of the template as a string.
-
-### `instance.initNode(node)`
-Takes a DOM node and returns either `null` if it has no content to update, or a
-function that takes an object with which it updates `node`.
-
-### `instance.initNodes(nodes)`
-Take a list of nodes and returns an array of update functions described in
-`instance.initNode(node)`
-
-### `instance.updateNodes(nodes)`
-Takes an array of nodes and returns a function. The returned function expects a
-template context object, and updates the contents of `nodes`.
 
 ### `instance.runBatch()`
 Immediately runs any outstanding DOM updates that have been queued.
@@ -274,14 +242,11 @@ Immediately runs any outstanding DOM updates that have been queued.
 ### `instance.templateString(template, callback)`
  * `template`: a template string, may contain `{{ my.value }}` type tags.
  * `callback`: a function that will be called when the template result changes.
- 
-### `altr.createAccessor(lookup, callback)`
- * `lookup`: a lookup string. May contain anything described in the value
-   section above.
- * `callback`: a function that will be called when the resulting value changes.
- 
+
 ### instance Properties
-  * `instance.batch` is an instance of [`batch-queue`](https://github.com/hayes/batch-queue)
+  * `instance.batch` is an instance of
+  [`batch-queue`](https://github.com/hayes/batch-queue)
+  * `instance.lookups` is an instance of [`dirtybit`][dirtybit]
 
 ### instance Events
  * `update` is emitted with the templates current state any time the template
@@ -291,5 +256,5 @@ Immediately runs any outstanding DOM updates that have been queued.
     the change.
 
 [textContent]: https://developer.mozilla.org/en-US/docs/Web/API/Node.textContent
-[accessors]: https://www.npmjs.org/package/altr-accessors
+[dirtybit]: https://www.npmjs.org/package/dirtybit
 [element]: https://developer.mozilla.org/en-US/docs/Web/API/element
