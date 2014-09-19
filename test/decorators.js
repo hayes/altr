@@ -47,7 +47,7 @@ test('nested for destroy decorator', function(t) {
 
   var template = altr(
       '<ul altr-for="outer in items"><li altr-for="inner in outer">' +
-      '<div nested-destroy="item"></div></li></ul>'
+      '<div nested-destroy="item">{{inner}}</div></li></ul>'
     , {items: [[1,2,3]]}
     , true
   )

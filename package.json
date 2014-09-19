@@ -17,7 +17,7 @@
   "license": "MIT",
   "dependencies": {
     "batch-queue": "0.0.2",
-    "dirtybit": "0.0.3",
+    "dirtybit": "^0.1.1",
     "micro-dom": "0.0.15"
   },
   "devDependencies": {
