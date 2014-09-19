@@ -1,0 +1,9 @@
+{
+  "baseurl": "http://altr.hayes.io",
+  "languageCode": "en-us",
+  "title": "altr",
+  "params": {
+    "github": "https://github.com/hayes/altr"
+  },
+  "MetaDataFormat": "yaml"
+}

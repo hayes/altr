@@ -1,0 +1,5 @@
+{{ range .Data.Pages }}
+    {{if eq .Url "index.html" }}
+        {{ template "_default/single.html" . }}
+    {{end}}
+{{ end }}

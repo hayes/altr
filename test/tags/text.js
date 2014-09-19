@@ -5,7 +5,7 @@ test('text tag', function(t) {
   var template = altr(
       '<div altr-text="content"></div>'
     , {content: 'this is <span>text!</span>'}
-    , true
+    , {sync: true}
   )
 
   t.plan(1)

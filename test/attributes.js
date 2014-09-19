@@ -5,7 +5,7 @@ test('basic attributes', function(t) {
   var template = altr(
       '<h1 class="{{ class }}" quote="{{ q }}{{ \'!\' }}">text</h1>'
     , {class: 'big', q: '"'}
-    , true
+    , {sync: true}
   )
 
   t.plan(1)
@@ -16,7 +16,7 @@ test('altr attributes', function(t) {
   var template = altr(
       '<h1 altr-attr-class="class">text</h1>'
     , {class: 'big'}
-    , true
+    , {sync: true}
   )
 
   t.plan(1)
@@ -27,7 +27,7 @@ test('remove attributes', function(t) {
   var template = altr(
       '<h1 altr-attr-class="class">text</h1>'
     , {class: null}
-    , true
+    , {sync: true}
   )
 
   t.plan(3)
@@ -42,7 +42,7 @@ test('boolean attributes', function(t) {
   var template = altr(
       '<h1 altr-attr-class="class">text</h1>'
     , {class: false}
-    , true
+    , {sync: true}
   )
 
   t.plan(2)
@@ -55,7 +55,7 @@ test('attr in for', function(t) {
   var template = altr(
       '<div altr-for="item in items"><input altr-attr-checked="selected === $index"></div>'
     , {items: [1,2], selected: 1}
-    , true
+    , {sync: true}
   )
 
   t.plan(1)

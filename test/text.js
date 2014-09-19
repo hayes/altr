@@ -5,7 +5,7 @@ test('text', function(t) {
   var template = altr(
       'Hello, {{ name }}! the value is {{ the.value }}'
     , {name: 'world', the: {value: 10}}
-    , true
+    , {sync: true}
   )
 
   t.plan(2)

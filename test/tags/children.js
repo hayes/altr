@@ -5,7 +5,7 @@ test('children tag', function(t) {
   var template = altr(
       '<div altr-children="els"></div>'
     , {els: []}
-    , true
+    , {sync: true}
   )
 
   var state = {els: []}

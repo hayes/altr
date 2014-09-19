@@ -1,0 +1,14 @@
+<div altr-example altr-raw="true">
+  <ul name="tabs" altr-for="tab in tabs">
+    <li
+      class="{% tab === activeTab ? 'active' : '' %}"
+      data-view="{% tab %}"
+    >
+    {% tab %}
+    </li>
+  </ul>
+  <div class="tab-content" style="height: {{ .Get "height" }}px;">
+    <div altr-replace="els[activeTab]"></div>
+  </div>
+  {{ .Inner }}
+</div>

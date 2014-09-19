@@ -7,7 +7,7 @@ test('include tag', function(t) {
   var template = altr(
       '<div altr-include="content"></div>'
     , {content: 'hi!!!'}
-    , true
+    , {sync: true}
   )
 
   t.plan(1)

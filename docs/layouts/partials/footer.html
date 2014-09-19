@@ -1,0 +1,15 @@
+    <footer>
+
+        <p class="text-muted credit">{{ with .Site.Params.Copyright }}{{.}}{{ else }}&copy; {{.Now.Format "2006"}}. All rights reserved. {{end}}</p>
+    </footer>
+ <!-- Bootstrap core JavaScript-->
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+    <script src="{{ .Site.BaseUrl }}/js/jquery-1.10.2.min.js"></script>
+    <script src="{{ .Site.BaseUrl }}/js/altr.js"></script>
+    <script src="{{ .Site.BaseUrl }}/js/examples.js"></script>
+    <script src="{{ .Site.BaseUrl }}/js/bootstrap.min.js"></script>
+    <script src="{{ .Site.BaseUrl }}/js/bootstrap.js"></script>
+    <script type="text/javascript" src="{{ .Site.BaseUrl }}/js/hc.js"></script>
+</body>
+
+</html>

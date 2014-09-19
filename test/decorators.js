@@ -49,7 +49,7 @@ test('nested for destroy decorator', function(t) {
       '<ul altr-for="outer in items"><li altr-for="inner in outer">' +
       '<div nested-destroy="item">{{inner}}</div></li></ul>'
     , {items: [[1,2,3]]}
-    , true
+    , {sync: true}
   )
 
   t.plan(6)
@@ -60,5 +60,51 @@ test('nested for destroy decorator', function(t) {
     t.ok(true)
 
     return {destroy: t.ok.bind(t, true)}
+  }
+})
+
+
+test('insert is fired for initial if', function(t) {
+  altr.addDecorator('nested-if-insert', nested)
+  t.plan(1)
+
+  var template = altr(
+      '<div altr-if="true"><div nested-if-insert="true"></div></div>'
+    , {}
+    , {sync: true}
+  )
+
+
+  function nested() {
+    return {insert: insert}
+
+    function insert() {
+      t.ok(true)
+    }
+  }
+})
+
+
+
+test('remove', function(t) {
+  altr.addDecorator('nested-if-remove', nested)
+  t.plan(1)
+
+  var template = altr(
+      '<div altr-if="!removed"><div nested-if-remove="true"></div></div>'
+    , {}
+    , {sync: true}
+  )
+
+  template.update({removed: true})
+
+
+  function nested() {
+    return {remove: remove}
+
+    function remove(el, done) {
+      t.ok(true)
+      done()
+    }
   }
 })

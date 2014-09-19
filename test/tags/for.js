@@ -5,7 +5,7 @@ test('basic for loop', function(t) {
   var template = altr(
       '<ul altr-for="item in items">{{ item }}</ul>'
     , {items: [1,2,3]}
-    , true
+    , {sync: true}
   )
 
   t.plan(1)
@@ -16,7 +16,7 @@ test('for with elements', function(t) {
   var template = altr(
       '<ul altr-for="item in items"><li>{{ item }}</li></ul>'
     , {items: [1,2,3]}
-    , true
+    , {sync: true}
   )
 
   t.plan(1)
@@ -30,7 +30,7 @@ test('for with siblings', function(t) {
   var template = altr(
       '<p></p> <ul altr-for="item in items">{{ item }}</ul><p></p>'
     , {items: [1,2,3]}
-    , true
+    , {sync: true}
   )
 
   t.plan(1)
@@ -44,7 +44,7 @@ test('nested fors', function(t) {
   var template = altr(
       '<ul altr-for="o in out"><ul altr-for="i in in">{{ o + i }}</ul></ul>'
     , {out: ['a','b'], in: [1,2]}
-    , true
+    , {sync: true}
   )
 
   t.plan(1)
@@ -59,7 +59,7 @@ test('for respects placeholder', function(t) {
   var template = altr(
       '<ul altr-for="item in items"><li altr-if="show">{{ item }}</li></ul>'
     , {show: true, items: [1,2,3]}
-    , true
+    , {sync: true}
   )
 
   t.plan(4)
@@ -95,7 +95,7 @@ test('adding and removing', function(t) {
   var template = altr(
       '<ul altr-for="item in items"><li altr-if="show">{{ item }}</li></ul>'
     , {show: true, items: [1,2,3]}
-    , true
+    , {sync: true}
   )
 
   t.plan(4)
