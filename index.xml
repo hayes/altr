@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Recent Content on ältr </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://localhost:1313/index.xml/</link>
+    <language>en-us</language>
+    
+    
+    <updated>Fri, 19 Sep 2014 13:44:54 PDT</updated>
+    
+    <item>
+      <title>about</title>
+      <link>http://localhost:1313/about/</link>
+      <pubDate>Fri, 19 Sep 2014 13:44:54 PDT</pubDate>
+      
+      <guid>http://localhost:1313/about/</guid>
+      <description>
+
+&lt;h2 id=&#34;toc_0&#34;&gt;A headline&lt;/h2&gt;
+
+&lt;p&gt;Some Content&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>
