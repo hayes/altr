@@ -1,0 +1,50 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <title>Altr by hayes</title>
+
+    <link rel="stylesheet" href="./pages/css/styles.css">
+    <link rel="stylesheet" href="./pages/css/pygment_trac.css">
+    <link rel="stylesheet" href="./pages/css/monokai.css">
+    <link rel="stylesheet" href="./pages/css/main.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <h1 class="header">Altr</h1>
+        <p class="header">A dom aware templating engine that only updates the parts that change</p>
+
+        <ul>
+          <li class="download"><a class="buttons" href="https://github.com/hayes/altr/zipball/master">Download ZIP</a></li>
+          <li class="download"><a class="buttons" href="https://github.com/hayes/altr/tarball/master">Download TAR</a></li>
+          <li><a class="buttons github" href="https://github.com/hayes/altr">View On GitHub</a></li>
+        </ul>
+
+        <p class="header">This project is maintained by <a class="header name" href="https://github.com/hayes">hayes</a></p>
+      </header>
+      <section id="main-nav">
+        <nav>
+          <ul altr-for="page in headings">
+            <li class="{{ page.path === current_path ? 'active' : '' }}">
+              <a rel="altr" href="{{ page.path }}"><h3 altr-text="page.name"></h3></a>
+            </li>
+          </ul>
+        </nav>
+      </section>
+      <section altr-html="content" altr-run-scripts="true">
+      </section>
+      <footer>
+        <p><small>Hosted on <a href="http://pages.github.com">GitHub Pages</a> using the Dinky theme</small></p>
+      </footer>
+    </div>
+    <script type="text/javascript" src="./dist/altr.js"></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/ace/1.1.3/ace.js"></script>
+    <script type="text/javascript" src="./pages/js/bundle.js"></script>
+  </body>
+</html>
