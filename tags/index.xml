@@ -3,7 +3,7 @@
   <channel>
       <title>Tags on altr </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>https://altr.hayes.io/tags/index.xml/</link>
+    <link>http://altr.hayes.io/tags/index.xml/</link>
     <language>en-us</language>
     
     
@@ -11,10 +11,10 @@
     
     <item>
       <title>Tags Overview</title>
-      <link>https://altr.hayes.io/tags/</link>
+      <link>http://altr.hayes.io/tags/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/</guid>
+      <guid>http://altr.hayes.io/tags/</guid>
       <description>&lt;p&gt;&lt;code&gt;altr&lt;/code&gt; tags are special attributes that can be set on any element to change how
 that element and its children are rendered. With a few exceptions, &lt;code&gt;altr&lt;/code&gt;
 treats the value that the attribute points to as a template variable: When it
@@ -25,10 +25,10 @@ replaces all instances of the variable with the value returned by the lookup.&lt
     
     <item>
       <title>The `children` tag</title>
-      <link>https://altr.hayes.io/tags/children/</link>
+      <link>http://altr.hayes.io/tags/children/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/children/</guid>
+      <guid>http://altr.hayes.io/tags/children/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-children=&amp;quot;list_of_html_elements&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -40,10 +40,10 @@ an array of DOM nodes.&lt;/p&gt;
     
     <item>
       <title>The `for` tag</title>
-      <link>https://altr.hayes.io/tags/for/</link>
+      <link>http://altr.hayes.io/tags/for/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/for/</guid>
+      <guid>http://altr.hayes.io/tags/for/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;ol altr-for=&amp;quot;item in my_items&amp;quot;&amp;gt;&amp;lt;li&amp;gt;{{ item.name }}&amp;lt;li&amp;gt;&amp;lt;/ol&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -73,10 +73,10 @@ different object:&lt;/p&gt;
     
     <item>
       <title>The `html` tag</title>
-      <link>https://altr.hayes.io/tags/html/</link>
+      <link>http://altr.hayes.io/tags/html/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/html/</guid>
+      <guid>http://altr.hayes.io/tags/html/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-html=&amp;quot;my_html&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -88,10 +88,10 @@ of the element instead of the &lt;code&gt;textContent&lt;/code&gt;.&lt;/p&gt;
     
     <item>
       <title>The `if` tag</title>
-      <link>https://altr.hayes.io/tags/if/</link>
+      <link>http://altr.hayes.io/tags/if/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/if/</guid>
+      <guid>http://altr.hayes.io/tags/if/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-if=&amp;quot;my_val&amp;quot;&amp;gt;!!my_val === true&amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -104,10 +104,10 @@ again.  Child nodes will not be updated until the value is truthy.&lt;/p&gt;
     
     <item>
       <title>The `include` tag</title>
-      <link>https://altr.hayes.io/tags/include/</link>
+      <link>http://altr.hayes.io/tags/include/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/include/</guid>
+      <guid>http://altr.hayes.io/tags/include/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-include=&amp;quot;another_template&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -119,10 +119,10 @@ available.&lt;/p&gt;
     
     <item>
       <title>The `raw` tag</title>
-      <link>https://altr.hayes.io/tags/raw/</link>
+      <link>http://altr.hayes.io/tags/raw/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/raw/</guid>
+      <guid>http://altr.hayes.io/tags/raw/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-raw=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -133,10 +133,10 @@ just render it as-is.&lt;/p&gt;
     
     <item>
       <title>The `replace` tag</title>
-      <link>https://altr.hayes.io/tags/replace/</link>
+      <link>http://altr.hayes.io/tags/replace/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/replace/</guid>
+      <guid>http://altr.hayes.io/tags/replace/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-replace=&amp;quot;some.html_element&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -150,10 +150,10 @@ logic, and dynamically render them into your template.&lt;/p&gt;
     
     <item>
       <title>The `text` tag</title>
-      <link>https://altr.hayes.io/tags/text/</link>
+      <link>http://altr.hayes.io/tags/text/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/text/</guid>
+      <guid>http://altr.hayes.io/tags/text/</guid>
       <description>&lt;p&gt;-&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-text=&amp;quot;my_text&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
@@ -171,10 +171,10 @@ the result of rendering the above is:&lt;/p&gt;
     
     <item>
       <title>The `with` tag</title>
-      <link>https://altr.hayes.io/tags/with/</link>
+      <link>http://altr.hayes.io/tags/with/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/with/</guid>
+      <guid>http://altr.hayes.io/tags/with/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-with=&amp;quot;data&amp;quot;&amp;gt;{{ data.value }} === {{ value }}&amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 

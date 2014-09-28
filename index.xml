@@ -3,7 +3,7 @@
   <channel>
       <title>Recent Content on altr </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>https://altr.hayes.io/index.xml/</link>
+    <link>http://altr.hayes.io/index.xml/</link>
     <language>en-us</language>
     
     
@@ -11,28 +11,28 @@
     
     <item>
       <title>Filters</title>
-      <link>https://altr.hayes.io/expressions/filters/</link>
+      <link>http://altr.hayes.io/expressions/filters/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/expressions/filters/</guid>
+      <guid>http://altr.hayes.io/expressions/filters/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Opperations</title>
-      <link>https://altr.hayes.io/expressions/opperations/</link>
+      <link>http://altr.hayes.io/expressions/opperations/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/expressions/opperations/</guid>
+      <guid>http://altr.hayes.io/expressions/opperations/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Expressions</title>
-      <link>https://altr.hayes.io/expressions/</link>
+      <link>http://altr.hayes.io/expressions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/expressions/</guid>
+      <guid>http://altr.hayes.io/expressions/</guid>
       <description>&lt;p&gt;&lt;code&gt;altr&lt;/code&gt; will do a lookup of a variable name &lt;code&gt;my_value&lt;/code&gt; in when either of the
 following are true:
   - &lt;code&gt;{{ my_value }}&lt;/code&gt; appears in any DOM node&amp;rsquo;s [&lt;code&gt;textContent&lt;/code&gt;][textContent] or
@@ -57,10 +57,10 @@ for more details.&lt;/p&gt;
     
     <item>
       <title>Values</title>
-      <link>https://altr.hayes.io/expressions/values/</link>
+      <link>http://altr.hayes.io/expressions/values/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/expressions/values/</guid>
+      <guid>http://altr.hayes.io/expressions/values/</guid>
       <description>&lt;p&gt;&lt;code&gt;altr&lt;/code&gt; will do a lookup of a variable name &lt;code&gt;my_value&lt;/code&gt; in when either of the
 following are true:
   - &lt;code&gt;{{ my_value }}&lt;/code&gt; appears in any DOM node&amp;rsquo;s [&lt;code&gt;textContent&lt;/code&gt;][textContent] or
@@ -84,91 +84,20 @@ for more details.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Getting Started</title>
-      <link>https://altr.hayes.io/getting-started/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>https://altr.hayes.io/getting-started/</guid>
-      <description>
-
-&lt;h3 id=&#34;toc_0&#34;&gt;Instalation:&lt;/h3&gt;
-
-&lt;h5 id=&#34;toc_1&#34;&gt;In Node or browserify:&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Run &lt;code&gt;npm install altr&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;in your module: &lt;code&gt;var altr = require(&#39;altr&#39;)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&#34;toc_2&#34;&gt;Otherwise:&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Download altr.js from &lt;a href=&#34;https://github.com/hayes/altr/tree/master/dist&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;include it in your html before your other JavaScript files&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;toc_3&#34;&gt;Basic Usage:&lt;/h3&gt;
-
-&lt;div altr-example altr-raw=&#34;true&#34;&gt;
-  &lt;ul name=&#34;tabs&#34; altr-for=&#34;tab in tabs&#34;&gt;
-    &lt;li
-      class=&#34;{% tab === activeTab ? &#39;active&#39; : &#39;&#39; %}&#34;
-      data-view=&#34;{% tab %}&#34;
-    &gt;
-    {% tab %}
-    &lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;div class=&#34;tab-content&#34; style=&#34;height: 250px;&#34;&gt;
-    &lt;div altr-replace=&#34;els[activeTab]&#34;&gt;&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div
-    data-type=&#34;javascript&#34;
-    class=&#34;{% activeTab === &#39;javascript&#39;&#39; ? &#39;&#39; : &#39;ahidden&#39; %}&#34;
-    altr-raw
-&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var state = {name: &amp;quot;world&amp;quot;, list: [1, 2, 3, 4, 5]}
-var template = altr(document.getElementById(&#39;root&#39;), state)
-var i = 5
-
-setInterval(function() {
-  state.list.push(++i)
-  state.list = state.list.slice(-5)
-  template.update(state)
-}, 500)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div
-    data-type=&#34;html&#34;
-    class=&#34;{% activeTab === &#39;html&#39;&#39; ? &#39;&#39; : &#39;ahidden&#39; %}&#34;
-    altr-raw
-&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;root&amp;quot;&amp;gt;
-  &amp;lt;h1&amp;gt;hello, {{ name }}!&amp;lt;/h1&amp;gt;
-  If you highlight an item below, you can see how elements are bound to data.
-  &amp;lt;ul altr-for=&amp;quot;item in list&amp;quot;&amp;gt;
-    &amp;lt;li altr-text=&amp;quot;item&amp;quot;&amp;gt;&amp;lt;/li&amp;gt;
-  &amp;lt;/ul&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;/div&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Node</title>
-      <link>https://altr.hayes.io/node/</link>
+      <link>http://altr.hayes.io/node/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/node/</guid>
+      <guid>http://altr.hayes.io/node/</guid>
       <description></description>
     </item>
     
     <item>
       <title>API</title>
-      <link>https://altr.hayes.io/api/</link>
+      <link>http://altr.hayes.io/api/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/api/</guid>
+      <guid>http://altr.hayes.io/api/</guid>
       <description>
 
 &lt;h3 id=&#34;toc_0&#34;&gt;&lt;code&gt;altr(template, data, sync, doc)&lt;/code&gt; -&amp;gt; altr instance&lt;/h3&gt;
@@ -253,11 +182,82 @@ the change.&lt;/li&gt;
     </item>
     
     <item>
-      <title>The `children` tag</title>
-      <link>https://altr.hayes.io/tags/children/</link>
+      <title>Getting Started</title>
+      <link>http://altr.hayes.io/getting-started/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/children/</guid>
+      <guid>http://altr.hayes.io/getting-started/</guid>
+      <description>
+
+&lt;h3 id=&#34;toc_0&#34;&gt;Instalation:&lt;/h3&gt;
+
+&lt;h5 id=&#34;toc_1&#34;&gt;In Node or browserify:&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Run &lt;code&gt;npm install altr&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;in your module: &lt;code&gt;var altr = require(&#39;altr&#39;)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;toc_2&#34;&gt;Otherwise:&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Download altr.js from &lt;a href=&#34;https://github.com/hayes/altr/tree/master/dist&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;include it in your html before your other JavaScript files&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;toc_3&#34;&gt;Basic Usage:&lt;/h3&gt;
+
+&lt;div altr-example altr-raw=&#34;true&#34;&gt;
+  &lt;ul name=&#34;tabs&#34; altr-for=&#34;tab in tabs&#34;&gt;
+    &lt;li
+      class=&#34;{% tab === activeTab ? &#39;active&#39; : &#39;&#39; %}&#34;
+      data-view=&#34;{% tab %}&#34;
+    &gt;
+    {% tab %}
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div class=&#34;tab-content&#34; style=&#34;height: 250px;&#34;&gt;
+    &lt;div altr-replace=&#34;els[activeTab]&#34;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div
+    data-type=&#34;javascript&#34;
+    class=&#34;{% activeTab === &#39;javascript&#39;&#39; ? &#39;&#39; : &#39;ahidden&#39; %}&#34;
+    altr-raw
+&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var state = {name: &amp;quot;world&amp;quot;, list: [1, 2, 3, 4, 5]}
+var template = altr(document.getElementById(&#39;root&#39;), state)
+var i = 5
+
+setInterval(function() {
+  state.list.push(++i)
+  state.list = state.list.slice(-5)
+  template.update(state)
+}, 500)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div
+    data-type=&#34;html&#34;
+    class=&#34;{% activeTab === &#39;html&#39;&#39; ? &#39;&#39; : &#39;ahidden&#39; %}&#34;
+    altr-raw
+&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;root&amp;quot;&amp;gt;
+  &amp;lt;h1&amp;gt;hello, {{ name }}!&amp;lt;/h1&amp;gt;
+  If you highlight an item below, you can see how elements are bound to data.
+  &amp;lt;ul altr-for=&amp;quot;item in list&amp;quot;&amp;gt;
+    &amp;lt;li altr-text=&amp;quot;item&amp;quot;&amp;gt;&amp;lt;/li&amp;gt;
+  &amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;/div&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `children` tag</title>
+      <link>http://altr.hayes.io/tags/children/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://altr.hayes.io/tags/children/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-children=&amp;quot;list_of_html_elements&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -268,59 +268,11 @@ an array of DOM nodes.&lt;/p&gt;
     </item>
     
     <item>
-      <title>The `html` tag</title>
-      <link>https://altr.hayes.io/tags/html/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>https://altr.hayes.io/tags/html/</guid>
-      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-html=&amp;quot;my_html&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;html&lt;/code&gt; tag works exactly like the &lt;code&gt;text&lt;/code&gt; tag, but sets the
-&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Element.innerHTML&#34;&gt;&lt;code&gt;innerHTML&lt;/code&gt;&lt;/a&gt;
-of the element instead of the &lt;code&gt;textContent&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The `for` tag</title>
-      <link>https://altr.hayes.io/tags/for/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>https://altr.hayes.io/tags/for/</guid>
-      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;ol altr-for=&amp;quot;item in my_items&amp;quot;&amp;gt;&amp;lt;li&amp;gt;{{ item.name }}&amp;lt;li&amp;gt;&amp;lt;/ol&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Looks up &lt;code&gt;my_items&lt;/code&gt; in the current template context. The iterator variable is a
-new context variable which can be looked up in the body of the for loop (the
-inner HTML of the DOM element on which the attribute was defined).&lt;/p&gt;
-
-&lt;p&gt;The &lt;code&gt;for&lt;/code&gt; tag will take its &lt;code&gt;innerHtml&lt;/code&gt; and use it as a template to render each
-item in the passed array. When the list of items changes, &lt;code&gt;altr&lt;/code&gt; will will
-update the DOM to reflect the changes. In particular it:&lt;/p&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Removes elements associated with items that have been removed&lt;/li&gt;
-&lt;li&gt;Updates elements that are still part of the list if necessary&lt;/li&gt;
-&lt;li&gt;Create new elements for items that have been added.&lt;br /&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;p&gt;By default &lt;code&gt;altr&lt;/code&gt; will use &lt;code&gt;indexOf&lt;/code&gt; to determine if an item is still part of
-the list and where it is located.  You can also specify a unique key if you
-want to pass in objects that &lt;em&gt;represent&lt;/em&gt; the same item, but point to a
-different object:&lt;/p&gt;
-
-&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;ol altr-for=&amp;quot;item:my_unique_key in my_items&amp;quot;&amp;gt;&amp;lt;li&amp;gt;{{ item.name }}&amp;lt;li&amp;gt;&amp;lt;/ol&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Overview</title>
-      <link>https://altr.hayes.io/index.html</link>
+      <link>http://altr.hayes.io/index.html</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/index.html</guid>
+      <guid>http://altr.hayes.io/index.html</guid>
       <description>&lt;p&gt;&lt;code&gt;altr&lt;/code&gt; is small efficient DOM-based templating engine. It updates the parts of
 the dom that need to change, and keeps everything else intact.&lt;/p&gt;
 
@@ -361,11 +313,59 @@ This makes it easy to mix and match, or itegrate with existing solutions.&lt;/p&
     </item>
     
     <item>
-      <title>The `if` tag</title>
-      <link>https://altr.hayes.io/tags/if/</link>
+      <title>The `html` tag</title>
+      <link>http://altr.hayes.io/tags/html/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/if/</guid>
+      <guid>http://altr.hayes.io/tags/html/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-html=&amp;quot;my_html&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;html&lt;/code&gt; tag works exactly like the &lt;code&gt;text&lt;/code&gt; tag, but sets the
+&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Element.innerHTML&#34;&gt;&lt;code&gt;innerHTML&lt;/code&gt;&lt;/a&gt;
+of the element instead of the &lt;code&gt;textContent&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `for` tag</title>
+      <link>http://altr.hayes.io/tags/for/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://altr.hayes.io/tags/for/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;ol altr-for=&amp;quot;item in my_items&amp;quot;&amp;gt;&amp;lt;li&amp;gt;{{ item.name }}&amp;lt;li&amp;gt;&amp;lt;/ol&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Looks up &lt;code&gt;my_items&lt;/code&gt; in the current template context. The iterator variable is a
+new context variable which can be looked up in the body of the for loop (the
+inner HTML of the DOM element on which the attribute was defined).&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;for&lt;/code&gt; tag will take its &lt;code&gt;innerHtml&lt;/code&gt; and use it as a template to render each
+item in the passed array. When the list of items changes, &lt;code&gt;altr&lt;/code&gt; will will
+update the DOM to reflect the changes. In particular it:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Removes elements associated with items that have been removed&lt;/li&gt;
+&lt;li&gt;Updates elements that are still part of the list if necessary&lt;/li&gt;
+&lt;li&gt;Create new elements for items that have been added.&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;By default &lt;code&gt;altr&lt;/code&gt; will use &lt;code&gt;indexOf&lt;/code&gt; to determine if an item is still part of
+the list and where it is located.  You can also specify a unique key if you
+want to pass in objects that &lt;em&gt;represent&lt;/em&gt; the same item, but point to a
+different object:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;ol altr-for=&amp;quot;item:my_unique_key in my_items&amp;quot;&amp;gt;&amp;lt;li&amp;gt;{{ item.name }}&amp;lt;li&amp;gt;&amp;lt;/ol&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `if` tag</title>
+      <link>http://altr.hayes.io/tags/if/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://altr.hayes.io/tags/if/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-if=&amp;quot;my_val&amp;quot;&amp;gt;!!my_val === true&amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -378,10 +378,10 @@ again.  Child nodes will not be updated until the value is truthy.&lt;/p&gt;
     
     <item>
       <title>The `include` tag</title>
-      <link>https://altr.hayes.io/tags/include/</link>
+      <link>http://altr.hayes.io/tags/include/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/include/</guid>
+      <guid>http://altr.hayes.io/tags/include/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-include=&amp;quot;another_template&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 
@@ -393,10 +393,10 @@ available.&lt;/p&gt;
     
     <item>
       <title>Tags Overview</title>
-      <link>https://altr.hayes.io/tags/</link>
+      <link>http://altr.hayes.io/tags/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/</guid>
+      <guid>http://altr.hayes.io/tags/</guid>
       <description>&lt;p&gt;&lt;code&gt;altr&lt;/code&gt; tags are special attributes that can be set on any element to change how
 that element and its children are rendered. With a few exceptions, &lt;code&gt;altr&lt;/code&gt;
 treats the value that the attribute points to as a template variable: When it
@@ -407,10 +407,10 @@ replaces all instances of the variable with the value returned by the lookup.&lt
     
     <item>
       <title>The `raw` tag</title>
-      <link>https://altr.hayes.io/tags/raw/</link>
+      <link>http://altr.hayes.io/tags/raw/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>https://altr.hayes.io/tags/raw/</guid>
+      <guid>http://altr.hayes.io/tags/raw/</guid>
       <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-raw=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
 

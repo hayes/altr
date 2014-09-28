@@ -2,103 +2,103 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
-    <loc>https://altr.hayes.io/</loc>
+    <loc>http://altr.hayes.io/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
     <priority>0</priority>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/expressions/filters/</loc>
+    <loc>http://altr.hayes.io/expressions/filters/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/expressions/opperations/</loc>
+    <loc>http://altr.hayes.io/expressions/opperations/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/expressions/</loc>
+    <loc>http://altr.hayes.io/expressions/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/expressions/values/</loc>
+    <loc>http://altr.hayes.io/expressions/values/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/getting-started/</loc>
+    <loc>http://altr.hayes.io/node/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/node/</loc>
+    <loc>http://altr.hayes.io/api/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/api/</loc>
+    <loc>http://altr.hayes.io/getting-started/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/tags/children/</loc>
+    <loc>http://altr.hayes.io/tags/children/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/tags/html/</loc>
+    <loc>http://altr.hayes.io/index.html</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/tags/for/</loc>
+    <loc>http://altr.hayes.io/tags/html/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/index.html</loc>
+    <loc>http://altr.hayes.io/tags/for/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/tags/if/</loc>
+    <loc>http://altr.hayes.io/tags/if/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/tags/include/</loc>
+    <loc>http://altr.hayes.io/tags/include/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/tags/</loc>
+    <loc>http://altr.hayes.io/tags/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/tags/raw/</loc>
+    <loc>http://altr.hayes.io/tags/raw/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/tags/replace/</loc>
+    <loc>http://altr.hayes.io/tags/text/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/tags/with/</loc>
+    <loc>http://altr.hayes.io/tags/replace/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/tags/text/</loc>
+    <loc>http://altr.hayes.io/decorators/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
   <url>
-    <loc>https://altr.hayes.io/decorators/</loc>
+    <loc>http://altr.hayes.io/tags/with/</loc>
     <lastmod>0001-01-01T00:00:00+00:00</lastmod>
   </url>
   
