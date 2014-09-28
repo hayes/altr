@@ -56,77 +56,6 @@ for more details.&lt;/p&gt;
     </item>
     
     <item>
-      <title>Getting Started</title>
-      <link>http://yoursitehere/getting-started/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://yoursitehere/getting-started/</guid>
-      <description>
-
-&lt;h3 id=&#34;toc_0&#34;&gt;Instalation:&lt;/h3&gt;
-
-&lt;h5 id=&#34;toc_1&#34;&gt;In Node or browserify:&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Run &lt;code&gt;npm install altr&lt;/code&gt;.&lt;/li&gt;
-&lt;li&gt;in your module: &lt;code&gt;var altr = require(&#39;altr&#39;)&lt;/code&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h5 id=&#34;toc_2&#34;&gt;Otherwise:&lt;/h5&gt;
-
-&lt;ul&gt;
-&lt;li&gt;Download altr.js from &lt;a href=&#34;https://github.com/hayes/altr/tree/master/dist&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;include it in your html before your other JavaScript files&lt;/li&gt;
-&lt;/ul&gt;
-
-&lt;h3 id=&#34;toc_3&#34;&gt;Basic Usage:&lt;/h3&gt;
-
-&lt;div altr-example altr-raw=&#34;true&#34;&gt;
-  &lt;ul name=&#34;tabs&#34; altr-for=&#34;tab in tabs&#34;&gt;
-    &lt;li
-      class=&#34;{% tab === activeTab ? &#39;active&#39; : &#39;&#39; %}&#34;
-      data-view=&#34;{% tab %}&#34;
-    &gt;
-    {% tab %}
-    &lt;/li&gt;
-  &lt;/ul&gt;
-  &lt;div class=&#34;tab-content&#34; style=&#34;height: 250px;&#34;&gt;
-    &lt;div altr-replace=&#34;els[activeTab]&#34;&gt;&lt;/div&gt;
-  &lt;/div&gt;
-  &lt;div
-    data-type=&#34;javascript&#34;
-    class=&#34;{% activeTab === &#39;javascript&#39;&#39; ? &#39;&#39; : &#39;ahidden&#39; %}&#34;
-    altr-raw
-&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var state = {name: &amp;quot;world&amp;quot;, list: [1, 2, 3, 4, 5]}
-var template = altr(document.getElementById(&#39;root&#39;), state)
-var i = 5
-
-setInterval(function() {
-  state.list.push(++i)
-  state.list = state.list.slice(-5)
-  template.update(state)
-}, 500)
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-&lt;div
-    data-type=&#34;html&#34;
-    class=&#34;{% activeTab === &#39;html&#39;&#39; ? &#39;&#39; : &#39;ahidden&#39; %}&#34;
-    altr-raw
-&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;root&amp;quot;&amp;gt;
-  &amp;lt;h1&amp;gt;hello, {{ name }}!&amp;lt;/h1&amp;gt;
-  If you highlight an item below, you can see how elements are bound to data.
-  &amp;lt;ul altr-for=&amp;quot;item in list&amp;quot;&amp;gt;
-    &amp;lt;li altr-text=&amp;quot;item&amp;quot;&amp;gt;&amp;lt;/li&amp;gt;
-  &amp;lt;/ul&amp;gt;
-&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-&lt;/div&gt;
-
-&lt;p&gt;&lt;/div&gt;&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
       <title>Values</title>
       <link>http://yoursitehere/expressions/values/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
@@ -152,15 +81,6 @@ operators, as well as &lt;code&gt;filters&lt;/code&gt;. See the
 &lt;a href=&#34;https://github.com/hayes/dirtybit/blob/master/README.md&#34;&gt;documentation&lt;/a&gt;
 for more details.&lt;/p&gt;
 </description>
-    </item>
-    
-    <item>
-      <title>Node</title>
-      <link>http://yoursitehere/node/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://yoursitehere/node/</guid>
-      <description></description>
     </item>
     
     <item>
@@ -253,6 +173,86 @@ the change.&lt;/li&gt;
     </item>
     
     <item>
+      <title>Node</title>
+      <link>http://yoursitehere/node/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/node/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Getting Started</title>
+      <link>http://yoursitehere/getting-started/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/getting-started/</guid>
+      <description>
+
+&lt;h3 id=&#34;toc_0&#34;&gt;Instalation:&lt;/h3&gt;
+
+&lt;h5 id=&#34;toc_1&#34;&gt;In Node or browserify:&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Run &lt;code&gt;npm install altr&lt;/code&gt;.&lt;/li&gt;
+&lt;li&gt;in your module: &lt;code&gt;var altr = require(&#39;altr&#39;)&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h5 id=&#34;toc_2&#34;&gt;Otherwise:&lt;/h5&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Download altr.js from &lt;a href=&#34;https://github.com/hayes/altr/tree/master/dist&#34;&gt;here&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;include it in your html before your other JavaScript files&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;h3 id=&#34;toc_3&#34;&gt;Basic Usage:&lt;/h3&gt;
+
+&lt;div altr-example altr-raw=&#34;true&#34;&gt;
+  &lt;ul name=&#34;tabs&#34; altr-for=&#34;tab in tabs&#34;&gt;
+    &lt;li
+      class=&#34;{% tab === activeTab ? &#39;active&#39; : &#39;&#39; %}&#34;
+      data-view=&#34;{% tab %}&#34;
+    &gt;
+    {% tab %}
+    &lt;/li&gt;
+  &lt;/ul&gt;
+  &lt;div class=&#34;tab-content&#34; style=&#34;height: 250px;&#34;&gt;
+    &lt;div altr-replace=&#34;els[activeTab]&#34;&gt;&lt;/div&gt;
+  &lt;/div&gt;
+  &lt;div
+    data-type=&#34;javascript&#34;
+    class=&#34;{% activeTab === &#39;javascript&#39;&#39; ? &#39;&#39; : &#39;ahidden&#39; %}&#34;
+    altr-raw
+&gt;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;var state = {name: &amp;quot;world&amp;quot;, list: [1, 2, 3, 4, 5]}
+var template = altr(document.getElementById(&#39;root&#39;), state)
+var i = 5
+
+setInterval(function() {
+  state.list.push(++i)
+  state.list = state.list.slice(-5)
+  template.update(state)
+}, 500)
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+&lt;div
+    data-type=&#34;html&#34;
+    class=&#34;{% activeTab === &#39;html&#39;&#39; ? &#39;&#39; : &#39;ahidden&#39; %}&#34;
+    altr-raw
+&gt;&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div id=&amp;quot;root&amp;quot;&amp;gt;
+  &amp;lt;h1&amp;gt;hello, {{ name }}!&amp;lt;/h1&amp;gt;
+  If you highlight an item below, you can see how elements are bound to data.
+  &amp;lt;ul altr-for=&amp;quot;item in list&amp;quot;&amp;gt;
+    &amp;lt;li altr-text=&amp;quot;item&amp;quot;&amp;gt;&amp;lt;/li&amp;gt;
+  &amp;lt;/ul&amp;gt;
+&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+&lt;/div&gt;
+
+&lt;p&gt;&lt;/div&gt;&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
       <title>The `children` tag</title>
       <link>http://yoursitehere/tags/children/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
@@ -264,37 +264,6 @@ the change.&lt;/li&gt;
 &lt;p&gt;The &lt;code&gt;children&lt;/code&gt; tag will replace an elements content with the specified DOM
 nodes.  &lt;code&gt;list_of_html_elements&lt;/code&gt; should either resolve to a single DOM node, or
 an array of DOM nodes.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The `html` tag</title>
-      <link>http://yoursitehere/tags/html/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://yoursitehere/tags/html/</guid>
-      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-html=&amp;quot;my_html&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;The &lt;code&gt;html&lt;/code&gt; tag works exactly like the &lt;code&gt;text&lt;/code&gt; tag, but sets the
-&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Element.innerHTML&#34;&gt;&lt;code&gt;innerHTML&lt;/code&gt;&lt;/a&gt;
-of the element instead of the &lt;code&gt;textContent&lt;/code&gt;.&lt;/p&gt;
-</description>
-    </item>
-    
-    <item>
-      <title>The `if` tag</title>
-      <link>http://yoursitehere/tags/if/</link>
-      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
-      
-      <guid>http://yoursitehere/tags/if/</guid>
-      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-if=&amp;quot;my_val&amp;quot;&amp;gt;!!my_val === true&amp;lt;/div&amp;gt;
-&lt;/code&gt;&lt;/pre&gt;
-
-&lt;p&gt;Looks up &lt;code&gt;my_value&lt;/code&gt; in the current template context and tests its truthiness.
-If &lt;code&gt;my_value&lt;/code&gt; is truthy, the element will be rendered as normal. If it is not,
-the element will be completely removed from the DOM until the value is truthy
-again.  Child nodes will not be updated until the value is truthy.&lt;/p&gt;
 </description>
     </item>
     
@@ -373,6 +342,37 @@ different object:&lt;/p&gt;
 
 &lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;ol altr-for=&amp;quot;item:my_unique_key in my_items&amp;quot;&amp;gt;&amp;lt;li&amp;gt;{{ item.name }}&amp;lt;li&amp;gt;&amp;lt;/ol&amp;gt;
 &lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `html` tag</title>
+      <link>http://yoursitehere/tags/html/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/tags/html/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-html=&amp;quot;my_html&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;html&lt;/code&gt; tag works exactly like the &lt;code&gt;text&lt;/code&gt; tag, but sets the
+&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Element.innerHTML&#34;&gt;&lt;code&gt;innerHTML&lt;/code&gt;&lt;/a&gt;
+of the element instead of the &lt;code&gt;textContent&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `if` tag</title>
+      <link>http://yoursitehere/tags/if/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/tags/if/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-if=&amp;quot;my_val&amp;quot;&amp;gt;!!my_val === true&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Looks up &lt;code&gt;my_value&lt;/code&gt; in the current template context and tests its truthiness.
+If &lt;code&gt;my_value&lt;/code&gt; is truthy, the element will be rendered as normal. If it is not,
+the element will be completely removed from the DOM until the value is truthy
+again.  Child nodes will not be updated until the value is truthy.&lt;/p&gt;
 </description>
     </item>
     
