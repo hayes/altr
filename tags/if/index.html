@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Tags Overview</title>
+  <title>The `if` tag</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <link href="" rel="alternate" type="application/rss+xml" title="altr" />
@@ -58,7 +58,7 @@
               
             </li>
             
-            <li class=" active">
+            <li class=" active-parent">
               <a href="http://yoursitehere/tags/">Tags</a>
               
               <ul>
@@ -69,7 +69,7 @@
               
                 <li class=""><a href="http://yoursitehere/tags/html/">html</a></li>
               
-                <li class=""><a href="http://yoursitehere/tags/if/">if</a></li>
+                <li class=" active"><a href="http://yoursitehere/tags/if/">if</a></li>
               
                 <li class=""><a href="http://yoursitehere/tags/include/">include</a></li>
               
@@ -139,7 +139,7 @@
             
           </li>
           
-          <li class=" active">
+          <li class=" active-parent">
             <a href="http://yoursitehere/tags/">Tags</a>
             
             <ul>
@@ -150,7 +150,7 @@
             
               <li class=""><a href="http://yoursitehere/tags/html/">html</a></li>
             
-              <li class=""><a href="http://yoursitehere/tags/if/">if</a></li>
+              <li class=" active"><a href="http://yoursitehere/tags/if/">if</a></li>
             
               <li class=""><a href="http://yoursitehere/tags/include/">include</a></li>
             
@@ -197,14 +197,16 @@
 
 
   <div id="article">
-    <div class="article-title">Tags Overview</div>
+    <div class="article-title">The `if` tag</div>
     <hr/>
     <div class="post">
-      <p><code>altr</code> tags are special attributes that can be set on any element to change how
-that element and its children are rendered. With a few exceptions, <code>altr</code>
-treats the value that the attribute points to as a template variable: When it
-renders the template, it looks up the value against the template context and
-replaces all instances of the variable with the value returned by the lookup.</p>
+      <pre><code class="language-html">&lt;div altr-if=&quot;my_val&quot;&gt;!!my_val === true&lt;/div&gt;
+</code></pre>
+
+<p>Looks up <code>my_value</code> in the current template context and tests its truthiness.
+If <code>my_value</code> is truthy, the element will be rendered as normal. If it is not,
+the element will be completely removed from the DOM until the value is truthy
+again.  Child nodes will not be updated until the value is truthy.</p>
 
     </div>
   </div>

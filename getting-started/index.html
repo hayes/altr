@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Tags Overview</title>
+  <title>Getting Started</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <link href="" rel="alternate" type="application/rss+xml" title="altr" />
@@ -38,7 +38,7 @@
               
             </li>
             
-            <li class="">
+            <li class=" active">
               <a href="http://yoursitehere/getting-started/">Getting Started</a>
               
             </li>
@@ -58,7 +58,7 @@
               
             </li>
             
-            <li class=" active">
+            <li class="">
               <a href="http://yoursitehere/tags/">Tags</a>
               
               <ul>
@@ -119,7 +119,7 @@
             
           </li>
           
-          <li class="">
+          <li class=" active">
             <a href="http://yoursitehere/getting-started/">Getting Started</a>
             
           </li>
@@ -139,7 +139,7 @@
             
           </li>
           
-          <li class=" active">
+          <li class="">
             <a href="http://yoursitehere/tags/">Tags</a>
             
             <ul>
@@ -197,14 +197,71 @@
 
 
   <div id="article">
-    <div class="article-title">Tags Overview</div>
+    <div class="article-title">Getting Started</div>
     <hr/>
     <div class="post">
-      <p><code>altr</code> tags are special attributes that can be set on any element to change how
-that element and its children are rendered. With a few exceptions, <code>altr</code>
-treats the value that the attribute points to as a template variable: When it
-renders the template, it looks up the value against the template context and
-replaces all instances of the variable with the value returned by the lookup.</p>
+      
+
+<h3 id="toc_0">Instalation:</h3>
+
+<h5 id="toc_1">In Node or browserify:</h5>
+
+<ul>
+<li>Run <code>npm install altr</code>.</li>
+<li>in your module: <code>var altr = require('altr')</code></li>
+</ul>
+
+<h5 id="toc_2">Otherwise:</h5>
+
+<ul>
+<li>Download altr.js from <a href="https://github.com/hayes/altr/tree/master/dist">here</a></li>
+<li>include it in your html before your other JavaScript files</li>
+</ul>
+
+<h3 id="toc_3">Basic Usage:</h3>
+
+<div altr-example altr-raw="true">
+  <ul name="tabs" altr-for="tab in tabs">
+    <li
+      class="{% tab === activeTab ? 'active' : '' %}"
+      data-view="{% tab %}"
+    >
+    {% tab %}
+    </li>
+  </ul>
+  <div class="tab-content" style="height: 250px;">
+    <div altr-replace="els[activeTab]"></div>
+  </div>
+  <div
+    data-type="javascript"
+    class="{% activeTab === 'javascript'' ? '' : 'ahidden' %}"
+    altr-raw
+><pre><code class="language-javascript">var state = {name: &quot;world&quot;, list: [1, 2, 3, 4, 5]}
+var template = altr(document.getElementById('root'), state)
+var i = 5
+
+setInterval(function() {
+  state.list.push(++i)
+  state.list = state.list.slice(-5)
+  template.update(state)
+}, 500)
+</code></pre>
+</div>
+<div
+    data-type="html"
+    class="{% activeTab === 'html'' ? '' : 'ahidden' %}"
+    altr-raw
+><pre><code class="language-html">&lt;div id=&quot;root&quot;&gt;
+  &lt;h1&gt;hello, {{ name }}!&lt;/h1&gt;
+  If you highlight an item below, you can see how elements are bound to data.
+  &lt;ul altr-for=&quot;item in list&quot;&gt;
+    &lt;li altr-text=&quot;item&quot;&gt;&lt;/li&gt;
+  &lt;/ul&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<p></div></p>
 
     </div>
   </div>

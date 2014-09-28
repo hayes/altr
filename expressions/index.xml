@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Expressions on altr </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://yourSiteHere/expressions/index.xml/</link>
+    <language>en-us</language>
+    
+    
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Expressions</title>
+      <link>http://yoursitehere/expressions/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/expressions/</guid>
+      <description>&lt;p&gt;&lt;code&gt;altr&lt;/code&gt; will do a lookup of a variable name &lt;code&gt;my_value&lt;/code&gt; in when either of the
+following are true:
+  - &lt;code&gt;{{ my_value }}&lt;/code&gt; appears in any DOM node&amp;rsquo;s [&lt;code&gt;textContent&lt;/code&gt;][textContent] or
+    in any DOM node attribute that is not prefixed by &lt;code&gt;altr&lt;/code&gt;.
+  - DOM attribute matches &lt;code&gt;altr-attr-*=&amp;quot;my_value&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;altr-attr-my-attribute=&amp;quot;my_value&amp;quot;&lt;/code&gt; syntax will set the &lt;code&gt;my-attribute&lt;/code&gt;
+attribute on the DOM node to whatever &lt;code&gt;my_value&lt;/code&gt; evaluates to in the current
+template context. When the template context is updated, this will update as
+well. If &lt;code&gt;my_value&lt;/code&gt; evaluates to &lt;code&gt;null&lt;/code&gt;, &lt;code&gt;undefined&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;, then
+&lt;code&gt;my-attribute&lt;/code&gt; will simply be excluded, which is useful for boolean attributes
+such as &lt;code&gt;checked&lt;/code&gt; (which can also have a value), or for SVG elements which will
+throw errors for illegal values.&lt;/p&gt;
+
+&lt;p&gt;Template variable lookups are backed by [&lt;code&gt;dirtybit&lt;/code&gt;][dirtybit].
+&lt;code&gt;dirtybit&lt;/code&gt; supports dot-path lookups, literals, a wide range of
+operators, as well as &lt;code&gt;filters&lt;/code&gt;. See the
+&lt;a href=&#34;https://github.com/hayes/dirtybit/blob/master/README.md&#34;&gt;documentation&lt;/a&gt;
+for more details.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>Filters</title>
+      <link>http://yoursitehere/expressions/filters/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/expressions/filters/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Opperations</title>
+      <link>http://yoursitehere/expressions/opperations/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/expressions/opperations/</guid>
+      <description></description>
+    </item>
+    
+    <item>
+      <title>Values</title>
+      <link>http://yoursitehere/expressions/values/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/expressions/values/</guid>
+      <description>&lt;p&gt;&lt;code&gt;altr&lt;/code&gt; will do a lookup of a variable name &lt;code&gt;my_value&lt;/code&gt; in when either of the
+following are true:
+  - &lt;code&gt;{{ my_value }}&lt;/code&gt; appears in any DOM node&amp;rsquo;s [&lt;code&gt;textContent&lt;/code&gt;][textContent] or
+    in any DOM node attribute that is not prefixed by &lt;code&gt;altr&lt;/code&gt;.
+  - DOM attribute matches &lt;code&gt;altr-attr-*=&amp;quot;my_value&amp;quot;&lt;/code&gt;.&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;altr-attr-my-attribute=&amp;quot;my_value&amp;quot;&lt;/code&gt; syntax will set the &lt;code&gt;my-attribute&lt;/code&gt;
+attribute on the DOM node to whatever &lt;code&gt;my_value&lt;/code&gt; evaluates to in the current
+template context. When the template context is updated, this will update as
+well. If &lt;code&gt;my_value&lt;/code&gt; evaluates to &lt;code&gt;null&lt;/code&gt;, &lt;code&gt;undefined&lt;/code&gt; or &lt;code&gt;false&lt;/code&gt;, then
+&lt;code&gt;my-attribute&lt;/code&gt; will simply be excluded, which is useful for boolean attributes
+such as &lt;code&gt;checked&lt;/code&gt; (which can also have a value), or for SVG elements which will
+throw errors for illegal values.&lt;/p&gt;
+
+&lt;p&gt;Template variable lookups are backed by [&lt;code&gt;dirtybit&lt;/code&gt;][dirtybit].
+&lt;code&gt;dirtybit&lt;/code&gt; supports dot-path lookups, literals, a wide range of
+operators, as well as &lt;code&gt;filters&lt;/code&gt;. See the
+&lt;a href=&#34;https://github.com/hayes/dirtybit/blob/master/README.md&#34;&gt;documentation&lt;/a&gt;
+for more details.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

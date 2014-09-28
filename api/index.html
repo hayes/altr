@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Tags Overview</title>
+  <title>API</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <link href="" rel="alternate" type="application/rss+xml" title="altr" />
@@ -58,7 +58,7 @@
               
             </li>
             
-            <li class=" active">
+            <li class="">
               <a href="http://yoursitehere/tags/">Tags</a>
               
               <ul>
@@ -95,7 +95,7 @@
               
             </li>
             
-            <li class="">
+            <li class=" active">
               <a href="http://yoursitehere/api/">API</a>
               
             </li>
@@ -139,7 +139,7 @@
             
           </li>
           
-          <li class=" active">
+          <li class="">
             <a href="http://yoursitehere/tags/">Tags</a>
             
             <ul>
@@ -176,7 +176,7 @@
             
           </li>
           
-          <li class="">
+          <li class=" active">
             <a href="http://yoursitehere/api/">API</a>
             
           </li>
@@ -197,14 +197,89 @@
 
 
   <div id="article">
-    <div class="article-title">Tags Overview</div>
+    <div class="article-title">API</div>
     <hr/>
     <div class="post">
-      <p><code>altr</code> tags are special attributes that can be set on any element to change how
-that element and its children are rendered. With a few exceptions, <code>altr</code>
-treats the value that the attribute points to as a template variable: When it
-renders the template, it looks up the value against the template context and
-replaces all instances of the variable with the value returned by the lookup.</p>
+      
+
+<h3 id="toc_0"><code>altr(template, data, sync, doc)</code> -&gt; altr instance</h3>
+
+<p>Create a new altr instance, which subclasses <a href="http://nodejs.org/api/events.html#events_class_events_eventemitter">Event
+Emitter</a>.</p>
+
+<ul>
+<li><code>template</code>: Can be either a string or a <a href="https://developer.mozilla.org/en-US/docs/Web/API/element">DOM element</a>.</li>
+<li><code>data</code>: Initial data to render the template with.</li>
+<li><code>sync</code>: When false, all DOM updates are batched with
+<code>requestAnimationFrame</code>. Otherwise, all updates happen in the turn of the
+event loop in which they are called. Defaults to true in node (and
+browserify).</li>
+</ul>
+
+<h3 id="toc_1"><code>altr.render(template, data, el)</code> -&gt; altr instance</h3>
+
+<ul>
+<li><code>template</code>: either a template name added using altr.incude, or a
+full template (same as first argument to the default constructor).</li>
+<li><code>data</code>: Initial data to render the template with.</li>
+<li><code>el</code>: (optional) an element to render the template into.</li>
+</ul>
+
+<h3 id="toc_2"><code>altr.include(name, template)</code></h3>
+
+<p>Make a template available for inclusion in any other template
+ * <code>name</code>: the name of the template, a string.
+ * <code>template</code>: the template string to be included.</p>
+
+<h3 id="toc_3"><code>altr.addFilter(name, filter)</code></h3>
+
+<p>Add a filter to <code>altr</code>
+ * <code>name</code>: The name of the filter.
+ * <code>filter</code>: The filter constructor function. See <a href="https://www.npmjs.org/package/dirtybit">dirtybit</a> for its
+   expected signature.</p>
+
+<h3 id="toc_4"><code>instance.update(data[, sync])</code></h3>
+
+<p>Update the template with <code>data</code>. If <code>sync</code> is true, the template will be updated
+synchronously rather than on the next animation frame.</p>
+
+<h3 id="toc_5"><code>instance.into(el)</code></h3>
+
+<p>Insert the template into the <code>el</code>, which is expected to be a <a href="https://developer.mozilla.org/en-US/docs/Web/API/element">DOM
+element</a> (useful if rendering the template from a string).</p>
+
+<h3 id="toc_6"><code>instance.toString()</code></h3>
+
+<p>Returns the current state of the template as a string.</p>
+
+<h3 id="toc_7"><code>instance.runBatch()</code></h3>
+
+<p>Immediately runs any outstanding DOM updates that have been queued.</p>
+
+<h3 id="toc_8"><code>instance.templateString(template, callback)</code></h3>
+
+<ul>
+<li><code>template</code>: a template string, may contain <code>{{ my.value }}</code> type tags.</li>
+<li><code>callback</code>: a function that will be called when the template result changes.</li>
+</ul>
+
+<h3 id="toc_9">instance Properties</h3>
+
+<ul>
+<li><code>instance.batch</code> is an instance of
+<a href="https://github.com/hayes/batch-queue"><code>batch-queue</code></a></li>
+<li><code>instance.lookups</code> is an instance of <a href="https://www.npmjs.org/package/dirtybit"><code>dirtybit</code></a></li>
+</ul>
+
+<h3 id="toc_10">instance Events</h3>
+
+<ul>
+<li><code>update</code> is emitted with the templates current state any time the template
+state is updated</li>
+<li><code>draw</code> is emitted with the templates current state after a dom update
+occurs.  the current state is not guaranteed to be the state that triggered
+the change.</li>
+</ul>
 
     </div>
   </div>

@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+      <title>Tags on altr </title>
+      <generator uri="https://hugo.spf13.com">Hugo</generator>
+    <link>http://yourSiteHere/tags/index.xml/</link>
+    <language>en-us</language>
+    
+    
+    <updated>Mon, 01 Jan 0001 00:00:00 UTC</updated>
+    
+    <item>
+      <title>Tags Overview</title>
+      <link>http://yoursitehere/tags/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/tags/</guid>
+      <description>&lt;p&gt;&lt;code&gt;altr&lt;/code&gt; tags are special attributes that can be set on any element to change how
+that element and its children are rendered. With a few exceptions, &lt;code&gt;altr&lt;/code&gt;
+treats the value that the attribute points to as a template variable: When it
+renders the template, it looks up the value against the template context and
+replaces all instances of the variable with the value returned by the lookup.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `children` tag</title>
+      <link>http://yoursitehere/tags/children/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/tags/children/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-children=&amp;quot;list_of_html_elements&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;children&lt;/code&gt; tag will replace an elements content with the specified DOM
+nodes.  &lt;code&gt;list_of_html_elements&lt;/code&gt; should either resolve to a single DOM node, or
+an array of DOM nodes.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `for` tag</title>
+      <link>http://yoursitehere/tags/for/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/tags/for/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;ol altr-for=&amp;quot;item in my_items&amp;quot;&amp;gt;&amp;lt;li&amp;gt;{{ item.name }}&amp;lt;li&amp;gt;&amp;lt;/ol&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Looks up &lt;code&gt;my_items&lt;/code&gt; in the current template context. The iterator variable is a
+new context variable which can be looked up in the body of the for loop (the
+inner HTML of the DOM element on which the attribute was defined).&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;for&lt;/code&gt; tag will take its &lt;code&gt;innerHtml&lt;/code&gt; and use it as a template to render each
+item in the passed array. When the list of items changes, &lt;code&gt;altr&lt;/code&gt; will will
+update the DOM to reflect the changes. In particular it:&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;Removes elements associated with items that have been removed&lt;/li&gt;
+&lt;li&gt;Updates elements that are still part of the list if necessary&lt;/li&gt;
+&lt;li&gt;Create new elements for items that have been added.&lt;br /&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;By default &lt;code&gt;altr&lt;/code&gt; will use &lt;code&gt;indexOf&lt;/code&gt; to determine if an item is still part of
+the list and where it is located.  You can also specify a unique key if you
+want to pass in objects that &lt;em&gt;represent&lt;/em&gt; the same item, but point to a
+different object:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;ol altr-for=&amp;quot;item:my_unique_key in my_items&amp;quot;&amp;gt;&amp;lt;li&amp;gt;{{ item.name }}&amp;lt;li&amp;gt;&amp;lt;/ol&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `html` tag</title>
+      <link>http://yoursitehere/tags/html/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/tags/html/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-html=&amp;quot;my_html&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;html&lt;/code&gt; tag works exactly like the &lt;code&gt;text&lt;/code&gt; tag, but sets the
+&lt;a href=&#34;https://developer.mozilla.org/en-US/docs/Web/API/Element.innerHTML&#34;&gt;&lt;code&gt;innerHTML&lt;/code&gt;&lt;/a&gt;
+of the element instead of the &lt;code&gt;textContent&lt;/code&gt;.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `if` tag</title>
+      <link>http://yoursitehere/tags/if/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/tags/if/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-if=&amp;quot;my_val&amp;quot;&amp;gt;!!my_val === true&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;Looks up &lt;code&gt;my_value&lt;/code&gt; in the current template context and tests its truthiness.
+If &lt;code&gt;my_value&lt;/code&gt; is truthy, the element will be rendered as normal. If it is not,
+the element will be completely removed from the DOM until the value is truthy
+again.  Child nodes will not be updated until the value is truthy.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `include` tag</title>
+      <link>http://yoursitehere/tags/include/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/tags/include/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-include=&amp;quot;another_template&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;include&lt;/code&gt; tag will render another template into its element. You will need
+to use one of the &lt;code&gt;include&lt;/code&gt; methods described below to make the template
+available.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `raw` tag</title>
+      <link>http://yoursitehere/tags/raw/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/tags/raw/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-raw=&amp;quot;true&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;raw&lt;/code&gt; tag tells altr to ignore everything inside the current element, and
+just render it as-is.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `replace` tag</title>
+      <link>http://yoursitehere/tags/replace/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/tags/replace/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-replace=&amp;quot;some.html_element&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;&lt;code&gt;some.html_element&lt;/code&gt; must evaluate to a [DOM node][element].&lt;/p&gt;
+
+&lt;p&gt;The &lt;code&gt;replace&lt;/code&gt; tag will replace its element &lt;code&gt;some.html_element&lt;/code&gt;. This allows
+you to create smaller widgets with their own templates, event handlers and
+logic, and dynamically render them into your template.&lt;/p&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `text` tag</title>
+      <link>http://yoursitehere/tags/text/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/tags/text/</guid>
+      <description>&lt;p&gt;-&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-text=&amp;quot;my_text&amp;quot;&amp;gt;&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;text&lt;/code&gt; tag looks up &lt;code&gt;my_text&lt;/code&gt; in the current template context and uses the
+result to set the [&lt;code&gt;TextContent&lt;/code&gt;][textContent] on its element. So if the
+current template context set &lt;code&gt;context.my_text = &#39;What wonderful hat!&#39;&lt;/code&gt;, then
+the result of rendering the above is:&lt;/p&gt;
+
+&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div&amp;gt;What a wonderful hat!&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+</description>
+    </item>
+    
+    <item>
+      <title>The `with` tag</title>
+      <link>http://yoursitehere/tags/with/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
+      
+      <guid>http://yoursitehere/tags/with/</guid>
+      <description>&lt;pre&gt;&lt;code class=&#34;language-html&#34;&gt;&amp;lt;div altr-with=&amp;quot;data&amp;quot;&amp;gt;{{ data.value }} === {{ value }}&amp;lt;/div&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;
+
+&lt;p&gt;The &lt;code&gt;with&lt;/code&gt; tag will make any property of the passed value directly accessible
+in any child nodes.  Values from the parent scope will still be accessible as
+well.&lt;/p&gt;
+</description>
+    </item>
+    
+  </channel>
+</rss>

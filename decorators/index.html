@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Tags Overview</title>
+  <title>Decorators</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <link href="" rel="alternate" type="application/rss+xml" title="altr" />
@@ -58,7 +58,7 @@
               
             </li>
             
-            <li class=" active">
+            <li class="">
               <a href="http://yoursitehere/tags/">Tags</a>
               
               <ul>
@@ -85,7 +85,7 @@
               
             </li>
             
-            <li class="">
+            <li class=" active">
               <a href="http://yoursitehere/decorators/">Decorators</a>
               
             </li>
@@ -139,7 +139,7 @@
             
           </li>
           
-          <li class=" active">
+          <li class="">
             <a href="http://yoursitehere/tags/">Tags</a>
             
             <ul>
@@ -166,7 +166,7 @@
             
           </li>
           
-          <li class="">
+          <li class=" active">
             <a href="http://yoursitehere/decorators/">Decorators</a>
             
           </li>
@@ -197,14 +197,205 @@
 
 
   <div id="article">
-    <div class="article-title">Tags Overview</div>
+    <div class="article-title">Decorators</div>
     <hr/>
     <div class="post">
-      <p><code>altr</code> tags are special attributes that can be set on any element to change how
-that element and its children are rendered. With a few exceptions, <code>altr</code>
-treats the value that the attribute points to as a template variable: When it
-renders the template, it looks up the value against the template context and
-replaces all instances of the variable with the value returned by the lookup.</p>
+      
+
+<h2 id="toc_0">Overview</h2>
+
+<p>Decorators are a very powerful yet simple way to hook into altr to add
+new functionality.  Once a decorator has been defined (see below) it can be
+used to decorate any element in a template.</p>
+
+<p>Decorators provide 5 places in an elements lifecyle that can be hooked into:
+<code>create</code>, <code>insert</code>, <code>update</code>, <code>remove</code>, and <code>destroy</code>.</p>
+
+<h2 id="toc_1">Defining</h2>
+
+<p>To add a new decorator to altr:</p>
+
+<pre><code class="language-javascript">altr.addDecorator('unique-attribute', create)
+altr(
+    '&lt;div unique-attribute=&quot;a.b.c, 5 * 10, 'foo'&quot;&gt;&lt;/div&gt;'
+  , {a: {b: {c: 123}}}
+)
+
+function create(el) {
+  return {
+      insert: function(el) {}
+    , update: function(arg1, arg2, argn) {}
+    , remove: function(el, done) {setTimeout(done, 500)})
+    , destroy: function() {}
+  }
+}
+</code></pre>
+
+<p>The first argument is the attribute the decorator will be bound to.  Any time
+an element is created in an <code>altr</code> template that has this attribute the create
+function will be called with that element.</p>
+
+<h3 id="toc_2"><code>create(el)</code></h3>
+
+<p>Each time an element with a matching attribute is added to the template this
+function will be called.</p>
+
+<p>Most elements in altr are initialized when the template is first created.  This means that even if the decorated element is
+initially inside an <a href="../tags/if">if tag</a> that is <code>falsy</code> the create function will
+still be called.  This is because altr was written with the understand that the
+state of a template is likely to change.  Because of this, it is good to use
+an update hook if the decorator has expectations about the current state.</p>
+
+<p>The main exception to the above, is the <a href="../tags/for">for tag</a>.  For tags
+create a sub template for each item it its list. A decorator on an element
+will only be created once for each item, even if there are multiple updates
+that change that items index in the list. the documentation for the <a href="../tags/for">for tag</a> has more details on how uniqueness and presence in a list is
+determined.</p>
+
+<p>To hook in to the other lifecycle hooks, the create function may return an
+object with any/all of the below methods.</p>
+
+<p>The create function is called with the altr instance that it is part of as
+its context.</p>
+
+<p>Decorators should use <code>this.document</code> rather than the global document if they
+need to, this maintains compatability with node.</p>
+
+<h3 id="toc_3"><code>update(arg1[, arg2, ...argN])</code></h3>
+
+<p>A decorators attribute value can specify a comma seperated list of
+<a href="../expressions">expressions</a> to watch.  When the the decorator is first
+create and any time any of the watched values change, the decorators <code>update</code>
+function is called, with the current values as arguments.</p>
+
+<h3 id="toc_4"><code>insert(el)</code></h3>
+
+<p>A decorators insert function is called any time its element is inserted into
+the dom.  It receives 1 argument, <code>el</code>.  This is the element responsible for
+the insertion. this is generally either an <a href="../tags/if">if tag</a> or a  <a href="../tags/for">for tag</a>.  <code>el</code> may also be <code>null</code> if the entire template is being
+inserted into a new node.</p>
+
+<h3 id="toc_5"><code>remove(el, done)</code></h3>
+
+<p>A decorators remove function is called any time its element is inserted into
+the dom.  It receives 2 arguments, <code>el</code> amd <code>done</code>.  el is the same as the
+the first agument for insert. <code>done</code> is a call back that MUST be called once
+the decorator is ready to be removed. <code>done</code> MAY be called asynchronously, but
+MUST only be called once.</p>
+
+<p><code>remove</code> is asynchronus to allow for exit transitions before an element is
+removed form the dom.</p>
+
+<h3 id="toc_6"><code>destroy()</code></h3>
+
+<p><code>destroy</code> is called once the decorators element has been removed from the dom
+and will not be reinserted. This allows a decorator to clean up any remaining
+event listeners or other state such as <code>setInterval</code> calls.</p>
+
+<h2 id="toc_7">Examples</h2>
+
+<h3 id="toc_8">escape HTML</h3>
+
+<div altr-example altr-raw="true">
+  <ul name="tabs" altr-for="tab in tabs">
+    <li
+      class="{% tab === activeTab ? 'active' : '' %}"
+      data-view="{% tab %}"
+    >
+    {% tab %}
+    </li>
+  </ul>
+  <div class="tab-content" style="height: 150px;">
+    <div altr-replace="els[activeTab]"></div>
+  </div>
+  <div
+    data-type="javascript"
+    class="{% activeTab === 'javascript'' ? '' : 'ahidden' %}"
+    altr-raw
+><pre><code>altr.addDecorator('altr-escape', escape)
+altr(document.body, {})
+
+function escape(el) {
+  var pre = this.document.createElement('pre')
+
+  pre.textContent = el.innerHTML
+  el.innerHTML = ''
+  el.appendChild(pre)
+}
+</code></pre>
+</div>
+<div
+    data-type="html"
+    class="{% activeTab === 'html'' ? '' : 'ahidden' %}"
+    altr-raw
+><pre><code>&lt;div altr-raw altr-escape&gt;
+  &lt;h1&gt;hello, World!&lt;/h1&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<p></div></p>
+
+<h3 id="toc_9">fade out</h3>
+
+<div altr-example altr-raw="true">
+  <ul name="tabs" altr-for="tab in tabs">
+    <li
+      class="{% tab === activeTab ? 'active' : '' %}"
+      data-view="{% tab %}"
+    >
+    {% tab %}
+    </li>
+  </ul>
+  <div class="tab-content" style="height: 450px;">
+    <div altr-replace="els[activeTab]"></div>
+  </div>
+  <div
+    data-type="javascript"
+    class="{% activeTab === 'javascript'' ? '' : 'ahidden' %}"
+    altr-raw
+><pre><code>altr.addDecorator('fade-out', fade)
+var template = altr(document.body, {})
+
+document.addEventListener('click', function() {
+  template.update({remove: true})
+})
+
+function fade(root) {
+  return {remove: remove}
+
+  function remove(el, done) {
+    var start = new Date
+
+    step()
+
+    function step() {
+      var diff = new Date - start
+
+      if(diff &gt; 1000) {
+        return done()
+      }
+
+      el.style.opacity = 1 - (diff / 1000)
+      setTimeout(step, 15)
+    }
+  }
+}
+</code></pre>
+</div>
+<div
+    data-type="html"
+    class="{% activeTab === 'html'' ? '' : 'ahidden' %}"
+    altr-raw
+><pre><code>&lt;div altr-if=&quot;!remove&quot; fade-out&gt;
+  &lt;div&gt;click to fade out!&lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+</div>
+
+<p></div></p>
+
+<h3 id="toc_10">2-way binding</h3>
 
     </div>
   </div>

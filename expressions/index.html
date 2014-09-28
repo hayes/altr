@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Tags Overview</title>
+  <title>Expressions</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <link href="" rel="alternate" type="application/rss+xml" title="altr" />
@@ -43,7 +43,7 @@
               
             </li>
             
-            <li class="">
+            <li class=" active">
               <a href="http://yoursitehere/expressions/">Expressions</a>
               
               <ul>
@@ -58,7 +58,7 @@
               
             </li>
             
-            <li class=" active">
+            <li class="">
               <a href="http://yoursitehere/tags/">Tags</a>
               
               <ul>
@@ -124,7 +124,7 @@
             
           </li>
           
-          <li class="">
+          <li class=" active">
             <a href="http://yoursitehere/expressions/">Expressions</a>
             
             <ul>
@@ -139,7 +139,7 @@
             
           </li>
           
-          <li class=" active">
+          <li class="">
             <a href="http://yoursitehere/tags/">Tags</a>
             
             <ul>
@@ -197,14 +197,28 @@
 
 
   <div id="article">
-    <div class="article-title">Tags Overview</div>
+    <div class="article-title">Expressions</div>
     <hr/>
     <div class="post">
-      <p><code>altr</code> tags are special attributes that can be set on any element to change how
-that element and its children are rendered. With a few exceptions, <code>altr</code>
-treats the value that the attribute points to as a template variable: When it
-renders the template, it looks up the value against the template context and
-replaces all instances of the variable with the value returned by the lookup.</p>
+      <p><code>altr</code> will do a lookup of a variable name <code>my_value</code> in when either of the
+following are true:
+  - <code>{{ my_value }}</code> appears in any DOM node&rsquo;s [<code>textContent</code>][textContent] or
+    in any DOM node attribute that is not prefixed by <code>altr</code>.
+  - DOM attribute matches <code>altr-attr-*=&quot;my_value&quot;</code>.</p>
+
+<p>The <code>altr-attr-my-attribute=&quot;my_value&quot;</code> syntax will set the <code>my-attribute</code>
+attribute on the DOM node to whatever <code>my_value</code> evaluates to in the current
+template context. When the template context is updated, this will update as
+well. If <code>my_value</code> evaluates to <code>null</code>, <code>undefined</code> or <code>false</code>, then
+<code>my-attribute</code> will simply be excluded, which is useful for boolean attributes
+such as <code>checked</code> (which can also have a value), or for SVG elements which will
+throw errors for illegal values.</p>
+
+<p>Template variable lookups are backed by [<code>dirtybit</code>][dirtybit].
+<code>dirtybit</code> supports dot-path lookups, literals, a wide range of
+operators, as well as <code>filters</code>. See the
+<a href="https://github.com/hayes/dirtybit/blob/master/README.md">documentation</a>
+for more details.</p>
 
     </div>
   </div>

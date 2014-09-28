@@ -120,7 +120,8 @@ p
   font-family:"Helvetica Neue", helvetica, "Open Sans", sans-serif;
   font-weight:200;
   color:#9c9c9c;
-  text-shadow:1px 1px #fff
+  text-shadow:1px 1px #fff;
+  list-style: none;
 }
 
 .sidebar-nav li a
@@ -130,12 +131,16 @@ p
   text-decoration:none
 }
 
-.sidebar-nav li a:hover
+.sidebar-nav li a:hover,.sidebar-nav li.active > a
 {
   color:#000;
   background:#fff;
   text-decoration:none;
   transition:all .2s ease 0
+}
+
+.sidebar-nav li.active-parent > a {
+  color:#000;
 }
 
 .sidebar-nav li a:active,.sidebar-nav li a:focus

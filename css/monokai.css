@@ -1,0 +1,185 @@
+/*
+Monokai style - ported by Luigi Maselli - http://grigio.org
+*/
+
+.hljs-tag,
+.hljs-tag .hljs-title,
+.hljs-keyword,
+.hljs-literal,
+.hljs-strong,
+.hljs-change,
+.hljs-winutils,
+.hljs-flow,
+.lisp .hljs-title,
+.clojure .hljs-built_in,
+.nginx .hljs-title,
+.tex .hljs-special {
+  color: #f92672;
+}
+
+.hljs {
+  color: #ddd;
+}
+
+.hljs .hljs-constant,
+.asciidoc .hljs-code {
+  color: #66d9ef;
+}
+
+.hljs-code,
+.hljs-class .hljs-title,
+.hljs-header {
+  color: white;
+}
+
+.hljs-link_label,
+.hljs-attribute,
+.hljs-symbol,
+.hljs-symbol .hljs-string,
+.hljs-value,
+.hljs-regexp {
+  color: #bf79db;
+}
+
+.hljs-link_url,
+.hljs-tag .hljs-value,
+.hljs-string,
+.hljs-bullet,
+.hljs-subst,
+.hljs-title,
+.hljs-emphasis,
+.haskell .hljs-type,
+.hljs-preprocessor,
+.hljs-pragma,
+.ruby .hljs-class .hljs-parent,
+.hljs-built_in,
+.django .hljs-template_tag,
+.django .hljs-variable,
+.smalltalk .hljs-class,
+.hljs-javadoc,
+.django .hljs-filter .hljs-argument,
+.smalltalk .hljs-localvars,
+.smalltalk .hljs-array,
+.hljs-attr_selector,
+.hljs-pseudo,
+.hljs-addition,
+.hljs-stream,
+.hljs-envvar,
+.apache .hljs-tag,
+.apache .hljs-cbracket,
+.tex .hljs-command,
+.hljs-prompt {
+  color: #a6e22e;
+}
+
+.hljs-comment,
+.java .hljs-annotation,
+.smartquote,
+.hljs-blockquote,
+.hljs-horizontal_rule,
+.python .hljs-decorator,
+.hljs-template_comment,
+.hljs-pi,
+.hljs-doctype,
+.hljs-deletion,
+.hljs-shebang,
+.apache .hljs-sqbracket,
+.tex .hljs-formula {
+  color: #75715e;
+}
+
+.hljs-keyword,
+.hljs-literal,
+.css .hljs-id,
+.hljs-phpdoc,
+.hljs-title,
+.hljs-header,
+.haskell .hljs-type,
+.vbscript .hljs-built_in,
+.rsl .hljs-built_in,
+.smalltalk .hljs-class,
+.diff .hljs-header,
+.hljs-chunk,
+.hljs-winutils,
+.bash .hljs-variable,
+.apache .hljs-tag,
+.tex .hljs-special,
+.hljs-request,
+.hljs-status {
+  font-weight: bold;
+}
+
+.coffeescript .javascript,
+.javascript .xml,
+.tex .hljs-formula,
+.xml .javascript,
+.xml .vbscript,
+.xml .css,
+.xml .hljs-cdata {
+  opacity: 0.5;
+}
+
+/*
+pre, code {
+  color: white;
+  border-radius:4px;
+  border:1px solid #D7D8C8;
+}
+
+pre {
+  overflow: auto;
+  overflow-y: hidden;
+  display: block;
+  padding: 0.5em 1em;
+  background: #272822;
+}
+
+code {
+  font-size: .75em;
+  background: #930011;
+  display: inline-block;
+  line-height: 1.75em;
+  padding: 0 .5em;
+}
+
+pre code {
+  border: none;
+  font-size: 1em;
+  padding: none;
+  background: #272822;
+}
+
+pre code > :first-child {
+  margin-left: -.5em;
+}*/
+
+[altr-example] ul {
+  padding-left: 0;
+}
+
+[altr-example] ul li {
+  list-style: none;
+  float: left;
+  padding: 0 15px;
+  border: 1px solid black;
+  border-radius: 8px 8px 0 0;
+  background: #272822;
+  color: #8F908A;
+  cursor: pointer;
+}
+
+[altr-example] ul li.active {
+  background: #2F3129;
+  color: #F8F8F2;
+}
+
+[altr-example] iframe, .tab-content > div {
+  height: 100%;
+  width: 100%;
+}
+
+[altr-example] .tab-content {
+  width: 100%;
+  clear: both;
+  border: 1px solid #2F3129;
+}

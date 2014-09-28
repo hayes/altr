@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Tags Overview</title>
+  <title>The `for` tag</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <link href="" rel="alternate" type="application/rss+xml" title="altr" />
@@ -58,14 +58,14 @@
               
             </li>
             
-            <li class=" active">
+            <li class=" active-parent">
               <a href="http://yoursitehere/tags/">Tags</a>
               
               <ul>
               
                 <li class=""><a href="http://yoursitehere/tags/children/">children</a></li>
               
-                <li class=""><a href="http://yoursitehere/tags/for/">for</a></li>
+                <li class=" active"><a href="http://yoursitehere/tags/for/">for</a></li>
               
                 <li class=""><a href="http://yoursitehere/tags/html/">html</a></li>
               
@@ -139,14 +139,14 @@
             
           </li>
           
-          <li class=" active">
+          <li class=" active-parent">
             <a href="http://yoursitehere/tags/">Tags</a>
             
             <ul>
             
               <li class=""><a href="http://yoursitehere/tags/children/">children</a></li>
             
-              <li class=""><a href="http://yoursitehere/tags/for/">for</a></li>
+              <li class=" active"><a href="http://yoursitehere/tags/for/">for</a></li>
             
               <li class=""><a href="http://yoursitehere/tags/html/">html</a></li>
             
@@ -197,14 +197,33 @@
 
 
   <div id="article">
-    <div class="article-title">Tags Overview</div>
+    <div class="article-title">The `for` tag</div>
     <hr/>
     <div class="post">
-      <p><code>altr</code> tags are special attributes that can be set on any element to change how
-that element and its children are rendered. With a few exceptions, <code>altr</code>
-treats the value that the attribute points to as a template variable: When it
-renders the template, it looks up the value against the template context and
-replaces all instances of the variable with the value returned by the lookup.</p>
+      <pre><code class="language-html">&lt;ol altr-for=&quot;item in my_items&quot;&gt;&lt;li&gt;{{ item.name }}&lt;li&gt;&lt;/ol&gt;
+</code></pre>
+
+<p>Looks up <code>my_items</code> in the current template context. The iterator variable is a
+new context variable which can be looked up in the body of the for loop (the
+inner HTML of the DOM element on which the attribute was defined).</p>
+
+<p>The <code>for</code> tag will take its <code>innerHtml</code> and use it as a template to render each
+item in the passed array. When the list of items changes, <code>altr</code> will will
+update the DOM to reflect the changes. In particular it:</p>
+
+<ul>
+<li>Removes elements associated with items that have been removed</li>
+<li>Updates elements that are still part of the list if necessary</li>
+<li>Create new elements for items that have been added.<br /></li>
+</ul>
+
+<p>By default <code>altr</code> will use <code>indexOf</code> to determine if an item is still part of
+the list and where it is located.  You can also specify a unique key if you
+want to pass in objects that <em>represent</em> the same item, but point to a
+different object:</p>
+
+<pre><code class="language-html">&lt;ol altr-for=&quot;item:my_unique_key in my_items&quot;&gt;&lt;li&gt;{{ item.name }}&lt;li&gt;&lt;/ol&gt;
+</code></pre>
 
     </div>
   </div>

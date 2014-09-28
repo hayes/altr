@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <title>Tags Overview</title>
+  <title>The `replace` tag</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="">
   <link href="" rel="alternate" type="application/rss+xml" title="altr" />
@@ -58,7 +58,7 @@
               
             </li>
             
-            <li class=" active">
+            <li class=" active-parent">
               <a href="http://yoursitehere/tags/">Tags</a>
               
               <ul>
@@ -75,7 +75,7 @@
               
                 <li class=""><a href="http://yoursitehere/tags/raw/">raw</a></li>
               
-                <li class=""><a href="http://yoursitehere/tags/replace/">replace</a></li>
+                <li class=" active"><a href="http://yoursitehere/tags/replace/">replace</a></li>
               
                 <li class=""><a href="http://yoursitehere/tags/text/">text</a></li>
               
@@ -139,7 +139,7 @@
             
           </li>
           
-          <li class=" active">
+          <li class=" active-parent">
             <a href="http://yoursitehere/tags/">Tags</a>
             
             <ul>
@@ -156,7 +156,7 @@
             
               <li class=""><a href="http://yoursitehere/tags/raw/">raw</a></li>
             
-              <li class=""><a href="http://yoursitehere/tags/replace/">replace</a></li>
+              <li class=" active"><a href="http://yoursitehere/tags/replace/">replace</a></li>
             
               <li class=""><a href="http://yoursitehere/tags/text/">text</a></li>
             
@@ -197,14 +197,17 @@
 
 
   <div id="article">
-    <div class="article-title">Tags Overview</div>
+    <div class="article-title">The `replace` tag</div>
     <hr/>
     <div class="post">
-      <p><code>altr</code> tags are special attributes that can be set on any element to change how
-that element and its children are rendered. With a few exceptions, <code>altr</code>
-treats the value that the attribute points to as a template variable: When it
-renders the template, it looks up the value against the template context and
-replaces all instances of the variable with the value returned by the lookup.</p>
+      <pre><code class="language-html">&lt;div altr-replace=&quot;some.html_element&quot;&gt;&lt;/div&gt;
+</code></pre>
+
+<p><code>some.html_element</code> must evaluate to a [DOM node][element].</p>
+
+<p>The <code>replace</code> tag will replace its element <code>some.html_element</code>. This allows
+you to create smaller widgets with their own templates, event handlers and
+logic, and dynamically render them into your template.</p>
 
     </div>
   </div>
