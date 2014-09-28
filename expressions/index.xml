@@ -3,7 +3,7 @@
   <channel>
       <title>Expressions on altr </title>
       <generator uri="https://hugo.spf13.com">Hugo</generator>
-    <link>http://yourSiteHere/expressions/index.xml/</link>
+    <link>https://altr.hayes.io/expressions/index.xml/</link>
     <language>en-us</language>
     
     
@@ -11,10 +11,10 @@
     
     <item>
       <title>Expressions</title>
-      <link>http://yoursitehere/expressions/</link>
+      <link>https://altr.hayes.io/expressions/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://yoursitehere/expressions/</guid>
+      <guid>https://altr.hayes.io/expressions/</guid>
       <description>&lt;p&gt;&lt;code&gt;altr&lt;/code&gt; will do a lookup of a variable name &lt;code&gt;my_value&lt;/code&gt; in when either of the
 following are true:
   - &lt;code&gt;{{ my_value }}&lt;/code&gt; appears in any DOM node&amp;rsquo;s [&lt;code&gt;textContent&lt;/code&gt;][textContent] or
@@ -39,28 +39,28 @@ for more details.&lt;/p&gt;
     
     <item>
       <title>Filters</title>
-      <link>http://yoursitehere/expressions/filters/</link>
+      <link>https://altr.hayes.io/expressions/filters/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://yoursitehere/expressions/filters/</guid>
+      <guid>https://altr.hayes.io/expressions/filters/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Opperations</title>
-      <link>http://yoursitehere/expressions/opperations/</link>
+      <link>https://altr.hayes.io/expressions/opperations/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://yoursitehere/expressions/opperations/</guid>
+      <guid>https://altr.hayes.io/expressions/opperations/</guid>
       <description></description>
     </item>
     
     <item>
       <title>Values</title>
-      <link>http://yoursitehere/expressions/values/</link>
+      <link>https://altr.hayes.io/expressions/values/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 UTC</pubDate>
       
-      <guid>http://yoursitehere/expressions/values/</guid>
+      <guid>https://altr.hayes.io/expressions/values/</guid>
       <description>&lt;p&gt;&lt;code&gt;altr&lt;/code&gt; will do a lookup of a variable name &lt;code&gt;my_value&lt;/code&gt; in when either of the
 following are true:
   - &lt;code&gt;{{ my_value }}&lt;/code&gt; appears in any DOM node&amp;rsquo;s [&lt;code&gt;textContent&lt;/code&gt;][textContent] or
