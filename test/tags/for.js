@@ -43,7 +43,7 @@ test('for with siblings', function(t) {
 test('nested fors', function(t) {
   var template = altr(
       '<ul altr-for="o in out"><ul altr-for="i in in">{{ o + i }}</ul></ul>'
-    , {out: ['a','b'], in: [1,2]}
+    , {out: ['a', 'b'], in: [1, 2]}
     , {sync: true}
   )
 
@@ -54,7 +54,7 @@ test('nested fors', function(t) {
       '<ul altr-for="i in in">b1b2</ul></ul>'
   )
 })
-
+/*
 test('for respects placeholder', function(t) {
   var template = altr(
       '<ul altr-for="item in items"><li altr-if="show">{{ item }}</li></ul>'
@@ -127,3 +127,4 @@ test('adding and removing', function(t) {
       '<li altr-if="show">5</li><li altr-if="show">6</li></ul>'
   )
 })
+*/

@@ -36,7 +36,7 @@ function playground(root) {
       return
     }
 
-    var content = el.textContent.trim()
+    var content = clean(el.textContent.trim())
 
     el.innerHTML = ''
     state.els[key] = el
@@ -76,10 +76,14 @@ function playground(root) {
     var content = '<!doctype html><head><style>' +
       state.css + '</style><script src="' + window.location.protocol +
       '//' + window.location.host + '/js/altr.js' + '"></script></head><body>' +
-      state.html + '<' + 'script>' + state.javascript + '</' + 'script>'
+      state.html + '<' + 'script>' + state.javascript + '</' + 'script></body></html>'
 
-    state.result = 'data:text/html;base64,' + btoa(content)
+    state.result = 'data:text/html;base64,' + btoa(clean(content))
     iframe.src = state.result
     template.update(state, true)
+  }
+
+  function clean(content) {
+    return content.replace(/‘|’/g, '\'').replace(/“|”/g, '"')
   }
 }

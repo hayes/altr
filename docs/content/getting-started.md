@@ -28,7 +28,7 @@ setInterval(function() {
   state.list.push(++i)
   state.list = state.list.slice(-5)
   template.update(state)
-}, 500)
+}, 1000)
 ```
 
 {{% /code %}}
