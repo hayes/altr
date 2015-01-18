@@ -22,7 +22,7 @@
     "dirtybit": "^0.2.0",
     "extend": "^1.3.0",
     "faucet": "0.0.1",
-    "jsdom-eval": "0.0.7",
+    "jsdom-eval": "^0.2.2",
     "micro-dom": "0.0.17",
     "tape": "^3.0.0"
   },
