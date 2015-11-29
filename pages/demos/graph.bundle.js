@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if (!n[o]){if (!t[o]){var a=typeof require=="function"&&require;if (!u&&a)return a(o,!0);if (i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for (var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (global){
 var template_string = require('./template_string')
   , element_node = require('./element_node')
@@ -12,7 +12,7 @@ altr.include = include.bind(altr.prototype)
 altr.addFilter = add_filter.bind(altr.prototype)
 
 function altr(root, data, sync, doc) {
-  if(!(this instanceof altr)) {
+  if (!(this instanceof altr)) {
     return new altr(root, data, sync, doc)
   }
 
@@ -24,11 +24,11 @@ function altr(root, data, sync, doc) {
   this.includes = Object.create(this.includes)
   this.accessors = accessors(this.filters, false)
 
-  if(global.Buffer && root instanceof global.Buffer) {
+  if (global.Buffer && root instanceof global.Buffer) {
     root = root.toString()
   }
 
-  if(typeof root === 'string') {
+  if (typeof root === 'string') {
     var temp = this.document.createElement('div')
 
     temp.innerHTML = root
@@ -41,7 +41,7 @@ function altr(root, data, sync, doc) {
 
   this._update = this.updateNodes(this.rootNodes())
 
-  if(data) {
+  if (data) {
     this.update(data)
   }
 }
@@ -71,7 +71,7 @@ node_handlers[3] = text_node
 function update(data) {
   this._update(data)
 
-  if(this.sync) {
+  if (this.sync) {
     this.batch.run()
   }
 }
@@ -83,7 +83,7 @@ function update_nodes(nodes) {
   return update
 
   function update(data) {
-    for(var i = 0, l = hooks.length; i < l; ++i) {
+    for (var i = 0, l = hooks.length; i < l; ++i) {
       hooks[i].call(self, data)
     }
   }
@@ -137,7 +137,7 @@ function outer_html() {
 function append_to(node) {
   var root_nodes = this.rootNodes()
 
-  for(var i = 0, l = root_nodes.length; i < l; ++i) {
+  for (var i = 0, l = root_nodes.length; i < l; ++i) {
     node.appendChild(root_nodes[i])
   }
 }
@@ -160,7 +160,7 @@ function add_filter(name, fn) {
 module.exports = Batch
 
 function Batch(sync) {
-  if(!(this instanceof Batch)) {
+  if (!(this instanceof Batch)) {
     return new Batch(sync)
   }
 
@@ -187,7 +187,7 @@ function add(fn) {
     args = [].slice.call(arguments)
     self = this
 
-    if(!queued) {
+    if (!queued) {
       queued = true
       batch.queue(run)
     }
@@ -202,7 +202,7 @@ function add(fn) {
 function queue(fn) {
   this.jobs.push(fn)
 
-  if(!this.sync) {
+  if (!this.sync) {
     this.request_frame()
   }
 }
@@ -213,13 +213,13 @@ function run() {
   this.jobs = []
   this.frame = null
 
-  for(var i = 0, l = jobs.length; i < l; ++i) {
+  for (var i = 0, l = jobs.length; i < l; ++i) {
     jobs[i]()
   }
 }
 
 function request_frame() {
-  if(this.frame) {
+  if (this.frame) {
     return
   }
 
@@ -259,7 +259,7 @@ function create_element_node(el) {
     var value = attr.value
       , name = attr.name
 
-    if(!name.indexOf('altr-attr-')) {
+    if (!name.indexOf('altr-attr-')) {
       name = attr.name.slice('altr-attr-'.length)
       el.removeAttribute(attr.name)
     }
@@ -268,13 +268,13 @@ function create_element_node(el) {
       el.setAttribute(name, val)
     }))
 
-    if(attr_hook) {
+    if (attr_hook) {
       hooks.push(attr_hook)
     }
   })
 
-  for(var i = 0, l = altr.tagList.length; i < l; ++i) {
-    if(attr = altr_tags[altr.tagList[i].attr]) {
+  for (var i = 0, l = altr.tagList.length; i < l; ++i) {
+    if (attr = altr_tags[altr.tagList[i].attr]) {
       hooks.push(altr.tagList[i].constructor.call(altr, el, attr))
 
       return hooks
@@ -317,7 +317,7 @@ function for_handler(root, args) {
     , altr = this
     , items = []
 
-  if(!parts) {
+  if (!parts) {
     throw new Error('invalid for tag: ' + args)
   }
 
@@ -334,7 +334,7 @@ function for_handler(root, args) {
   function update_children(data) {
     var item_data
 
-    for(var i = 0, l = children.length; i < l; ++i) {
+    for (var i = 0, l = children.length; i < l; ++i) {
       item_data = Object.create(data)
       item_data[prop] = items[i]
       item_data['$index'] = i
@@ -344,7 +344,7 @@ function for_handler(root, args) {
   }
 
   function update(new_items, data) {
-    if(!Array.isArray(new_items)) {
+    if (!Array.isArray(new_items)) {
       new_items = []
     }
 
@@ -354,14 +354,14 @@ function for_handler(root, args) {
       , index
       , nodes
 
-    for(var i = 0, l = new_items.length; i < l; ++i) {
+    for (var i = 0, l = new_items.length; i < l; ++i) {
       index = find_index(items, new_items[i], unique)
 
-      if(index !== -1) {
+      if (index !== -1) {
         new_children[i] = (children.splice(index, 1)[0])
         items.splice(index, 1)
 
-        if(index + offset !== i) {
+        if (index + offset !== i) {
           place(new_children[i].dom_nodes, prev)
         }
       } else {
@@ -375,7 +375,7 @@ function for_handler(root, args) {
       nodes = nodes.concat(new_children[i].dom_nodes)
     }
 
-    for(var i = 0, l = children.length; i < l; ++i) {
+    for (var i = 0, l = children.length; i < l; ++i) {
       dom_updates.push({remove: children[i].dom_nodes})
     }
 
@@ -393,12 +393,12 @@ function for_handler(root, args) {
   }
 
   function find_index(items, d, unique) {
-    if(!unique) {
+    if (!unique) {
       return items.indexOf(d)
     }
 
-    for(var i = 0, l = items.length; i < l; ++i) {
-      if(items[i][unique] === d[unique]) {
+    for (var i = 0, l = items.length; i < l; ++i) {
+      if (items[i][unique] === d[unique]) {
         return i
       }
     }
@@ -425,17 +425,17 @@ function for_handler(root, args) {
   function run_dom_updates() {
     var update
 
-    for(var i = 0, l = dom_updates.length; i < l; ++i) {
+    for (var i = 0, l = dom_updates.length; i < l; ++i) {
       update = dom_updates[i]
 
-      if(update.remove) {
-        for(var j = 0, l2 = update.remove.length; j < l2; ++j) {
+      if (update.remove) {
+        for (var j = 0, l2 = update.remove.length; j < l2; ++j) {
           root.removeChild(update.remove[j])
         }
       }
 
-      if(update.insert) {
-        for(var j = 0, l2 = update.insert.length; j < l2; ++j) {
+      if (update.insert) {
+        for (var j = 0, l2 = update.insert.length; j < l2; ++j) {
           root.insertBefore(update.insert[j], update.before)
         }
       }
@@ -454,7 +454,7 @@ function html(el, accessor) {
   function update(val) {
     el.innerHTML = typeof val === 'undefined' ? '' : val
 
-    if(el.getAttribute('altr-run-scripts')) {
+    if (el.getAttribute('altr-run-scripts')) {
       [].forEach.call(el.getElementsByTagName('script'), run)
     }
   }
@@ -466,7 +466,7 @@ function run(script) {
     , attrs = script.attributes
     , src
 
-  for(var i = 0, l = attrs.length; i < l; ++i) {
+  for (var i = 0, l = attrs.length; i < l; ++i) {
     fixed.setAttribute(attrs[i].name, attrs[i].value)
   }
 
@@ -487,14 +487,14 @@ function if_tag(el, accessor) {
   parent.insertBefore(placeholder, el.nextSibling)
 
   var hide = this.batch.add(function() {
-    if(!hidden) {
+    if (!hidden) {
       parent.removeChild(el)
       hidden = true
     }
   })
 
   var show = this.batch.add(function() {
-    if(hidden) {
+    if (hidden) {
       parent.insertBefore(el, placeholder)
       hidden = false
     }
@@ -503,7 +503,7 @@ function if_tag(el, accessor) {
   return this.createAccessor(accessor, toggle)
 
   function toggle(val, data) {
-    if(!val) {
+    if (!val) {
       return hide()
     }
 
@@ -530,7 +530,7 @@ function placeholder(el, accessor) {
   return this.batch.add(this.createAccessor(accessor, update))
 
   function update(val) {
-    if(!val.nodeName) {
+    if (!val.nodeName) {
       return
     }
 
@@ -564,7 +564,7 @@ var TAG = /{{\s*(.*?)\s*}}/
 module.exports = template_string
 
 function template_string(template, change) {
-  if(!template.match(TAG)) {
+  if (!template.match(TAG)) {
     return
   }
 
@@ -576,7 +576,7 @@ function template_string(template, change) {
     , next
 
   while(remaining && (next = remaining.match(TAG))) {
-    if(index = remaining.indexOf(next[0])) {
+    if (index = remaining.indexOf(next[0])) {
       parts.push(remaining.slice(0, index))
     }
 
@@ -645,11 +645,11 @@ accessors.prototype.types = types
 accessors.prototype.split = split
 
 function accessors(filters, delay) {
-  if(!(this instanceof accessors)) {
+  if (!(this instanceof accessors)) {
     return new accessors(filters, delay)
   }
 
-  if(!delay && delay !== false) {
+  if (!delay && delay !== false) {
     delay = 0
   }
 
@@ -679,20 +679,20 @@ function create(str, change, all) {
     part(data)
     sync = false
 
-    if(out) {
+    if (out) {
       change.apply(null, out)
     }
   }
 
   function update(val, ctx) {
-    if(!all && typeof val !== 'object' && val === prev) {
+    if (!all && typeof val !== 'object' && val === prev) {
       return
     }
 
     out = [].slice.call(arguments)
     prev = val
 
-    if(!sync) {
+    if (!sync) {
       change.apply(null, out)
     }
   }
@@ -708,7 +708,7 @@ function add_arrow(types) {
 function create_arrow(parts, change) {
   parts = this.split(parts, '->')
 
-  if(parts.length < 2) {
+  if (parts.length < 2) {
     return
   }
 
@@ -743,8 +743,8 @@ function accessor(key, change) {
 function build_part(part, change) {
   var accessor
 
-  for(var i = 0, l = this.types.length; i < l; ++i) {
-    if(accessor = this.types[i].call(this, part, change)) {
+  for (var i = 0, l = this.types.length; i < l; ++i) {
+    if (accessor = this.types[i].call(this, part, change)) {
       return accessor
     }
   }
@@ -760,13 +760,13 @@ function add_filter(types) {
 }
 
 function create_filter(parts, change) {
-  if(!(parts = parts.match(filter_regexp))) {
+  if (!(parts = parts.match(filter_regexp))) {
     return
   }
 
   var filter = this.filters[parts[1]]
 
-  if(!filter) {
+  if (!filter) {
     throw new Error('could not find filter: ' + parts[1])
   }
 
@@ -781,10 +781,10 @@ function add_lookup(types) {
 }
 
 function create_lookup(path, change) {
-  if(!path.indexOf('$data')) {
+  if (!path.indexOf('$data')) {
     path = path.slice('$data.'.length)
 
-    if(!path) {
+    if (!path) {
       return change
     }
   }
@@ -796,15 +796,15 @@ function lookup(path, done) {
   var parts = path ? path.split('.') : []
 
   return function search(obj, ctx) {
-    for(var i = 0, l = parts.length; obj && i < l; ++i) {
+    for (var i = 0, l = parts.length; obj && i < l; ++i) {
       obj = obj[parts[i]]
     }
 
-    if(typeof obj === 'undefined' && ctx) {
+    if (typeof obj === 'undefined' && ctx) {
       return search(ctx)
     }
 
-    if(i === l) {
+    if (i === l) {
       return done(obj)
     }
 
@@ -857,7 +857,7 @@ function unary(list) {
 }
 
 function create_ternary(parts, change) {
-  if(!(parts = parts.match(ternary_regexp))) {
+  if (!(parts = parts.match(ternary_regexp))) {
     return
   }
 
@@ -867,7 +867,7 @@ function create_ternary(parts, change) {
 
   rest = this.split(rest, ':', ['?'], [':'])
 
-  if(rest.length !== 2) {
+  if (rest.length !== 2) {
     throw new Error('Unmatched ternary: ' + parts[0])
   }
 
@@ -882,7 +882,7 @@ function create_ternary(parts, change) {
 }
 
 function create_binary(regex, parts, change) {
-  if(!(parts = parts.match(regex))) {
+  if (!(parts = parts.match(regex))) {
     return
   }
 
@@ -910,7 +910,7 @@ function create_binary(regex, parts, change) {
 }
 
 function create_unary(regex, parts, change) {
-  if(!(parts = parts.match(regex))) {
+  if (!(parts = parts.match(regex))) {
     return
   }
 
@@ -932,26 +932,26 @@ function add_parens(types) {
 }
 
 function create_parens(parts, change) {
-  if(!(parts = parts.match(parens_regexp))) {
+  if (!(parts = parts.match(parens_regexp))) {
     return
   }
 
   var body = parts[1]
     , count = 1
 
-  for(var i = 0, l = body.length; i < l; ++i) {
-    if(body[i] === ')') {
+  for (var i = 0, l = body.length; i < l; ++i) {
+    if (body[i] === ')') {
       --count
-    } else if(body[i] === '(') {
+    } else if (body[i] === '(') {
       ++count
     }
 
-    if(!count) {
+    if (!count) {
       break
     }
   }
 
-  if(!i || i === l) {
+  if (!i || i === l) {
     throw new Error('Unmatched ternary: ' + parts[0])
   }
 
@@ -979,11 +979,11 @@ function split(parts, key, opens, closes, all) {
     , split_point
     , index
 
-  if(opens) {
+  if (opens) {
     all_opens = all_opens.concat(opens)
   }
 
-  if(closes) {
+  if (closes) {
     all_closes = all_closes.concat(closes)
   }
 
@@ -991,38 +991,38 @@ function split(parts, key, opens, closes, all) {
     return 0
   })
 
-  for(var i = 0, l = parts.length; i < l; ++i) {
-    if(!sum && (split_point = parts.slice(i).indexOf(key)) === -1) {
+  for (var i = 0, l = parts.length; i < l; ++i) {
+    if (!sum && (split_point = parts.slice(i).indexOf(key)) === -1) {
       return [parts]
     }
 
-    if(!sum && !split_point) {
+    if (!sum && !split_point) {
       break
     }
 
-    if((index = all_opens.indexOf(parts[i])) !== -1) {
+    if ((index = all_opens.indexOf(parts[i])) !== -1) {
       ++counts[index]
       ++sum
-    } else if((index = all_closes.indexOf(parts[i])) !== -1) {
+    } else if ((index = all_closes.indexOf(parts[i])) !== -1) {
       --counts[index]
       --sum
     }
 
-    for(var j = 0; j < counts.length; ++j) {
-      if(counts[j] < 0) {
+    for (var j = 0; j < counts.length; ++j) {
+      if (counts[j] < 0) {
         throw new Error('Unmatched "' + all_opens[j] + '"" in ' + parts)
       }
     }
   }
 
-  if(sum || i === parts.length) {
+  if (sum || i === parts.length) {
     return [parts]
   }
 
   var right = parts.slice(i + key.length)
     , left = parts.slice(0, i)
 
-  if(!all) {
+  if (!all) {
     return [left, right]
   }
 
@@ -1041,7 +1041,7 @@ function add_types(types) {
 }
 
 function create_string_accessor(parts, change) {
-  if(!(parts = parts.match(string_regexp))) {
+  if (!(parts = parts.match(string_regexp))) {
     return
   }
 
@@ -1051,7 +1051,7 @@ function create_string_accessor(parts, change) {
 }
 
 function create_number_accessor(parts, change) {
-  if(!(parts = parts.match(number_regexp))) {
+  if (!(parts = parts.match(number_regexp))) {
     return
   }
 
@@ -1072,9 +1072,9 @@ function debounce(fn, delay, at_start, guarantee) {
 
     args = Array.prototype.slice.call(arguments)
 
-    if(timeout && (at_start || guarantee)) {
+    if (timeout && (at_start || guarantee)) {
       return
-    } else if(!at_start) {
+    } else if (!at_start) {
       clear()
 
       return timeout = setTimeout(run, delay)
@@ -1121,7 +1121,7 @@ function ease_filter(parts, change) {
   })
 
   function animate() {
-    if(wait) {
+    if (wait) {
       return
     }
 
@@ -1144,7 +1144,7 @@ function ease_filter(parts, change) {
     var diff = new Date - start
       , p = diff / ms
 
-    if(p >= 1) {
+    if (p >= 1) {
       p = 1
     } else {
       animate()
@@ -1160,22 +1160,22 @@ function ease_filter(parts, change) {
     var result = target
       , keys
 
-    if(typeof prev !== typeof target) {
+    if (typeof prev !== typeof target) {
       return result
-    } else if(Array.isArray(target)) {
+    } else if (Array.isArray(target)) {
       result = Array(target.length)
 
-      for(var i = 0, l = target.length; i < l; ++i) {
+      for (var i = 0, l = target.length; i < l; ++i) {
         result[i] = update_part(prev[i], target[i], p)
       }
-    } else if(typeof target === 'object') {
+    } else if (typeof target === 'object') {
       keys = Object.keys(target)
       result = {}
 
-      for(var i = 0, l = keys.length; i < l; ++i) {
+      for (var i = 0, l = keys.length; i < l; ++i) {
         result[keys[i]] = update_part(prev[keys[i]], target[keys[i]], p)
       }
-    } else if(prev !== target && typeof target === 'number') {
+    } else if (prev !== target && typeof target === 'number') {
       return prev + (target - prev) * p
     }
 
@@ -1211,7 +1211,7 @@ function raf(el, tick) {
   var now = raf.now()
     , ee = new EE
     
-  if(typeof el === 'function') {
+  if (typeof el === 'function') {
     tick = el
     el = undefined
   }
@@ -1221,7 +1221,7 @@ function raf(el, tick) {
 
   _raf(iter, el)
   
-  if(tick) {
+  if (tick) {
     ee.on('data', function(dt) {
       tick(dt)
     })
@@ -1235,7 +1235,7 @@ function raf(el, tick) {
     
     now = _now
 
-    if(!ee.paused) {
+    if (!ee.paused) {
       ee.emit('data', dt)
     }
     
@@ -1258,7 +1258,7 @@ function scale(parts, change) {
   var update_range = this.create_part(parts[0], function(domains, ctx) {
     dimensions = new Array(Math.max(domains.length, ranges.length))
 
-    for(var i = 0, l = dimensions.length; i < l; ++i) {
+    for (var i = 0, l = dimensions.length; i < l; ++i) {
       dimensions[i] = {
           scale: (ranges[i][1] - ranges[i][0]) / (domains[i][1] - domains[i][0])
         , offset: domains[i][0]
@@ -1271,7 +1271,7 @@ function scale(parts, change) {
   return map
 
   function map(data, ctx) {
-    if(ctx) {
+    if (ctx) {
       prev = data
 
       return update_range(data, ctx)
@@ -1279,10 +1279,10 @@ function scale(parts, change) {
 
     var out = Array(data.length)
 
-    for(var i = 0, l = data.length; i < l; ++i) {
+    for (var i = 0, l = data.length; i < l; ++i) {
       out[i] = Array(dimensions)
 
-      for(var j = 0; j < dimensions.length; ++j) {
+      for (var j = 0; j < dimensions.length; ++j) {
         out[i][j] = (data[i][j] - dimensions[j].offset) * dimensions[j].scale
       }
     }
@@ -1482,7 +1482,7 @@ var data = {
 
 var template = altr(document.getElementById('graph1'), data)
 
-for(var i = 29; i > 0; --i) {
+for (var i = 29; i > 0; --i) {
   add_item(new Date - i * 1000)
 }
 

@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if (!n[o]){if (!t[o]){var a=typeof require=="function"&&require;if (!u&&a)return a(o,!0);if (i)return i(o,!0);throw new Error("Cannot find module '"+o+"'")}var f=n[o]={exports:{}};t[o][0].call(f.exports,function(e){var n=t[o][1][e];return s(n?n:e)},f,f.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for (var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 (function (Buffer){
 var Writable = require('readable-stream').Writable
 var inherits = require('inherits')
@@ -3306,7 +3306,7 @@ var Highlight = function() {
     compileLanguage(language);
     var top = continuation || language;
     var result = '';
-    for(var current = top; current != language; current = current.parent) {
+    for (var current = top; current != language; current = current.parent) {
       if (current.className) {
         result = buildSpan(current.className, result, true);
       }
@@ -3324,7 +3324,7 @@ var Highlight = function() {
         index = match.index + count;
       }
       processLexeme(value.substr(index));
-      for(var current = top; current.parent; current = current.parent) { // close dangling modes
+      for (var current = top; current.parent; current = current.parent) { // close dangling modes
         if (current.className) {
           result += '</span>';
         }
@@ -10311,7 +10311,7 @@ context.headings = headings
 
 var url = window.location.toString()
 
-if(~url.indexOf('?')) {
+if (~url.indexOf('?')) {
   console.log(url)
   window.history.replaceState(null, null, atob(url.split('?')[1]))
 }
@@ -10323,7 +10323,7 @@ on_state_change()
 function load_route(path) {
   var file = routes[path]
 
-  if(!file) {
+  if (!file) {
     return not_found
   }
 
@@ -10334,7 +10334,7 @@ function load_route(path) {
 }
 
 function on_file(res, file) {
-  if(res.statusCode > 400) {
+  if (res.statusCode > 400) {
     return not_found()
   }
 
@@ -10357,14 +10357,14 @@ function on_click(ev) {
     target = target.parentNode
   }
 
-  if(target && target.getAttribute('rel') === 'altr') {
+  if (target && target.getAttribute('rel') === 'altr') {
     ev.preventDefault()
     set_route(target.getAttribute('href'))
   }
 }
 
 function set_route(path) {
-  if(context.current_path === path) {
+  if (context.current_path === path) {
     return
   }
 

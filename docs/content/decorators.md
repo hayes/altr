@@ -147,7 +147,7 @@ function fade(root) {
     function step() {
       var diff = new Date - start
 
-      if(diff > 1000) {
+      if (diff > 1000) {
         return done()
       }
 

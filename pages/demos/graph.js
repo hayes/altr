@@ -16,7 +16,7 @@ var data = {
 
 var template = altr(document.getElementById('graph1'), data)
 
-for(var i = 29; i > 0; --i) {
+for (var i = 29; i > 0; --i) {
   add_item(new Date - i * 1000)
 }
 

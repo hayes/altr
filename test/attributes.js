@@ -1,7 +1,7 @@
 var altr = require('../lib')
-  , test = require('tape')
+var test = require('tape')
 
-test('basic attributes', function(t) {
+test('basic attributes', function (t) {
   var template = altr(
       '<h1 class="{{ class }}" quote="{{ q }}{{ \'!\' }}">text</h1>'
     , {class: 'big', q: '"'}
@@ -12,22 +12,22 @@ test('basic attributes', function(t) {
   t.equal(template.toString(), '<h1 class="big" quote="&quot;!">text</h1>')
 })
 
-test('altr attributes', function(t) {
+test('altr attributes', function (t) {
   var template = altr(
-      '<h1 altr-attr-class="class">text</h1>'
-    , {class: 'big'}
-    , {sync: true}
+    '<h1 altr-attr-class="class">text</h1>',
+    {class: 'big'},
+    {sync: true}
   )
 
   t.plan(1)
   t.equal(template.toString(), '<h1 class="big">text</h1>')
 })
 
-test('remove attributes', function(t) {
+test('remove attributes', function (t) {
   var template = altr(
-      '<h1 altr-attr-class="class">text</h1>'
-    , {class: null}
-    , {sync: true}
+    '<h1 altr-attr-class="class">text</h1>',
+    {class: null},
+    {sync: true}
   )
 
   t.plan(3)
@@ -38,11 +38,11 @@ test('remove attributes', function(t) {
   t.equal(template.toString(), '<h1>text</h1>')
 })
 
-test('boolean attributes', function(t) {
+test('boolean attributes', function (t) {
   var template = altr(
-      '<h1 altr-attr-class="class">text</h1>'
-    , {class: false}
-    , {sync: true}
+    '<h1 altr-attr-class="class">text</h1>',
+    {class: false},
+    {sync: true}
   )
 
   t.plan(2)
@@ -51,11 +51,11 @@ test('boolean attributes', function(t) {
   t.equal(template.toString(), '<h1 class="true">text</h1>')
 })
 
-test('attr in for', function(t) {
+test('attr in for', function (t) {
   var template = altr(
-      '<div altr-for="item in items"><input altr-attr-checked="selected === $index"></div>'
-    , {items: [1,2], selected: 1}
-    , {sync: true}
+    '<div altr-for="item in items"><input altr-attr-checked="selected === $index"></div>',
+    {items: [1, 2], selected: 1},
+    {sync: true}
   )
 
   t.plan(1)

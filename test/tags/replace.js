@@ -1,7 +1,7 @@
 var altr = require('../../lib')
-  , test = require('tape')
+var test = require('tape')
 
-test('replace tag', function(t) {
+test('replace tag', function (t) {
   var template = altr('<div altr-replace="el"></div>', null, true)
 
   var el = template.document.createElement('div')
@@ -11,7 +11,7 @@ test('replace tag', function(t) {
   template.update({el: el})
   t.plan(1)
   t.equal(
-      template.toString()
-    , '<div>hello, World!</div>'
+    template.toString(),
+    '<div>hello, World!</div>'
   )
 })
