@@ -5,7 +5,7 @@
   "main": "./lib/index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint && node test && browserify test -d | jsdom-eval",
+    "test": "npm run lint && node test | faucet && browserify test -d | jsdom-eval | faucet",
     "build": "mkdir -p dist; npm run build-debug; npm run build-min",
     "build-debug": "browserify lib/browser.js --debug > dist/altr.js",
     "build-min": "browserify lib/browser.js --debug -g uglifyify | exorcist dist/altr.min.js.map > dist/altr.min.js",
@@ -26,6 +26,7 @@
     "micro-dom": "0.0.17"
   },
   "devDependencies": {
+    "browserify": "^12.0.1",
     "eslint": "^1.10.2",
     "eslint-config-standard": "^4.4.0",
     "eslint-plugin-standard": "^1.3.1",
