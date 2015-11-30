@@ -5,7 +5,7 @@
   "main": "./lib/index.js",
   "scripts": {
     "lint": "eslint .",
-    "test": "npm run lint && node test | faucet && browserify test -d | jsdom-eval | faucet",
+    "test": "npm run lint && node test && browserify test -d | jsdom-eval",
     "build": "mkdir -p dist; npm run build-debug; npm run build-min",
     "build-debug": "browserify lib/browser.js --debug > dist/altr.js",
     "build-min": "browserify lib/browser.js --debug -g uglifyify | exorcist dist/altr.min.js.map > dist/altr.min.js",
