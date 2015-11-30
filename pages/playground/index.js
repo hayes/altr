@@ -28,14 +28,14 @@ function playground(el, initial, change) {
   function select_tab(ev) {
     var view = ev.target.getAttribute('data-view')
 
-    if(!view) {
+    if (!view) {
       return
     }
 
     self.state.view = view
     template.update(state)
 
-    if(view === 'result') {
+    if (view === 'result') {
       // chrome bug http://jsfiddle.net/78pH7/1/
       setTimeout(function() {
         self.result_parent.removeChild(self.result)

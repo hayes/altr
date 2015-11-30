@@ -11,7 +11,7 @@ context.headings = headings
 
 var url = window.location.toString()
 
-if(~url.indexOf('?')) {
+if (~url.indexOf('?')) {
   console.log(url)
   window.history.replaceState(null, null, atob(url.split('?')[1]))
 }
@@ -23,7 +23,7 @@ on_state_change()
 function load_route(path) {
   var file = routes[path]
 
-  if(!file) {
+  if (!file) {
     return not_found
   }
 
@@ -34,7 +34,7 @@ function load_route(path) {
 }
 
 function on_file(res, file) {
-  if(res.statusCode > 400) {
+  if (res.statusCode > 400) {
     return not_found()
   }
 
@@ -57,14 +57,14 @@ function on_click(ev) {
     target = target.parentNode
   }
 
-  if(target && target.getAttribute('rel') === 'altr') {
+  if (target && target.getAttribute('rel') === 'altr') {
     ev.preventDefault()
     set_route(target.getAttribute('href'))
   }
 }
 
 function set_route(path) {
-  if(context.current_path === path) {
+  if (context.current_path === path) {
     return
   }
 

@@ -32,7 +32,7 @@ function playground(root) {
   update(state)
 
   function setup(el, key) {
-    if(!el) {
+    if (!el) {
       return
     }
 
@@ -63,7 +63,7 @@ function playground(root) {
     update(state)
     template.update(state, true)
 
-    if(state.activeTab === 'result') {
+    if (state.activeTab === 'result') {
       // chrome bug http://jsfiddle.net/78pH7/1/
       setTimeout(function() {
         state.els.result.removeChild(iframe)

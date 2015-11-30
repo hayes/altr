@@ -1,4 +1,4 @@
-(function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
+(function e(t,n,r){function s(o,u){if (!n[o]){if (!t[o]){var a=typeof require=="function"&&require;if (!u&&a)return a(o,!0);if (i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for (var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 var extend = require('extend')
 
 module.exports = altrExtend
@@ -61,7 +61,7 @@ altr.addFilter = addFilter
 altr.addDecorator = addDecorator
 
 function altr(root, data, options) {
-  if(!(this instanceof altr)) {
+  if (!(this instanceof altr)) {
     return new altr(root, data, options)
   }
 
@@ -92,16 +92,16 @@ function altr(root, data, options) {
   this.lookups = dirtybit(data, {filters: this.filters})
 
   this.batch = batch((function() {
-    if(!this.sync) {
+    if (!this.sync) {
       raf(this.runBatch.bind(this))
     }
   }).bind(this))
 
-  if(global.Buffer && root instanceof global.Buffer) {
+  if (global.Buffer && root instanceof global.Buffer) {
     root = root.toString()
   }
 
-  if(typeof root === 'string') {
+  if (typeof root === 'string') {
     var temp = this.document.createElement('div')
 
     temp.innerHTML = root
@@ -147,7 +147,7 @@ function update(data, sync) {
   this.state = data
   this.lookups.update(data)
 
-  if(sync || this.sync) {
+  if (sync || this.sync) {
     this.runBatch()
   }
 }
@@ -196,7 +196,7 @@ function addTag(attr, tag) {
 function appendTo(node) {
   var rootNodes = this.rootNodes()
 
-  for(var i = 0, l = rootNodes.length; i < l; ++i) {
+  for (var i = 0, l = rootNodes.length; i < l; ++i) {
     node.appendChild(getEl(rootNodes[i]))
   }
 }
@@ -244,7 +244,7 @@ function altrAttribute(el, attr, lookups) {
   el.removeAttribute(attr.name)
 
   function update(val) {
-    if(!val && val !== '' && val !== 0) {
+    if (!val && val !== '' && val !== 0) {
       return el.removeAttribute(name)
     }
 
@@ -281,13 +281,13 @@ function decorators(el, attrs, lookups) {
     var decorator = altr.decorators[attr.name].call(altr, el)
     var expression = '[' + attr.value + ']'
 
-    if(!decorator) {
+    if (!decorator) {
       return
     }
 
     var hooks = {insert: decorator.insert, remove: decorator.remove}
 
-    if(decorator.update) {
+    if (decorator.update) {
       lookups.on(expression, update)
     }
 
@@ -298,7 +298,7 @@ function decorators(el, attrs, lookups) {
     function destroy() {
       lookups.removeListener(expression, update)
 
-      if(decorator.destroy) {
+      if (decorator.destroy) {
         decorator.destroy()
       }
     }
@@ -337,14 +337,14 @@ function createElementNode(el, lookups) {
   var altr_tags = {}
   var tags = {}
 
-  for(var i = 0, l = attrs.length; i < l; ++i) {
-    if(altr.tags[attrs[i].name]) {
+  for (var i = 0, l = attrs.length; i < l; ++i) {
+    if (altr.tags[attrs[i].name]) {
       altr_tags[attrs[i].name] = attrs[i].value
-    } else if(altr.decorators[attrs[i].name]) {
+    } else if (altr.decorators[attrs[i].name]) {
       decorators.push(attrs[i])
-    } else if(!attrs[i].name.lastIndexOf('altr-attr-', 0)) {
+    } else if (!attrs[i].name.lastIndexOf('altr-attr-', 0)) {
       createAttr.altr.call(this, el, attrs[i], lookups)
-    } else if(!attrs[i].name.lastIndexOf('altr-prop-', 0)) {
+    } else if (!attrs[i].name.lastIndexOf('altr-prop-', 0)) {
       createAttr.prop.call(this, el, attrs[i], lookups)
     } else {
       createAttr.raw.call(this, el, attrs[i], lookups)
@@ -353,8 +353,8 @@ function createElementNode(el, lookups) {
 
   var hooks = createDecorators.call(altr, el, decorators, lookups)
 
-  for(var i = 0, l = altr.tagList.length; i < l; ++i) {
-    if(attr = altr_tags[altr.tagList[i].attr]) {
+  for (var i = 0, l = altr.tagList.length; i < l; ++i) {
+    if (attr = altr_tags[altr.tagList[i].attr]) {
       return hooks.concat([
           altr.tagList[i].constructor.call(altr, el, attr, lookups, hooks) || {}
       ])
@@ -373,7 +373,7 @@ function get(_el) {
   while(el && el._altrPlaceholder) {
     el = el._altrPlaceholder
 
-    if(el === _el) {
+    if (el === _el) {
       throw new Error('placeholder circular refference')
     }
   }
@@ -420,7 +420,7 @@ function merge(children) {
   function each(type, el) {
     var nodes = children()
 
-    for(var i = 0, l = nodes.length; i < l; i++) {
+    for (var i = 0, l = nodes.length; i < l; i++) {
       nodes[i][type] && nodes[i][type](el)
     }
   }
@@ -454,16 +454,16 @@ function remove(hooks, el, ready) {
   var remaining = hooks.length
   var c = 0
 
-  for(var i = 0, l = remaining; i < l; i++) {
+  for (var i = 0, l = remaining; i < l; i++) {
     hooks[i].remove ? hooks[i].remove(el, done) : --remaining
   }
 
-  if(!remaining) {
+  if (!remaining) {
     ready()
   }
 
   function done() {
-    if(!--remaining) {
+    if (!--remaining) {
       remaining = -1
       ready()
     }
@@ -473,7 +473,7 @@ function remove(hooks, el, ready) {
 module.exports = render
 
 function render(template, state, el) {
-  if(this.includes[template]) {
+  if (this.includes[template]) {
     template = this.includes[template]
   }
 
@@ -481,7 +481,7 @@ function render(template, state, el) {
 
   instance.update(state || {}, true)
 
-  if(el) {
+  if (el) {
     instance.into(el)
   }
 
@@ -492,7 +492,7 @@ function render(template, state, el) {
 module.exports = runHooks
 
 function runHooks(hooks, type, el) {
-  for(var i = 0, l = hooks.length; i < l; i++) {
+  for (var i = 0, l = hooks.length; i < l; i++) {
     hooks[i][type] && hooks[i][type](el)
   }
 }
@@ -506,7 +506,7 @@ function setChildren(root, nodes) {
   var prev = null
     , el
 
-  for(var i = nodes.length - 1; i >= 0; --i) {
+  for (var i = nodes.length - 1; i >= 0; --i) {
     el = get(nodes[i])
     root.insertBefore(el, prev)
     prev = el
@@ -531,13 +531,13 @@ function children(el, getter, lookups) {
   function update(val) {
     var nodes = (Array.isArray(val) ? val : [val]).filter(is_node)
 
-    for(var i = 0, l = nodes.length; i < l; ++i) {
-      if(nodes[i] !== current[i]) {
+    for (var i = 0, l = nodes.length; i < l; ++i) {
+      if (nodes[i] !== current[i]) {
         break
       }
     }
 
-    if(i === nodes.length === current.length) {
+    if (i === nodes.length === current.length) {
       return
     }
 
@@ -564,7 +564,7 @@ function forHandler(root, args, lookups) {
   var altr = this
   var items = []
 
-  if(!parts) {
+  if (!parts) {
     return console.error('invalid `for` tag: ' + args)
   }
 
@@ -586,7 +586,7 @@ function forHandler(root, args, lookups) {
   function updateChildren(data) {
     var itemData
 
-    for(var i = 0, l = children.length; i < l; ++i) {
+    for (var i = 0, l = children.length; i < l; ++i) {
       itemData = Object.create(data)
       itemData[prop] = items[i]
       itemData['$index'] = i
@@ -595,7 +595,7 @@ function forHandler(root, args, lookups) {
   }
 
   function update(newItems) {
-    if(!Array.isArray(newItems)) {
+    if (!Array.isArray(newItems)) {
       newItems = []
     }
 
@@ -607,10 +607,10 @@ function forHandler(root, args, lookups) {
 
     domNodes = []
 
-    for(var i = 0, l = newItems.length; i < l; ++i) {
+    for (var i = 0, l = newItems.length; i < l; ++i) {
       index = findIndex(items, newItems[i], unique)
 
-      if(index !== -1) {
+      if (index !== -1) {
         newChildren[i] = children[index]
         items[index] = children[index] = matched
       } else {
@@ -620,8 +620,8 @@ function forHandler(root, args, lookups) {
       domNodes = domNodes.concat(newChildren[i].nodes)
     }
 
-    for(var i = 0, l = children.length; i < l; ++i) {
-      if(children[i] !== matched) {
+    for (var i = 0, l = children.length; i < l; ++i) {
+      if (children[i] !== matched) {
         removed.push(children[i])
       }
     }
@@ -637,12 +637,12 @@ function forHandler(root, args, lookups) {
   }
 
   function findIndex(items, d, unique) {
-    if(!unique) {
+    if (!unique) {
       return items.indexOf(d)
     }
 
-    for(var i = 0, l = items.length; i < l; ++i) {
-      if(items[i][unique] === d[unique]) {
+    for (var i = 0, l = items.length; i < l; ++i) {
+      if (items[i][unique] === d[unique]) {
         return i
       }
     }
@@ -674,7 +674,7 @@ function html(el, accessor, lookups) {
   function update(val) {
     el.innerHTML = typeof val === 'undefined' ? '' : val
 
-    if(el.getAttribute('altr-run-scripts')) {
+    if (el.getAttribute('altr-run-scripts')) {
       [].forEach.call(el.getElementsByTagName('script'), run)
     }
   }
@@ -686,7 +686,7 @@ function run(script) {
     , attrs = script.attributes
     , src
 
-  for(var i = 0, l = attrs.length; i < l; ++i) {
+  for (var i = 0, l = attrs.length; i < l; ++i) {
     fixed.setAttribute(attrs[i].name, attrs[i].value)
   }
 
@@ -708,16 +708,16 @@ function ifTag(el, getter, lookups, decorators) {
   var altr = this
 
   var update = this.batch.add(function(show, origin) {
-    if(!hidden && !show) {
+    if (!hidden && !show) {
       el.parentNode.replaceChild(placeholder, el)
       el._altrPlaceholder = placeholder
       hidden = true
-    } else if(hidden && show) {
+    } else if (hidden && show) {
       placeholder.parentNode.replaceChild(el, placeholder)
       altr.runHooks(all, 'insert', origin)
       delete el._altrPlaceholder
       hidden = false
-    } else if(first) {
+    } else if (first) {
       first = false
       altr.runHooks(all, 'insert', origin)
     }
@@ -738,7 +738,7 @@ function ifTag(el, getter, lookups, decorators) {
   function toggle(val) {
     lastVal = val
 
-    if(val) {
+    if (val) {
       update(true, el)
       children.lookups.update(lookups.state)
     } else {
@@ -749,13 +749,13 @@ function ifTag(el, getter, lookups, decorators) {
   }
 
   function insert(el) {
-    if(lastVal) {
+    if (lastVal) {
       update(true, el)
     }
   }
 
   function remove(el, done) {
-    if(hidden) {
+    if (hidden) {
       done()
 
       return update(false)
@@ -782,7 +782,7 @@ function include(el, name, lookups) {
   return {insert: insert, remove: remove, destroy: destroy}
 
   function insert() {
-    if(children) {
+    if (children) {
       return
     }
 
@@ -791,7 +791,7 @@ function include(el, name, lookups) {
   }
 
   function remove(el, done) {
-    if(!children || removing) {
+    if (!children || removing) {
       return
     }
 
@@ -800,7 +800,7 @@ function include(el, name, lookups) {
     altr.destroy(children, el, function() {
       removing = false
 
-      if(!children) {
+      if (!children) {
         el.innerHTML = ''
       }
 
@@ -828,7 +828,7 @@ function placeholder(original, getter, lookups) {
   this.batch.add(lookups.on(getter, update))
 
   function update(val) {
-    if(!val || !val.nodeName || val === current) {
+    if (!val || !val.nodeName || val === current) {
       return
     }
 
@@ -875,7 +875,7 @@ function withTag(el, getter, lookups) {
 module.exports = templatString
 
 function templatString(template, change, lookups) {
-  if(!template.match(this.tagRegExp)) {
+  if (!template.match(this.tagRegExp)) {
     return
   }
 
@@ -886,7 +886,7 @@ function templatString(template, change, lookups) {
     , next
 
   while(remaining && (next = remaining.match(this.tagRegExp))) {
-    if(index = remaining.indexOf(next[0])) {
+    if (index = remaining.indexOf(next[0])) {
       parts.push(remaining.slice(0, index))
     }
 
@@ -895,7 +895,7 @@ function templatString(template, change, lookups) {
     lookups.on(next[1], setPart.bind(this, parts.length - 1))
   }
 
-  if(remaining) {
+  if (remaining) {
     setPart(parts.length, remaining)
   }
 
@@ -947,7 +947,7 @@ function toString() {
 module.exports = Batch
 
 function Batch(ready, all) {
-  if(!(this instanceof Batch)) {
+  if (!(this instanceof Batch)) {
     return new Batch(ready, all)
   }
 
@@ -974,7 +974,7 @@ function add(fn) {
     args = [].slice.call(arguments)
     self = this
 
-    if(queued) {
+    if (queued) {
       return batch.all && batch.ready()
     }
 
@@ -991,7 +991,7 @@ function add(fn) {
 function queue(fn) {
   this.jobs.push(fn)
 
-  if(this.all || !this.queued) {
+  if (this.all || !this.queued) {
     this.queued = true
     this.ready(this)
   }
@@ -1003,7 +1003,7 @@ function run() {
   this.jobs = []
   this.queued = false
 
-  for(var i = 0, l = jobs.length; i < l; ++i) {
+  for (var i = 0, l = jobs.length; i < l; ++i) {
     jobs[i]()
   }
 
@@ -1023,7 +1023,7 @@ function Expression(parsed, deps, value, handler) {
   this.update = update.bind(this)
   this.handler = handler
 
-  for(var i = 0, l = deps.length; i < l; ++i) {
+  for (var i = 0, l = deps.length; i < l; ++i) {
     deps[i].dependents.push(this)
   }
 }
@@ -1032,14 +1032,14 @@ Expression.prototype.change = change
 Expression.prototype.update = update
 
 function change(val) {
-  if(this.value === val && (!this.value || typeof this.value !== 'object')) {
+  if (this.value === val && (!this.value || typeof this.value !== 'object')) {
     return
   }
 
   this.value = val
   this.changed = true
 
-  for(var i = 0, l = this.dependents.length; i < l; ++i) {
+  for (var i = 0, l = this.dependents.length; i < l; ++i) {
     this.dependents[i].update()
   }
 }
@@ -1047,7 +1047,7 @@ function change(val) {
 function update() {
   var args = new Array(this.deps.length)
 
-  for(var i = 0, l = this.deps.length; i < l; ++i) {
+  for (var i = 0, l = this.deps.length; i < l; ++i) {
     args[i] = this.deps[i].value
   }
 
@@ -1060,7 +1060,7 @@ module.exports = hash
 function hash(str) {
   var val = 0
 
-  for(var i = 0, len = str.length; i < len; ++i) {
+  for (var i = 0, len = str.length; i < len; ++i) {
     val = ((val << 5) - val) + str.charCodeAt(i)
     val |= 0
   }
@@ -1080,7 +1080,7 @@ var hash = require('./hash')
 module.exports = DirtyBit
 
 function DirtyBit(state, options) {
-  if(!(this instanceof DirtyBit)) {
+  if (!(this instanceof DirtyBit)) {
     return new DirtyBit(state, options)
   }
 
@@ -1100,7 +1100,7 @@ function DirtyBit(state, options) {
   this.expressions['this'] = this.rootExpression
   this.rootExpression.removable = false
 
-  if(this.rootKey) {
+  if (this.rootKey) {
     this.expressions[this.rootKey] = this.rootExpression
   }
 
@@ -1133,15 +1133,15 @@ function report() {
   var expression
   var lookup
 
-  for(var i = 0, l = this.handlerList.length; i < l; ++i) {
+  for (var i = 0, l = this.handlerList.length; i < l; ++i) {
     lookup = this.handlerList[i]
     expression = this.expressions[lookup]
 
-    if(!expression.changed) {
+    if (!expression.changed) {
       continue
     }
 
-    for(var j = 0, l2 = this.handlers[lookup].length; j < l2; ++j) {
+    for (var j = 0, l2 = this.handlers[lookup].length; j < l2; ++j) {
       this.handlers[lookup][j](expression.value)
     }
 
@@ -1160,7 +1160,7 @@ function trim(str) {
 function on(_lookup, handler) {
   var lookup = this.trim(_lookup)
 
-  if(this.handlers[lookup]) {
+  if (this.handlers[lookup]) {
     this.handlers[lookup].push(handler)
 
     return handler(this.expressions[lookup].value)
@@ -1180,10 +1180,10 @@ module.exports = parse
 function parse(lookup) {
   var val
 
-  for(var i = 0, l = this.types.order.length; i < l; ++i) {
+  for (var i = 0, l = this.types.order.length; i < l; ++i) {
     val = this.types.types[this.types.order[i]].parse.call(this, lookup)
 
-    if(val) {
+    if (val) {
       break
     }
   }
@@ -1201,19 +1201,19 @@ function remove(_lookup, handler) {
   var lookup = this.trim(_lookup)
   var handlers = this.handlers[lookup]
 
-  if(!handlers) {
+  if (!handlers) {
     return
   }
 
   var index = handlers.indexOf(handler)
 
-  if(index < 0) {
+  if (index < 0) {
     return
   }
 
   handlers.splice(index, 1)
 
-  if(this.handlers[lookup].length) {
+  if (this.handlers[lookup].length) {
     return
   }
 
@@ -1223,13 +1223,13 @@ function remove(_lookup, handler) {
 }
 
 function removeExpression(self, expression) {
-  if(expression.dependents.length || !expression.removable) {
+  if (expression.dependents.length || !expression.removable) {
     return
   }
 
   delete self.expressions[expression.parsed.lookup]
 
-  for(var i = 0, l = expression.deps.length, dep; i < l; ++i) {
+  for (var i = 0, l = expression.deps.length, dep; i < l; ++i) {
     dep = expression.deps[i]
     dep.dependents.splice(dep.dependents.indexOf(expression), 1)
     removeExpression(self, dep)
@@ -1253,39 +1253,39 @@ function split(parts, key, all, _pairs) {
     , inString = false
     , layers = []
 
-  for(var i = 0, l = parts.length; i < l; ++i) {
-    if(!~parts.indexOf(key)) {
+  for (var i = 0, l = parts.length; i < l; ++i) {
+    if (!~parts.indexOf(key)) {
       i = l
 
       break
     }
 
-    if(!layers.length) {
-      for(var j = 0, l2 = key.length; j < l2; ++j) {
-        if(parts[i + j] !== key[j]) {
+    if (!layers.length) {
+      for (var j = 0, l2 = key.length; j < l2; ++j) {
+        if (parts[i + j] !== key[j]) {
           break
         }
       }
 
-      if(j === key.length) {
+      if (j === key.length) {
         break
       }
     }
 
-    if(layers.length && layers[layers.length - 1] === parts[i]) {
+    if (layers.length && layers[layers.length - 1] === parts[i]) {
       inString = false
       layers.pop()
 
       continue
     }
 
-    if(inString) {
+    if (inString) {
       continue
     }
 
-    for(var j = 0, l2 = pairs.length; j < l2; ++j) {
-      if(parts[i] === pairs[j][0]) {
-        if(pairs[j][2]) {
+    for (var j = 0, l2 = pairs.length; j < l2; ++j) {
+      if (parts[i] === pairs[j][0]) {
+        if (pairs[j][2]) {
           inString = true
         }
 
@@ -1296,20 +1296,20 @@ function split(parts, key, all, _pairs) {
     }
   }
 
-  if(layers.length) {
+  if (layers.length) {
     console.error(
         'Unmatched pair in ' + parts + '. expecting: ' + layers.pop()
     )
   }
 
-  if(i === parts.length) {
+  if (i === parts.length) {
     return [parts]
   }
 
   var right = parts.slice(i + key.length)
     , left = parts.slice(0, i)
 
-  if(!all) {
+  if (!all) {
     return [left, right]
   }
 
@@ -1344,15 +1344,15 @@ function add(list) {
 function parse(lookup) {
   var parts
 
-  for(var i = 0, l = tests.length; i < l; ++i) {
+  for (var i = 0, l = tests.length; i < l; ++i) {
     parts = lookup.match(tests[i])
 
-    if(parts) {
+    if (parts) {
       break
     }
   }
 
-  if(!parts) {
+  if (!parts) {
     return false
   }
 
@@ -1360,7 +1360,7 @@ function parse(lookup) {
 }
 
 function create(change, op) {
-  if(!ops[op]) {
+  if (!ops[op]) {
     ops[op] = createOp(op)
   }
 
@@ -1386,7 +1386,7 @@ module.exports = brackets
 module.exports.parse = parse
 
 function parse(lookup) {
-  if(!has_bracket.test(lookup)) {
+  if (!has_bracket.test(lookup)) {
     return false
   }
 
@@ -1406,7 +1406,7 @@ function reverse(str) {
 
 function brackets(change) {
   return function(inner, root) {
-    if(root === null || root === undefined) {
+    if (root === null || root === undefined) {
       return change()
     }
 
@@ -1430,7 +1430,7 @@ function parse(lookup) {
 
 function create(change, key) {
   return function(obj) {
-    if(obj === null || obj === undefined) {
+    if (obj === null || obj === undefined) {
       return change()
     }
 
@@ -1447,7 +1447,7 @@ module.exports.parse = parse
 function parse(lookup) {
   var parts = lookup.match(filter_regexp)
 
-  if(!parts) {
+  if (!parts) {
     return false
   }
 
@@ -1505,7 +1505,7 @@ module.exports = list
 module.exports.parse = parse
 
 function parse(lookup) {
-  if(!is_list.test(lookup)) {
+  if (!is_list.test(lookup)) {
     return false
   }
 
@@ -1526,7 +1526,7 @@ module.exports.parse = parse
 function parse(lookup) {
   var parts = lookup.match(parens_regexp)
 
-  if(!parts) {
+  if (!parts) {
     return false
   }
 
@@ -1560,13 +1560,13 @@ module.exports.parse = parse
 function parse(lookup) {
   var parts = lookup.match(ternary_regexp)
 
-  if(!parts) {
+  if (!parts) {
     return false
   }
 
   var rest = this.split(parts[2], ':')
 
-  if(rest.length !== 2) {
+  if (rest.length !== 2) {
     console.error('Unmatched ternary in: ' + lookup)
   }
 
@@ -1590,7 +1590,7 @@ var ops = {}
 function parse(lookup) {
   var parts = lookup.match(test)
 
-  if(!parts) {
+  if (!parts) {
     return false
   }
 
@@ -1598,7 +1598,7 @@ function parse(lookup) {
 }
 
 function create(change, op) {
-  if(!ops[op]) {
+  if (!ops[op]) {
     ops[op] = create_op(op)
   }
 
@@ -1623,15 +1623,15 @@ var vals = {
 }
 
 function parse(lookup) {
-  if(vals.hasOwnProperty(lookup)) {
+  if (vals.hasOwnProperty(lookup)) {
     return {value: vals[lookup]}
   }
 
-  if(number_regexp.test(lookup)) {
+  if (number_regexp.test(lookup)) {
     return {value: +lookup}
   }
 
-  if(string_regexp.test(lookup)) {
+  if (string_regexp.test(lookup)) {
     return {value: lookup.slice(1, -1)}
   }
 }
@@ -1651,8 +1651,8 @@ function watch(lookup) {
 
   var handler = createHandler.call(self, parsed, change)
 
-  if(partials) {
-    for(var i = 0, l = partials.length; i < l; ++i) {
+  if (partials) {
+    for (var i = 0, l = partials.length; i < l; ++i) {
       self.partials[partials[i]] = parsed.partials[partials[i]]
       getDep.call(self, self.partials[partials[i]])
     }
@@ -1662,14 +1662,14 @@ function watch(lookup) {
 
   self.expressions[lookup] = expression
 
-  if(expression.handler) {
+  if (expression.handler) {
     expression.update()
   }
 
   return expression
 
   function change(val) {
-    if(self.updating) {
+    if (self.updating) {
       return expression.change(val)
     }
 
@@ -1683,7 +1683,7 @@ function watch(lookup) {
 function createHandler(parsed, change) {
   var type = this.types.types[parsed.type]
 
-  if(typeof type === 'function') {
+  if (typeof type === 'function') {
     return type.call(this, change, parsed.options)
   }
 
@@ -1695,7 +1695,7 @@ function createExpression(parsed, handler) {
   var proxy = parsed.proxy && getDep.call(this, parsed.proxy)
   var expression
 
-  if(proxy) {
+  if (proxy) {
     return expression = new Expression(parsed, [proxy], proxy.value, echo)
   }
 

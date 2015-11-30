@@ -1,7 +1,7 @@
 var altr = require('../../lib')
-  , test = require('tape')
+var test = require('tape')
 
-test('html tag', function(t) {
+test('html tag', function (t) {
   var template = altr(
       '<div altr-html="content"></div>'
     , {content: 'this is <span>html!</span>'}

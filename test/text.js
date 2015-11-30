@@ -1,7 +1,7 @@
 var altr = require('../lib')
-  , test = require('tape')
+var test = require('tape')
 
-test('text', function(t) {
+test('text', function (t) {
   var template = altr(
       'Hello, {{ name }}! the value is {{ the.value }}'
     , {name: 'world', the: {value: 10}}
